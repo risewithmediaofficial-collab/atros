@@ -3,6 +3,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import HeroSection from '@/app/components/HeroSection';
 import TrustStatsSection from '@/app/components/TrustStatsSection';
+import ProductsSection from '@/app/components/ProductsSection';
 import ServicesSection from '@/app/components/ServicesSection';
 import WhyChooseSection from '@/app/components/WhyChooseSection';
 import ProcessSection from '@/app/components/ProcessSection';
@@ -17,9 +18,10 @@ export default function HomePage() {
     <>
       <StructuredData />
       <Header />
-      <main>
+      <main id="main-content">
         <HeroSection />
         <TrustStatsSection />
+        <ProductsSection />
         <ServicesSection />
         <WhyChooseSection />
         <ProcessSection />

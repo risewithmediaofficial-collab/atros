@@ -26,46 +26,62 @@ export default function HeroSection() {
           opacity: 0,
           duration: 1.3,
           stagger: 0.18,
-          ease: 'power4.out'
+          ease: 'power4.out',
         });
       }
 
       if (subRef.current) {
-        tl.from(subRef.current, {
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out'
-        }, '-=0.9');
+        tl.from(
+          subRef.current,
+          {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out',
+          },
+          '-=0.9'
+        );
       }
 
       if (ctaRef.current) {
-        tl.from(ctaRef.current.children, {
-          y: 24,
-          opacity: 0,
-          duration: 0.8,
-          stagger: 0.12,
-          ease: 'power3.out'
-        }, '-=0.7');
+        tl.from(
+          ctaRef.current.children,
+          {
+            y: 24,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.12,
+            ease: 'power3.out',
+          },
+          '-=0.7'
+        );
       }
 
       if (statsRef.current) {
-        tl.from(statsRef.current.children, {
-          y: 24,
-          opacity: 0,
-          duration: 0.7,
-          stagger: 0.1,
-          ease: 'power3.out'
-        }, '-=0.5');
+        tl.from(
+          statsRef.current.children,
+          {
+            y: 24,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.1,
+            ease: 'power3.out',
+          },
+          '-=0.5'
+        );
       }
 
       if (imageRef.current) {
-        tl.from(imageRef.current, {
-          x: 70,
-          opacity: 0,
-          duration: 1.4,
-          ease: 'power3.out'
-        }, '-=1.6');
+        tl.from(
+          imageRef.current,
+          {
+            x: 70,
+            opacity: 0,
+            duration: 1.4,
+            ease: 'power3.out',
+          },
+          '-=1.6'
+        );
       }
 
       // Cursor parallax
@@ -91,7 +107,7 @@ export default function HeroSection() {
     { value: '10K+', label: 'Happy Customers' },
     { value: '20+', label: 'Years Experience' },
     { value: '99.9%', label: 'Pure Water' },
-    { value: '24/7', label: 'Support' }
+    { value: '24/7', label: 'Support' },
   ];
 
   return (
@@ -109,13 +125,22 @@ export default function HeroSection() {
       />
 
       {/* Floating particles */}
-      {[
-        { size: 6, top: '20%', left: '15%', delay: '0s', dur: '5s' },
-        { size: 4, top: '60%', left: '8%', delay: '1.5s', dur: '7s' },
-        { size: 8, top: '35%', right: '20%', delay: '0.8s', dur: '6s' },
-        { size: 5, top: '75%', right: '35%', delay: '2s', dur: '8s' },
-        { size: 3, top: '15%', left: '45%', delay: '1s', dur: '5.5s' },
-      ].map((p, i) => (
+      {(
+        [
+          { size: 6, top: '20%', left: '15%', delay: '0s', dur: '5s' },
+          { size: 4, top: '60%', left: '8%', delay: '1.5s', dur: '7s' },
+          { size: 8, top: '35%', right: '20%', delay: '0.8s', dur: '6s' },
+          { size: 5, top: '75%', right: '35%', delay: '2s', dur: '8s' },
+          { size: 3, top: '15%', left: '45%', delay: '1s', dur: '5.5s' },
+        ] satisfies Array<{
+          size: number;
+          top: string;
+          left?: string;
+          right?: string;
+          delay: string;
+          dur: string;
+        }>
+      ).map((p, i) => (
         <div
           key={i}
           className="absolute rounded-full bg-white/20 pointer-events-none"
@@ -123,8 +148,8 @@ export default function HeroSection() {
             width: p.size,
             height: p.size,
             top: p.top,
-            left: (p as any).left,
-            right: (p as any).right,
+            left: p.left,
+            right: p.right,
             animation: `particleFloat ${p.dur} ease-in-out infinite`,
             animationDelay: p.delay,
           }}
@@ -166,24 +191,36 @@ export default function HeroSection() {
                 </span>
               </div>
               <div className="overflow-hidden">
-                <span className="font-display text-hero font-light italic leading-none reveal-line block" style={{ color: 'rgba(0,180,216,0.9)' }}>
+                <span
+                  className="font-display text-hero font-light italic leading-none reveal-line block"
+                  style={{ color: 'rgba(0,180,216,0.9)' }}
+                >
                   Life.
                 </span>
               </div>
             </div>
 
-            <p ref={subRef} className="text-white/75 text-base sm:text-lg font-light leading-relaxed max-w-lg mb-9" style={{ fontFamily: 'Inter, sans-serif' }}>
-              Advanced RO, UV, UF & Alkaline Water Purification Solutions for Homes,
-              Businesses & Industries across India.
+            <p
+              ref={subRef}
+              className="text-white/75 text-base sm:text-lg font-light leading-relaxed max-w-lg mb-9"
+              style={{ fontFamily: 'Inter, sans-serif' }}
+            >
+              Advanced RO, UV, UF & Alkaline Water Purification Solutions for Homes, Businesses &
+              Industries across India.
             </p>
 
             {/* CTAs */}
             <div ref={ctaRef} className="flex flex-wrap gap-3 mb-12">
-              <a
-                href="#contact"
-                className="btn-primary-glow inline-flex items-center gap-2"
-              >
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <a href="#contact" className="btn-primary-glow inline-flex items-center gap-2">
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                >
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-.96a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
                 </svg>
                 Get Free Consultation
@@ -192,17 +229,30 @@ export default function HeroSection() {
                 href="tel:+919080232624"
                 className="btn-ghost-white inline-flex items-center gap-2"
               >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <svg
+                  width="15"
+                  height="15"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                >
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-.96a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
                 </svg>
                 Call Now
               </a>
-              <a
-                href="#services"
-                className="btn-ghost-white inline-flex items-center gap-2"
-              >
+              <a href="#services" className="btn-ghost-white inline-flex items-center gap-2">
                 Our Services
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                >
                   <path d="M7 7h10v10M7 17L17 7" />
                 </svg>
               </a>
@@ -215,7 +265,9 @@ export default function HeroSection() {
                   <div className="font-display text-xl sm:text-2xl font-bold text-white leading-none mb-1">
                     {s.value}
                   </div>
-                  <div className="text-white/55 text-[10px] sm:text-xs font-medium leading-tight">{s.label}</div>
+                  <div className="text-white/55 text-[10px] sm:text-xs font-medium leading-tight">
+                    {s.label}
+                  </div>
                 </div>
               ))}
             </div>
@@ -229,7 +281,12 @@ export default function HeroSection() {
               {/* Inner glow ring */}
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-accent/30 to-transparent blur-xl" />
 
-              <div className="relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl animate-float" style={{ boxShadow: '0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1)' }}>
+              <div
+                className="relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl animate-float"
+                style={{
+                  boxShadow: '0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1)',
+                }}
+              >
                 <AppImage
                   src="https://images.unsplash.com/photo-1657778752979-90b85022f6fa"
                   alt="Modern water purifier unit with clean white design, blue accent lighting, bright studio background"
@@ -243,7 +300,15 @@ export default function HeroSection() {
                 <div className="absolute bottom-4 left-4 right-4 glass-card p-4">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
-                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="white"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                      >
                         <path d="M12 22a7 7 0 0 0 7-7c0-2-1-3.9-3-5.5s-3.5-4-4-6.5c-.5 2.5-2 4.9-4 6.5C6 11.1 5 13 5 15a7 7 0 0 0 7 7z" />
                       </svg>
                     </div>
@@ -253,9 +318,9 @@ export default function HeroSection() {
                     </div>
                     <div className="ml-auto">
                       <div className="flex gap-0.5">
-                        {[1,2,3,4,5].map(i => (
+                        {[1, 2, 3, 4, 5].map((i) => (
                           <svg key={i} width="10" height="10" viewBox="0 0 24 24" fill="#00B4D8">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                           </svg>
                         ))}
                       </div>
@@ -282,7 +347,12 @@ export default function HeroSection() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
-        <span className="text-white/35 text-[10px] tracking-[0.3em] uppercase font-medium" style={{ fontFamily: 'Inter, sans-serif' }}>Scroll</span>
+        <span
+          className="text-white/35 text-[10px] tracking-[0.3em] uppercase font-medium"
+          style={{ fontFamily: 'Inter, sans-serif' }}
+        >
+          Scroll
+        </span>
         <div className="w-px h-12 bg-white/15 relative overflow-hidden rounded-full">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-accent to-transparent animate-scroll-line" />
         </div>

@@ -30,18 +30,32 @@ export const metadata: Metadata = {
   icons: {
     icon: [{ url: '/favicon.ico', type: 'image/x-icon' }],
   },
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    title: 'ATROS Water Purifier',
+    description:
+      'Premium RO, UV, UF, alkaline and industrial water purification systems with expert installation and AMC support.',
+    url: '/',
+    siteName: 'ATROS Water Purifier',
+    images: [
+      { url: '/assets/images/app_logo.png', width: 512, height: 512, alt: 'ATROS Water Purifier' },
+    ],
+    locale: 'en_IN',
+    type: 'website',
+  },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
-      <body className={dmSans.className}>
+      <body className={`${dmSans.className} antialiased`}>
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
         {children}
-
-        <script type="module" async src="https://static.rocket.new/rocket-web.js?_cfg=https%3A%2F%2Fatros9347back.builtwithrocket.new&_be=https%3A%2F%2Fappanalytics.rocket.new&_v=0.1.18" />
-        <script type="module" defer src="https://static.rocket.new/rocket-shot.js?v=0.0.2" /></body>
+      </body>
     </html>
   );
 }
