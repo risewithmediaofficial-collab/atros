@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import AppImage from '@/components/ui/AppImage';
 
 const reasons = [
   {
@@ -120,40 +119,56 @@ const reasons = [
 ];
 
 const bentoStats = [
-  { value: '10,000+', label: 'Families Served', suffix: '' },
-  { value: '20+', label: 'Years of Trust', suffix: '' },
-  { value: '99.9%', label: 'Purity Rate', suffix: '' },
+  { value: '10,000+', label: 'Families Served' },
+  { value: '20+', label: 'Years of Trust' },
+  { value: '99.9%', label: 'Purity Rate' },
 ];
 
 export default function WhyChooseSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    let ctx: any;
+    let isCancelled = false;
+
     const initGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap?.registerPlugin(ScrollTrigger);
+      try {
+        const { gsap } = await import('gsap');
+        if (isCancelled) return;
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!sectionRef?.current) return;
+        const currentRef = sectionRef.current;
+        if (!currentRef) return;
 
-      gsap?.from(sectionRef?.current?.querySelector('.why-left'), {
-        scrollTrigger: { trigger: sectionRef?.current, start: 'top 70%' },
-        x: -50,
-        opacity: 0,
-        duration: 1.1,
-        ease: 'power3.out',
-      });
+        ctx = gsap.context(() => {
+          gsap.from(currentRef.querySelector('.why-left'), {
+            scrollTrigger: { trigger: currentRef, start: 'top 75%' },
+            x: -40,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out',
+          });
 
-      gsap?.from(sectionRef?.current?.querySelectorAll('.reason-item'), {
-        scrollTrigger: { trigger: sectionRef?.current, start: 'top 65%' },
-        y: 35,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
+          gsap.from(currentRef.querySelectorAll('.reason-item'), {
+            scrollTrigger: { trigger: currentRef, start: 'top 70%' },
+            y: 30,
+            opacity: 0,
+            duration: 0.7,
+            stagger: 0.09,
+            ease: 'power3.out',
+          });
+        });
+      } catch {
+        // GSAP failed — elements already visible due to CSS defaults
+      }
     };
     initGSAP();
+
+    return () => {
+      isCancelled = true;
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
@@ -166,7 +181,7 @@ export default function WhyChooseSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="section-label mb-5 mx-auto block w-fit">03 - Why Choose ATROS</span>
+          <span className="section-label mb-5 mx-auto block w-fit">03 — Why Choose ATROS</span>
           <h2 className="font-display text-section-title font-light text-foreground">
             Why Families
             <br />
@@ -184,13 +199,14 @@ export default function WhyChooseSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
           {/* Left column */}
           <div className="why-left lg:col-span-4 flex flex-col gap-5">
-            {/* Image card */}
-            <div className="relative rounded-2xl overflow-hidden" style={{ minHeight: '280px' }}>
-              <AppImage
+            {/* Image card — using plain img with explicit height to guarantee visibility */}
+            <div className="relative rounded-2xl overflow-hidden" style={{ height: '280px' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
                 src="https://img.rocket.new/generatedImages/rocket_gen_img_1af56a07c-1767952600354.png"
-                alt="Happy Indian family drinking clean water at home, bright kitchen, healthy lifestyle"
-                fill
-                className="object-cover"
+                alt="Happy Indian family drinking clean water at home"
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A4D68]/80 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5">
@@ -200,7 +216,7 @@ export default function WhyChooseSection() {
                     className="text-white/65 text-xs mt-0.5"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
-                    Across Tamil Nadu & Beyond
+                    Across Tamil Nadu &amp; Beyond
                   </p>
                 </div>
               </div>
@@ -208,19 +224,19 @@ export default function WhyChooseSection() {
 
             {/* Stats bento */}
             <div className="grid grid-cols-3 gap-3">
-              {bentoStats?.map((s) => (
+              {bentoStats.map((s) => (
                 <div
-                  key={s?.label}
+                  key={s.label}
                   className="gradient-border-card p-4 text-center bg-white shadow-sm"
                 >
                   <div className="font-display text-xl font-bold text-primary leading-none mb-1">
-                    {s?.value}
+                    {s.value}
                   </div>
                   <div
                     className="text-muted-foreground text-[10px] font-medium leading-tight"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
-                    {s?.label}
+                    {s.label}
                   </div>
                 </div>
               ))}
@@ -259,25 +275,25 @@ export default function WhyChooseSection() {
 
           {/* Right: Features Grid */}
           <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {reasons?.map((r) => (
+            {reasons.map((r) => (
               <div
-                key={r?.title}
-                className="reason-item gradient-border-card bg-white p-5 hover:shadow-xl hover:shadow-accent/8 hover:-translate-y-1 transition-all duration-400 group cursor-pointer"
+                key={r.title}
+                className="reason-item gradient-border-card bg-white p-5 hover:shadow-xl hover:shadow-accent/8 hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
               >
                 <div className="flex items-start gap-4">
-                  <div className="icon-glow flex-shrink-0">{r?.icon}</div>
+                  <div className="icon-glow flex-shrink-0">{r.icon}</div>
                   <div>
                     <h3
                       className="font-semibold text-foreground text-sm mb-1.5"
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
-                      {r?.title}
+                      {r.title}
                     </h3>
                     <p
                       className="text-muted-foreground text-sm leading-relaxed"
                       style={{ fontFamily: 'Inter, sans-serif' }}
                     >
-                      {r?.description}
+                      {r.description}
                     </p>
                   </div>
                 </div>

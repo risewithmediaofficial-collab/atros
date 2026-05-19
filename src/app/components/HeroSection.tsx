@@ -13,75 +13,64 @@ export default function HeroSection() {
   const imageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    let ctx: any;
+    let isCancelled = false;
+    let unsubMouse: (() => void) | undefined;
+
     const initAnimations = async () => {
-      const gsapModule = await import('gsap');
-      const gsap = gsapModule.gsap;
+      try {
+        const gsapModule = await import('gsap');
+        if (isCancelled) return;
+        const gsap = gsapModule.gsap;
 
-      const tl = gsap.timeline({ delay: 0.3 });
+        ctx = gsap.context(() => {
+          const tl = gsap.timeline({ delay: 0.3 });
 
-      if (headlineRef.current) {
-        const lines = headlineRef.current.querySelectorAll('.reveal-line');
-        tl.from(lines, {
-          y: 110,
-          opacity: 0,
-          duration: 1.3,
-          stagger: 0.18,
-          ease: 'power4.out',
+          if (headlineRef.current) {
+            const lines = headlineRef.current.querySelectorAll('.reveal-line');
+            tl.from(lines, {
+              y: 110,
+              opacity: 0,
+              duration: 1.3,
+              stagger: 0.18,
+              ease: 'power4.out',
+            });
+          }
+
+          if (subRef.current) {
+            tl.from(
+              subRef.current,
+              { y: 30, opacity: 0, duration: 1, ease: 'power3.out' },
+              '-=0.9'
+            );
+          }
+
+          if (ctaRef.current) {
+            tl.from(
+              ctaRef.current.children,
+              { y: 24, opacity: 0, duration: 0.8, stagger: 0.12, ease: 'power3.out' },
+              '-=0.7'
+            );
+          }
+
+          if (statsRef.current) {
+            tl.from(
+              statsRef.current.children,
+              { y: 24, opacity: 0, duration: 0.7, stagger: 0.1, ease: 'power3.out' },
+              '-=0.5'
+            );
+          }
+
+          if (imageRef.current) {
+            tl.from(
+              imageRef.current,
+              { x: 70, opacity: 0, duration: 1.4, ease: 'power3.out' },
+              '-=1.6'
+            );
+          }
         });
-      }
-
-      if (subRef.current) {
-        tl.from(
-          subRef.current,
-          {
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            ease: 'power3.out',
-          },
-          '-=0.9'
-        );
-      }
-
-      if (ctaRef.current) {
-        tl.from(
-          ctaRef.current.children,
-          {
-            y: 24,
-            opacity: 0,
-            duration: 0.8,
-            stagger: 0.12,
-            ease: 'power3.out',
-          },
-          '-=0.7'
-        );
-      }
-
-      if (statsRef.current) {
-        tl.from(
-          statsRef.current.children,
-          {
-            y: 24,
-            opacity: 0,
-            duration: 0.7,
-            stagger: 0.1,
-            ease: 'power3.out',
-          },
-          '-=0.5'
-        );
-      }
-
-      if (imageRef.current) {
-        tl.from(
-          imageRef.current,
-          {
-            x: 70,
-            opacity: 0,
-            duration: 1.4,
-            ease: 'power3.out',
-          },
-          '-=1.6'
-        );
+      } catch (e) {
+        // Fallback if GSAP fails
       }
 
       // Cursor parallax
@@ -96,11 +85,19 @@ export default function HeroSection() {
         }
       };
 
-      window.addEventListener('mousemove', handleMouseMove);
-      return () => window.removeEventListener('mousemove', handleMouseMove);
+      if (!isCancelled) {
+        window.addEventListener('mousemove', handleMouseMove);
+        unsubMouse = () => window.removeEventListener('mousemove', handleMouseMove);
+      }
     };
 
     initAnimations();
+
+    return () => {
+      isCancelled = true;
+      if (ctx) ctx.revert();
+      if (unsubMouse) unsubMouse();
+    };
   }, []);
 
   const stats = [

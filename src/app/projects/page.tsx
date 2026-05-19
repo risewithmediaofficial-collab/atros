@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Building2, Factory, Home, MapPin } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AppImage from '@/components/ui/AppImage';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 
@@ -56,7 +55,7 @@ export default function ProjectsPage() {
               Practical installations,
               <span className="block font-bold not-italic text-accent">cleanly executed.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/72">
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-white">
               This page groups the installation categories ATROS handles, from homes and offices to
               larger treatment requirements. It gives project-based visitors a clearer path than
               hiding everything inside the homepage.
@@ -71,30 +70,47 @@ export default function ProjectsPage() {
               return (
                 <article
                   key={project.title}
-                  className="overflow-hidden rounded-3xl border border-border bg-white shadow-sm"
+                  className="group overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-accent/10 hover:border-accent/30"
                 >
-                  <div className="relative min-h-[300px]">
-                    <AppImage
+                  <div className="relative min-h-[280px] overflow-hidden bg-gray-100">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={project.image}
                       alt={project.title}
-                      fill
-                      className="object-cover"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                      loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#041019]/85 via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#041019]/85 via-[#041019]/20 to-transparent" />
                     <div className="absolute bottom-5 left-5 right-5">
-                      <p className="text-xs font-bold uppercase text-accent">{project.category}</p>
-                      <h2 className="mt-2 font-display text-3xl font-light italic text-white">
+                      <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
+                        {project.category}
+                      </p>
+                      <h2 className="font-display text-2xl font-light italic text-white">
                         {project.title}
                       </h2>
                     </div>
+                    <div className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center text-accent">
+                      <Icon size={18} aria-hidden="true" />
+                    </div>
                   </div>
                   <div className="p-7">
-                    <div className="icon-glow mb-5">
-                      <Icon size={21} aria-hidden="true" />
-                    </div>
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {project.description}
                     </p>
+                    <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-accent">
+                      <span>Learn more</span>
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                      >
+                        <path d="M5 12h14m-7-7 7 7-7 7" />
+                      </svg>
+                    </div>
                   </div>
                 </article>
               );

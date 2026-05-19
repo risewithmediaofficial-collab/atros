@@ -13,7 +13,6 @@ import {
 } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AppImage from '@/components/ui/AppImage';
 import ContactSection from '@/app/components/ContactSection';
 import ProcessSection from '@/app/components/ProcessSection';
 import StructuredData from '@/app/components/StructuredData';
@@ -125,7 +124,7 @@ export default function ServicesPage() {
                 Water solutions
                 <span className="block font-bold not-italic text-accent">for every need.</span>
               </h1>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-white/72 sm:text-lg">
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-white sm:text-lg">
                 From compact home purifiers to commercial RO systems and industrial treatment
                 plants, ATROS helps customers choose, install, and maintain dependable water
                 purification systems.
@@ -180,22 +179,24 @@ export default function ServicesPage() {
                   <article
                     key={service.id}
                     id={service.id}
-                    className="grid grid-cols-1 overflow-hidden rounded-3xl border border-border bg-white shadow-sm lg:grid-cols-2"
+                    className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-accent/8 hover:border-accent/20 lg:grid-cols-2"
                   >
-                    <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                      <AppImage
+                    <div className={`overflow-hidden ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
                         src={service.image}
                         alt={service.alt}
-                        width={720}
-                        height={520}
-                        className="h-full min-h-[320px] w-full object-cover"
+                        className="h-full min-h-[320px] w-full object-cover transition-transform duration-700 group-hover:scale-104"
+                        loading="lazy"
                       />
                     </div>
                     <div className="flex flex-col justify-center p-7 sm:p-10">
                       <div className="icon-glow mb-6">
                         <Icon size={22} aria-hidden="true" />
                       </div>
-                      <p className="text-xs font-bold uppercase text-accent">{service.subtitle}</p>
+                      <p className="text-xs font-bold uppercase tracking-widest text-accent">
+                        {service.subtitle}
+                      </p>
                       <h3 className="mt-3 font-display text-4xl font-light italic text-foreground">
                         {service.title}
                       </h3>
@@ -217,6 +218,23 @@ export default function ServicesPage() {
                           </li>
                         ))}
                       </ul>
+                      <Link
+                        href="/contact"
+                        className="mt-7 inline-flex w-fit items-center gap-2 text-xs font-bold uppercase tracking-wide text-accent hover:text-primary transition-colors"
+                      >
+                        Enquire Now
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                        >
+                          <path d="M5 12h14m-7-7 7 7-7 7" />
+                        </svg>
+                      </Link>
                     </div>
                   </article>
                 );

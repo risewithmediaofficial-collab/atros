@@ -98,23 +98,27 @@ export default function TrustStatsSection() {
 
   useEffect(() => {
     const initGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap?.registerPlugin(ScrollTrigger);
+      try {
+        const { gsap } = await import('gsap');
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!sectionRef?.current) return;
+        if (!sectionRef.current) return;
 
-      gsap?.from(sectionRef?.current?.querySelectorAll('.stat-item'), {
-        scrollTrigger: {
-          trigger: sectionRef?.current,
-          start: 'top 85%',
-        },
-        y: 40,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.12,
-        ease: 'power3.out',
-      });
+        gsap.from(sectionRef.current.querySelectorAll('.stat-item'), {
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top 90%',
+          },
+          y: 30,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.1,
+          ease: 'power3.out',
+        });
+      } catch {
+        // GSAP unavailable — elements visible by default
+      }
     };
     initGSAP();
   }, []);

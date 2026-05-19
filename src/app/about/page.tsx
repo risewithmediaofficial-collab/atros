@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { Award, Droplets, MapPin, ShieldCheck, Wrench } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import AppImage from '@/components/ui/AppImage';
 import ContactSection from '@/app/components/ContactSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
@@ -70,7 +69,7 @@ export default function AboutPage() {
                 Pure water,
                 <span className="block font-bold not-italic text-accent">trusted locally.</span>
               </h1>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-white/72 sm:text-lg">
+              <p className="mt-7 max-w-xl text-base leading-relaxed text-white sm:text-lg">
                 ATROS Water Purifier provides domestic, commercial, and industrial water
                 purification solutions from Krishnagiri, Tamil Nadu. The work is simple: understand
                 the water, recommend the right system, install it properly, and support it for the
@@ -89,13 +88,12 @@ export default function AboutPage() {
             <div className="relative">
               <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-3xl" />
               <div className="relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl">
-                <AppImage
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
                   src="https://img.rocket.new/generatedImages/rocket_gen_img_1af56a07c-1767952600354.png"
                   alt="Family at home enjoying clean drinking water"
-                  width={640}
-                  height={720}
-                  priority
                   className="h-full min-h-[420px] w-full object-cover"
+                  loading="eager"
                 />
                 <div className="absolute inset-x-5 bottom-5 glass-card p-5">
                   <p className="text-sm font-semibold text-white">Serving Krishnagiri and beyond</p>

@@ -45,20 +45,24 @@ export default function FAQSection() {
 
   useEffect(() => {
     const initGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
+      try {
+        const { gsap } = await import('gsap');
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!sectionRef.current) return;
+        if (!sectionRef.current) return;
 
-      gsap.from(sectionRef.current.querySelectorAll('.faq-item'), {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
-        y: 30,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.1,
-        ease: 'power3.out',
-      });
+        gsap.from(sectionRef.current.querySelectorAll('.faq-item'), {
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
+          y: 25,
+          opacity: 0,
+          duration: 0.6,
+          stagger: 0.08,
+          ease: 'power3.out',
+        });
+      } catch {
+        // GSAP unavailable — items visible by default
+      }
     };
     initGSAP();
   }, []);
@@ -147,6 +151,7 @@ export default function FAQSection() {
                     onClick={() => toggle(i)}
                     className="w-full flex items-center justify-between py-5 text-left gap-4 group"
                     aria-expanded={openIdx === i}
+                    suppressHydrationWarning
                   >
                     <span
                       className={`font-semibold text-sm sm:text-base transition-colors duration-200 ${

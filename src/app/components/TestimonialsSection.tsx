@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import AppImage from '@/components/ui/AppImage';
 
 const testimonials = [
   {
@@ -54,19 +53,23 @@ export default function TestimonialsSection() {
 
   useEffect(() => {
     const initGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap?.registerPlugin(ScrollTrigger);
+      try {
+        const { gsap } = await import('gsap');
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!sectionRef?.current) return;
+        if (!sectionRef.current) return;
 
-      gsap?.from(sectionRef?.current?.querySelector('.testimonials-header'), {
-        scrollTrigger: { trigger: sectionRef?.current, start: 'top 75%' },
-        y: 40,
-        opacity: 0,
-        duration: 1,
-        ease: 'power3.out',
-      });
+        gsap.from(sectionRef.current.querySelector('.testimonials-header'), {
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
+          y: 30,
+          opacity: 0,
+          duration: 0.9,
+          ease: 'power3.out',
+        });
+      } catch {
+        // GSAP unavailable — header visible by default
+      }
     };
     initGSAP();
   }, []);
@@ -149,13 +152,15 @@ export default function TestimonialsSection() {
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-white/20 flex-shrink-0">
-                  <AppImage
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-white/20 flex-shrink-0 bg-white/10">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
                     src={t?.image}
                     alt={t?.imageAlt}
                     width={40}
                     height={40}
                     className="object-cover w-full h-full"
+                    loading="lazy"
                   />
                 </div>
                 <div>

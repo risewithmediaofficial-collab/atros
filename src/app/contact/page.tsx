@@ -27,7 +27,7 @@ export default function ContactPage() {
               Let’s find the right
               <span className="block font-bold not-italic text-accent">water solution.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-white/72">
+            <p className="mt-7 max-w-2xl text-base leading-relaxed text-white">
               Share your water source, usage, and service need. ATROS will help recommend the right
               purifier, installation, AMC, or repair path.
             </p>

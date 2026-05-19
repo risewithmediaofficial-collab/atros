@@ -83,8 +83,36 @@
     margin: 0;
   }
 
-  [class*='tracking-'] {
-    letter-spacing: 0 !important;
+  /* Intentional tracking overrides removed — use Tailwind's tracking-* classes normally */
+
+  /*
+   * GSAP SAFETY NET: If GSAP ScrollTrigger fails to fire (viewport timing, SSR, etc.)
+   * elements set to opacity:0 would stay invisible forever.
+   * This animation forces all GSAP-targeted element groups to become visible
+   * after 1.5s regardless, so no section is ever left blank.
+   */
+  .why-left,
+  .reason-item,
+  .bento-card,
+  .process-card,
+  .stat-item,
+  .contact-left,
+  .contact-right,
+  .testimonials-header,
+  .faq-item,
+  .product-card {
+    animation: gsap-fallback 0s 1.5s both;
+  }
+
+  @keyframes gsap-fallback {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
   }
 }
 
@@ -515,6 +543,30 @@
     opacity: 1;
   }
 
+  /* Missing variables used in some components */
+  .text-onBackground {
+    color: var(--foreground);
+  }
+
+  /* bg-white/8 Tailwind doesn't generate this, add explicitly */
+  .bg-white\/8 {
+    background-color: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Hover lift card */
+  .hover-lift {
+    transition:
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 20px 60px rgba(0, 180, 216, 0.12),
+      0 4px 16px rgba(0, 0, 0, 0.06);
+  }
+
   /* Floating particles */
   .particle {
     position: absolute;
@@ -876,4 +928,38 @@
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(var(--accent), var(--primary));
   border-radius: 2px;
+}
+
+/* animate-float used in HeroSection */
+@keyframes floatAnim {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+.animate-float {
+  animation: floatAnim 5s ease-in-out infinite;
+}
+
+/* animate-scroll-line used in HeroSection scroll indicator */
+@keyframes scrollLineAnim {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.animate-scroll-line {
+  animation: scrollLineAnim 1.8s linear infinite;
+}
+
+/* scale-104 used in services page */
+.group-hover\:scale-104:is(.group:hover *) {
+  transform: scale(1.04);
 }

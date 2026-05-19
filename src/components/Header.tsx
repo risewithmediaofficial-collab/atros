@@ -261,6 +261,7 @@ export default function Header() {
                     className={`nav-pill ${isGroupActive(group) ? 'is-active' : ''} ${navTextClass}`}
                     aria-expanded={openGroup === group.label}
                     aria-haspopup="true"
+                    suppressHydrationWarning
                   >
                     {group.label}
                     <ChevronDown
@@ -335,6 +336,7 @@ export default function Header() {
             }`}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
+            suppressHydrationWarning
           >
             {menuOpen ? <X size={25} aria-hidden="true" /> : <Menu size={25} aria-hidden="true" />}
           </button>
@@ -358,6 +360,7 @@ export default function Header() {
                   onClick={() => setOpenGroup(openGroup === group.label ? null : group.label)}
                   className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left font-display text-2xl font-light italic text-white"
                   aria-expanded={openGroup === group.label}
+                  suppressHydrationWarning
                 >
                   {group.label}
                   <ChevronDown
@@ -442,6 +445,7 @@ export default function Header() {
             : 'pointer-events-none scale-90 opacity-0'
         }`}
         aria-label="Scroll to top"
+        suppressHydrationWarning
       >
         <ArrowUp size={20} aria-hidden="true" />
       </button>

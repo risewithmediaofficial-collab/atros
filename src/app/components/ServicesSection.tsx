@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import AppImage from '@/components/ui/AppImage';
 
 const services = [
   {
@@ -16,9 +15,9 @@ const services = [
       'Low maintenance cost',
       'Stylish modern designs',
     ],
-    image: 'https://images.unsplash.com/photo-1666608153597-05b25a35f82c',
-    imageAlt:
-      'Modern kitchen with white water purifier mounted under cabinet, clean bright interior, natural light',
+    image:
+      'https://images.unsplash.com/photo-1666608153597-05b25a35f82c?w=900&auto=format&fit=crop',
+    imageAlt: 'Modern kitchen with water purifier, clean bright interior',
   },
   {
     id: 'commercial',
@@ -27,8 +26,7 @@ const services = [
     description: 'High-capacity purification for offices, schools, restaurants, and hospitals.',
     features: ['High water output', 'Energy-efficient', 'Continuous supply'],
     image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e620f35f-1767854588560.png',
-    imageAlt:
-      'Modern office break room with commercial water purification station, bright airy space',
+    imageAlt: 'Modern office with commercial water purification station',
   },
   {
     id: 'industrial',
@@ -38,8 +36,7 @@ const services = [
       'Customized large-scale water treatment solutions for manufacturing and industrial applications.',
     features: ['Customized capacity', 'Industrial-grade', 'Scalable solutions'],
     image: 'https://img.rocket.new/generatedImages/rocket_gen_img_15cdaf8b9-1772190825276.png',
-    imageAlt:
-      'Industrial water treatment plant with large tanks and filtration equipment, factory setting',
+    imageAlt: 'Industrial water treatment plant with large filtration equipment',
   },
   {
     id: 'installation',
@@ -113,26 +110,42 @@ export default function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    let ctx: any;
+    let isCancelled = false;
+
     const initGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap?.registerPlugin(ScrollTrigger);
+      try {
+        const { gsap } = await import('gsap');
+        if (isCancelled) return;
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!sectionRef?.current) return;
+        const currentRef = sectionRef.current;
+        if (!currentRef) return;
 
-      gsap?.from(sectionRef?.current?.querySelectorAll('.bento-card'), {
-        scrollTrigger: {
-          trigger: sectionRef?.current,
-          start: 'top 75%',
-        },
-        y: 60,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.13,
-        ease: 'power3.out',
-      });
+        ctx = gsap.context(() => {
+          gsap.from(currentRef.querySelectorAll('.bento-card'), {
+            scrollTrigger: {
+              trigger: currentRef,
+              start: 'top 80%',
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.9,
+            stagger: 0.1,
+            ease: 'power3.out',
+          });
+        });
+      } catch {
+        // GSAP unavailable — elements visible via CSS defaults
+      }
     };
     initGSAP();
+
+    return () => {
+      isCancelled = true;
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
@@ -141,7 +154,7 @@ export default function ServicesSection() {
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
           <div>
-            <span className="section-label mb-5 block">02 - Our Services</span>
+            <span className="section-label mb-5 block">02 — Our Services</span>
             <h2 className="font-display text-section-title font-light text-foreground">
               Water Solutions for
               <br />
@@ -159,38 +172,35 @@ export default function ServicesSection() {
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {/* Domestic large card */}
-          <div className="bento-card md:col-span-2 lg:col-span-2 lg:row-span-2 relative min-h-[440px] group cursor-pointer">
-            <div className="image-zoom absolute inset-0 rounded-[1.25rem]">
-              <AppImage
-                src={services[0].image!}
-                alt={services[0].imageAlt!}
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-[#061E2E]/95 via-[#0A4D68]/30 to-transparent rounded-[1.25rem]" />
-            {/* Hover shimmer */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-transparent transition-all duration-700 rounded-[1.25rem]" />
+          {/* Domestic large card — explicit height, plain img */}
+          <div className="bento-card md:col-span-2 lg:col-span-2 lg:row-span-2 relative min-h-[440px] group cursor-pointer overflow-hidden rounded-[1.25rem]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={services[0].image}
+              alt={services[0].imageAlt}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#061E2E]/95 via-[#0A4D68]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-transparent transition-all duration-700" />
             <div className="absolute bottom-0 left-0 right-0 p-7 lg:p-9 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-2"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[0]?.subtitle}
+                {services[0].subtitle}
               </span>
               <h3 className="font-display text-3xl lg:text-4xl font-light italic text-white mb-3">
-                {services?.[0]?.title}
+                {services[0].title}
               </h3>
               <p
                 className="text-white/75 text-sm leading-relaxed mb-5 max-w-md"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[0]?.description}
+                {services[0].description}
               </p>
               <div className="flex flex-wrap gap-2">
-                {services?.[0]?.features?.map((f) => (
+                {services[0].features?.map((f) => (
                   <span
                     key={f}
                     className="bg-white/10 border border-white/20 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm"
@@ -204,28 +214,27 @@ export default function ServicesSection() {
           </div>
 
           {/* Commercial */}
-          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer">
-            <div className="image-zoom absolute inset-0 rounded-[1.25rem]">
-              <AppImage
-                src={services[1].image!}
-                alt={services[1].imageAlt!}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent rounded-[1.25rem]" />
+          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={services[1].image}
+              alt={services[1].imageAlt}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-1"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[1]?.subtitle}
+                {services[1].subtitle}
               </span>
               <h3 className="font-display text-xl font-light italic text-white mb-2">
-                {services?.[1]?.title}
+                {services[1].title}
               </h3>
               <div className="flex flex-wrap gap-1">
-                {services?.[1]?.features?.map((f) => (
+                {services[1].features?.map((f) => (
                   <span
                     key={f}
                     className="bg-white/10 text-white/80 text-xs px-2.5 py-1 rounded-full"
@@ -239,28 +248,27 @@ export default function ServicesSection() {
           </div>
 
           {/* Industrial */}
-          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer">
-            <div className="image-zoom absolute inset-0 rounded-[1.25rem]">
-              <AppImage
-                src={services[2].image!}
-                alt={services[2].imageAlt!}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent rounded-[1.25rem]" />
+          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={services[2].image}
+              alt={services[2].imageAlt}
+              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-1"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[2]?.subtitle}
+                {services[2].subtitle}
               </span>
               <h3 className="font-display text-xl font-light italic text-white mb-2">
-                {services?.[2]?.title}
+                {services[2].title}
               </h3>
               <div className="flex flex-wrap gap-1">
-                {services?.[2]?.features?.map((f) => (
+                {services[2].features?.map((f) => (
                   <span
                     key={f}
                     className="bg-white/10 text-white/80 text-xs px-2.5 py-1 rounded-full"
@@ -275,7 +283,7 @@ export default function ServicesSection() {
 
           {/* Installation */}
           <div
-            className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer"
+            className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer rounded-[1.25rem]"
             style={{ background: 'linear-gradient(135deg, #0A4D68, #0077A8)' }}
           >
             <div
@@ -286,67 +294,67 @@ export default function ServicesSection() {
                 color: 'white',
               }}
             >
-              {services?.[3]?.icon}
+              {services[3].icon}
             </div>
             <div>
               <span
                 className="text-white/50 text-xs font-bold tracking-[0.2em] uppercase block mb-1"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[3]?.subtitle}
+                {services[3].subtitle}
               </span>
               <h3 className="font-display text-xl font-light italic text-white mb-2">
-                {services?.[3]?.title}
+                {services[3].title}
               </h3>
               <p
                 className="text-white/65 text-sm leading-relaxed"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[3]?.description}
+                {services[3].description}
               </p>
             </div>
           </div>
 
           {/* AMC */}
-          <div className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer bg-secondary">
-            <div className="icon-glow">{services?.[4]?.icon}</div>
+          <div className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer bg-secondary rounded-[1.25rem]">
+            <div className="icon-glow">{services[4].icon}</div>
             <div>
               <span
                 className="text-muted-foreground text-xs font-bold tracking-[0.2em] uppercase block mb-1"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[4]?.subtitle}
+                {services[4].subtitle}
               </span>
               <h3 className="font-display text-xl font-light italic text-foreground mb-2">
-                {services?.[4]?.title}
+                {services[4].title}
               </h3>
               <p
                 className="text-muted-foreground text-sm leading-relaxed"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[4]?.description}
+                {services[4].description}
               </p>
             </div>
           </div>
 
           {/* Repair */}
-          <div className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer">
-            <div className="icon-glow">{services?.[5]?.icon}</div>
+          <div className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer rounded-[1.25rem]">
+            <div className="icon-glow">{services[5].icon}</div>
             <div>
               <span
                 className="text-muted-foreground text-xs font-bold tracking-[0.2em] uppercase block mb-1"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[5]?.subtitle}
+                {services[5].subtitle}
               </span>
               <h3 className="font-display text-xl font-light italic text-foreground mb-2">
-                {services?.[5]?.title}
+                {services[5].title}
               </h3>
               <p
                 className="text-muted-foreground text-sm leading-relaxed"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
-                {services?.[5]?.description}
+                {services[5].description}
               </p>
             </div>
           </div>

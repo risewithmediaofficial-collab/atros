@@ -28,28 +28,32 @@ export default function ContactSection() {
 
   useEffect(() => {
     const initGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap.registerPlugin(ScrollTrigger);
+      try {
+        const { gsap } = await import('gsap');
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!sectionRef.current) return;
+        if (!sectionRef.current) return;
 
-      gsap.from(sectionRef.current.querySelector('.contact-left'), {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
-        x: -50,
-        opacity: 0,
-        duration: 1.1,
-        ease: 'power3.out',
-      });
+        gsap.from(sectionRef.current.querySelector('.contact-left'), {
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
+          x: -40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+        });
 
-      gsap.from(sectionRef.current.querySelector('.contact-right'), {
-        scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
-        x: 50,
-        opacity: 0,
-        duration: 1.1,
-        ease: 'power3.out',
-        delay: 0.2,
-      });
+        gsap.from(sectionRef.current.querySelector('.contact-right'), {
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
+          x: 40,
+          opacity: 0,
+          duration: 1,
+          ease: 'power3.out',
+          delay: 0.15,
+        });
+      } catch {
+        // GSAP unavailable — elements visible by default
+      }
     };
     initGSAP();
   }, []);
@@ -340,6 +344,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="Your full name"
                       className={inputClass}
+                      suppressHydrationWarning
                     />
                   </div>
                   <div>
@@ -359,6 +364,7 @@ export default function ContactSection() {
                       onChange={handleChange}
                       placeholder="+91 XXXXX XXXXX"
                       className={inputClass}
+                      suppressHydrationWarning
                     />
                   </div>
                 </div>
@@ -379,6 +385,7 @@ export default function ContactSection() {
                     onChange={handleChange}
                     placeholder="your@email.com"
                     className={inputClass}
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -396,6 +403,7 @@ export default function ContactSection() {
                     value={form.service}
                     onChange={handleChange}
                     className={inputClass}
+                    suppressHydrationWarning
                   >
                     <option value="">Select a service</option>
                     <option>Domestic Water Purifier</option>
@@ -425,12 +433,14 @@ export default function ContactSection() {
                     placeholder="Describe your water source or any specific requirements..."
                     className={inputClass}
                     style={{ resize: 'none' }}
+                    suppressHydrationWarning
                   />
                 </div>
 
                 <button
                   type="submit"
                   className="w-full btn-primary-glow flex items-center justify-center gap-2 py-4 text-base"
+                  suppressHydrationWarning
                 >
                   <svg
                     width="18"

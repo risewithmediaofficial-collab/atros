@@ -90,40 +90,42 @@ export default function ProcessSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
+    let ctx: any;
+    let isCancelled = false;
+
     const initGSAP = async () => {
-      const { gsap } = await import('gsap');
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-      gsap?.registerPlugin(ScrollTrigger);
+      try {
+        const { gsap } = await import('gsap');
+        if (isCancelled) return;
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        gsap.registerPlugin(ScrollTrigger);
 
-      if (!sectionRef?.current) return;
+        const currentRef = sectionRef.current;
+        if (!currentRef) return;
 
-      gsap?.from(sectionRef?.current?.querySelectorAll('.process-card'), {
-        scrollTrigger: {
-          trigger: sectionRef?.current,
-          start: 'top 70%',
-        },
-        y: 50,
-        opacity: 0,
-        duration: 0.9,
-        stagger: 0.18,
-        ease: 'power3.out',
-      });
-
-      // Animate connector lines
-      gsap?.from(sectionRef?.current?.querySelectorAll('.connector-line'), {
-        scrollTrigger: {
-          trigger: sectionRef?.current,
-          start: 'top 65%',
-        },
-        scaleX: 0,
-        transformOrigin: 'left center',
-        duration: 1.2,
-        stagger: 0.2,
-        ease: 'power2.out',
-        delay: 0.4,
-      });
+        ctx = gsap.context(() => {
+          gsap.from(currentRef.querySelectorAll('.process-card'), {
+            scrollTrigger: {
+              trigger: currentRef,
+              start: 'top 85%',
+            },
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.15,
+            ease: 'power3.out',
+          });
+        });
+      } catch {
+        // GSAP unavailable — elements visible by default
+      }
     };
     initGSAP();
+
+    return () => {
+      isCancelled = true;
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
