@@ -8,62 +8,16 @@
    - Environments: .env
 
  ✓ Starting...
- ✓ Ready in 4.1s
+ ✓ Ready in 5.7s
  ○ Compiling / ...
- ✓ Compiled / in 27.9s (2010 modules)
- GET / 200 in 32933ms
- GET / 200 in 5474ms
- GET / 200 in 1333ms
- ✓ Compiled in 5s (2001 modules)
- GET / 200 in 230ms
+ ✓ Compiled / in 25.8s (2010 modules)
+ GET / 200 in 26794ms
+ GET / 200 in 14873ms
+ GET / 200 in 266ms
+ GET / 200 in 455ms
  ○ Compiling /products ...
- ✓ Compiled /products in 6.3s (2003 modules)
- GET /products 200 in 6942ms
- ○ Compiling /contact ...
- ✓ Compiled /contact in 1385ms (2014 modules)
- GET /contact 200 in 1568ms
- ⨯ Error: Cannot find module './733.js'
-Require stack:
-- E:\risewithmedia projects\atros\.next\server\webpack-runtime.js
-- E:\risewithmedia projects\atros\.next\server\app\contact\page.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\server\require.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\server\load-components.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\build\utils.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\build\swc\options.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\build\swc\index.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\build\analysis\parse-module.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\build\analysis\get-page-static-info.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\server\lib\router-server.js
-- E:\risewithmedia projects\atros\node_modules\next\dist\server\lib\start-server.js
-    at __webpack_require__.f.require (E:\risewithmedia projects\atros\.next\server\webpack-runtime.js:198:28)
-    at <unknown> (E:\risewithmedia projects\atros\.next\server\webpack-runtime.js:111:40)
-    at Array.reduce (<anonymous>)
-    at __webpack_require__.e (E:\risewithmedia projects\atros\.next\server\webpack-runtime.js:110:67)
-    at Array.map (<anonymous>)
-    at __webpack_require__.X (E:\risewithmedia projects\atros\.next\server\webpack-runtime.js:162:22)
-    at <unknown> (E:\risewithmedia projects\atros\.next\server\app\page.js:1:8381)
-    at Object.<anonymous> (E:\risewithmedia projects\atros\.next\server\app\page.js:1:8433) {
-  code: 'MODULE_NOT_FOUND',
-  requireStack: [Array],
-  page: '/'
-}
- ○ Compiling /_error ...
- ✓ Compiled /_error in 3.6s (2256 modules)
- GET / 500 in 4460ms
- GET / 200 in 112ms
- GET / 200 in 27ms
- GET / 200 in 484ms
- ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 584ms (2260 modules)
- GET /_next/static/css/app/layout.css?v=1779355475242 404 in 921ms
- GET /_next/static/chunks/app/not-found.js 404 in 597ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 756ms
- GET /_next/static/chunks/main-app.js?v=1779355475242 404 in 766ms
- GET /_next/static/chunks/app/page.js 404 in 598ms
- GET / 200 in 413ms
- GET /_next/static/css/app/layout.css?v=1779355482661 404 in 61ms
- GET /_next/static/chunks/app-pages-internals.js 404 in 128ms
- GET /_next/static/chunks/app/not-found.js 404 in 124ms
- GET /_next/static/chunks/app/page.js 404 in 118ms
- GET /_next/static/chunks/main-app.js?v=1779355482661 404 in 128ms
+ ✓ Compiled /products in 3.6s (2017 modules)
+ GET /products 200 in 4361ms
+ GET /products 200 in 116ms
+ GET / 200 in 103ms
+ GET / 200 in 1468ms
