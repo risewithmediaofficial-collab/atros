@@ -88,7 +88,7 @@ const products = [
 ];
 
 export default function ProductsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const initGSAP = async () => {

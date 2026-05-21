@@ -36,10 +36,10 @@ const faqs = [
 ];
 
 export default function FAQSection() {
-  const [openIdx, setOpenIdx] = useState<number | null>(0);
-  const sectionRef = useRef<HTMLElement>(null);
+  const [openIdx, setOpenIdx] = useState(0);
+  const sectionRef = useRef(null);
 
-  const toggle = (idx: number) => {
+  const toggle = (idx) => {
     setOpenIdx(openIdx === idx ? null : idx);
   };
 

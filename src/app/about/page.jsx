@@ -1,5 +1,4 @@
 import React from 'react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Award, Droplets, MapPin, ShieldCheck, Wrench } from 'lucide-react';
 import Header from '@/components/Header';
@@ -7,8 +6,9 @@ import Footer from '@/components/Footer';
 import ContactSection from '@/app/components/ContactSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
+import PageEffects from '@/app/components/PageEffects';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'About ATROS Water Purifier | Trusted Water Purification in Krishnagiri',
   description:
     'Learn about ATROS Water Purifier, a Krishnagiri-based water purification business serving homes, businesses, and industries with RO, UV, UF, alkaline systems, installation, AMC, and repair support.',
@@ -59,7 +59,8 @@ export default function AboutPage() {
     <>
       <StructuredData />
       <Header />
-      <main id="main-content">
+      <PageEffects />
+      <main id="main-content" className="page-transition-root animated-page">
         <section className="premium-band relative overflow-hidden pt-36 pb-20">
           <div className="premium-noise" />
           <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">

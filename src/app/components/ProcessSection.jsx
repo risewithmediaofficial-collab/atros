@@ -87,10 +87,10 @@ const steps = [
 ];
 
 export default function ProcessSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    let ctx: any;
+    let ctx;
     let isCancelled = false;
 
     const initGSAP = async () => {

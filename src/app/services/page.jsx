@@ -1,5 +1,4 @@
 import React from 'react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   Building2,
@@ -17,8 +16,9 @@ import ContactSection from '@/app/components/ContactSection';
 import ProcessSection from '@/app/components/ProcessSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
+import PageEffects from '@/app/components/PageEffects';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Water Purifier Services | RO, UV, UF, Alkaline, AMC & Repair | ATROS',
   description:
     'Explore ATROS Water Purifier services including domestic RO systems, alkaline purifiers, commercial RO plants, industrial water treatment, professional installation, AMC maintenance, and repair support.',
@@ -114,7 +114,8 @@ export default function ServicesPage() {
     <>
       <StructuredData />
       <Header />
-      <main id="main-content">
+      <PageEffects />
+      <main id="main-content" className="page-transition-root animated-page">
         <section className="premium-band relative overflow-hidden pt-36 pb-20">
           <div className="premium-noise" />
           <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">

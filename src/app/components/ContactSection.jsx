@@ -11,15 +11,13 @@ export default function ContactSection() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => {
+  const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 4000);
@@ -64,8 +62,7 @@ export default function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="py-24 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #F0F8FC 0%, #E8F4F8 100%)' }}
+      className="py-24 overflow-hidden bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">

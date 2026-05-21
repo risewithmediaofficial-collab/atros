@@ -1,28 +1,20 @@
 import React from 'react';
-import type { Metadata, Viewport } from 'next';
-import { Fraunces, DM_Sans } from 'next/font/google';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import '../styles/tailwind.css';
 
-const fraunces = Fraunces({
+const plusJakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '900'],
-  variable: '--font-fraunces',
+  weight: ['400', '500', '600', '700', '800'],
+  variable: '--font-plus-jakarta',
   display: 'swap',
 });
 
-const dmSans = DM_Sans({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-dm-sans',
-  display: 'swap',
-});
-
-export const viewport: Viewport = {
+export const viewport = {
   width: 'device-width',
   initialScale: 1,
 };
 
-export const metadata: Metadata = {
+export const metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   title: 'ATROS Water Purifier | RO, UV, UF & Alkaline Purification Solutions',
   description:
@@ -47,10 +39,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
-      <body className={`${dmSans.className} antialiased`}>
+    <html lang="en" className={plusJakarta.variable}>
+      <body className={`${plusJakarta.className} antialiased`}>
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>

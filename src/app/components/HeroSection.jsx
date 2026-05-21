@@ -4,18 +4,18 @@ import React, { useEffect, useRef } from 'react';
 import AppImage from '@/components/ui/AppImage';
 
 export default function HeroSection() {
-  const headlineRef = useRef<HTMLDivElement>(null);
-  const subRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const blob1Ref = useRef<HTMLDivElement>(null);
-  const blob2Ref = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
+  const headlineRef = useRef(null);
+  const subRef = useRef(null);
+  const ctaRef = useRef(null);
+  const statsRef = useRef(null);
+  const blob1Ref = useRef(null);
+  const blob2Ref = useRef(null);
+  const imageRef = useRef(null);
 
   useEffect(() => {
-    let ctx: any;
+    let ctx;
     let isCancelled = false;
-    let unsubMouse: (() => void) | undefined;
+    let unsubMouse;
 
     const initAnimations = async () => {
       try {
@@ -74,7 +74,7 @@ export default function HeroSection() {
       }
 
       // Cursor parallax
-      const handleMouseMove = (e: MouseEvent) => {
+      const handleMouseMove = (e) => {
         const mx = e.clientX / window.innerWidth - 0.5;
         const my = e.clientY / window.innerHeight - 0.5;
         if (blob1Ref.current) {
@@ -108,39 +108,30 @@ export default function HeroSection() {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden water-gradient-bg">
+    <section className="relative min-h-screen flex items-center overflow-hidden bg-white">
       {/* Atmospheric blobs */}
       <div
         ref={blob1Ref}
-        className="water-blob absolute top-[-15%] right-[5%] w-[600px] h-[600px] bg-white"
+        className="water-blob absolute top-[-15%] right-[5%] w-[600px] h-[600px] bg-accent"
         style={{ transition: 'transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)' }}
       />
       <div
         ref={blob2Ref}
-        className="water-blob-2 absolute bottom-[0%] left-[0%] w-[500px] h-[500px] bg-accent"
+        className="water-blob-2 absolute bottom-[0%] left-[0%] w-[500px] h-[500px] bg-primary"
         style={{ transition: 'transform 0.9s cubic-bezier(0.23, 1, 0.32, 1)' }}
       />
 
       {/* Floating particles */}
-      {(
-        [
-          { size: 6, top: '20%', left: '15%', delay: '0s', dur: '5s' },
-          { size: 4, top: '60%', left: '8%', delay: '1.5s', dur: '7s' },
-          { size: 8, top: '35%', right: '20%', delay: '0.8s', dur: '6s' },
-          { size: 5, top: '75%', right: '35%', delay: '2s', dur: '8s' },
-          { size: 3, top: '15%', left: '45%', delay: '1s', dur: '5.5s' },
-        ] satisfies Array<{
-          size: number;
-          top: string;
-          left?: string;
-          right?: string;
-          delay: string;
-          dur: string;
-        }>
-      ).map((p, i) => (
+      {[
+        { size: 6, top: '20%', left: '15%', delay: '0s', dur: '5s' },
+        { size: 4, top: '60%', left: '8%', delay: '1.5s', dur: '7s' },
+        { size: 8, top: '35%', right: '20%', delay: '0.8s', dur: '6s' },
+        { size: 5, top: '75%', right: '35%', delay: '2s', dur: '8s' },
+        { size: 3, top: '15%', left: '45%', delay: '1s', dur: '5.5s' },
+      ].map((p, i) => (
         <div
           key={i}
-          className="absolute rounded-full bg-white/20 pointer-events-none"
+          className="absolute rounded-full bg-accent/20 pointer-events-none"
           style={{
             width: p.size,
             height: p.size,
@@ -157,7 +148,7 @@ export default function HeroSection() {
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.03]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(7,24,34,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(7,24,34,0.05) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
@@ -169,7 +160,7 @@ export default function HeroSection() {
           <div>
             {/* Label badge */}
             <div className="overflow-hidden mb-7">
-              <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-xs font-semibold px-4 py-2 rounded-full tracking-widest uppercase backdrop-blur-sm reveal-line">
+              <div className="inline-flex items-center gap-2 bg-secondary border border-border text-foreground text-xs font-semibold px-4 py-2 rounded-full tracking-widest uppercase backdrop-blur-sm reveal-line">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                 Advanced Water Purification
               </div>
@@ -178,12 +169,12 @@ export default function HeroSection() {
             {/* Headline */}
             <div ref={headlineRef} className="mb-7">
               <div className="overflow-hidden">
-                <h1 className="font-display text-hero font-light italic text-white leading-none reveal-line">
+                <h1 className="font-display text-hero font-light italic text-foreground leading-none reveal-line">
                   Pure Water.
                 </h1>
               </div>
               <div className="overflow-hidden">
-                <span className="font-display text-hero font-bold not-italic text-white leading-none reveal-line block">
+                <span className="font-display text-hero font-bold not-italic text-foreground leading-none reveal-line block">
                   Healthier
                 </span>
               </div>
@@ -199,7 +190,7 @@ export default function HeroSection() {
 
             <p
               ref={subRef}
-              className="text-white/75 text-base sm:text-lg font-light leading-relaxed max-w-lg mb-9"
+              className="text-muted-foreground text-base sm:text-lg font-light leading-relaxed max-w-lg mb-9"
               style={{ fontFamily: 'Inter, sans-serif' }}
             >
               Advanced RO, UV, UF & Alkaline Water Purification Solutions for Homes, Businesses &
@@ -224,7 +215,7 @@ export default function HeroSection() {
               </a>
               <a
                 href="tel:+919080232624"
-                className="btn-ghost-white inline-flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white"
               >
                 <svg
                   width="15"
@@ -239,7 +230,7 @@ export default function HeroSection() {
                 </svg>
                 Call Now
               </a>
-              <a href="#services" className="btn-ghost-white inline-flex items-center gap-2">
+              <a href="#services" className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white">
                 Our Services
                 <svg
                   width="14"
@@ -259,10 +250,10 @@ export default function HeroSection() {
             <div ref={statsRef} className="grid grid-cols-4 gap-2 sm:gap-3">
               {stats.map((s) => (
                 <div key={s.label} className="stat-card px-2 py-3 text-center">
-                  <div className="font-display text-xl sm:text-2xl font-bold text-white leading-none mb-1">
+                  <div className="font-display text-xl sm:text-2xl font-bold text-foreground leading-none mb-1">
                     {s.value}
                   </div>
-                  <div className="text-white/55 text-[10px] sm:text-xs font-medium leading-tight">
+                  <div className="text-muted-foreground text-[10px] sm:text-xs font-medium leading-tight">
                     {s.label}
                   </div>
                 </div>
@@ -274,14 +265,14 @@ export default function HeroSection() {
           <div ref={imageRef} className="relative flex justify-center lg:justify-end">
             <div className="relative w-full max-w-sm lg:max-w-md">
               {/* Outer glow */}
-              <div className="absolute inset-0 rounded-3xl bg-accent/25 blur-3xl scale-110" />
+              <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-3xl scale-110" />
               {/* Inner glow ring */}
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-accent/30 to-transparent blur-xl" />
 
               <div
-                className="relative rounded-3xl overflow-hidden border border-white/20 shadow-2xl animate-float"
+                className="relative rounded-3xl overflow-hidden border border-border shadow-2xl animate-float bg-white"
                 style={{
-                  boxShadow: '0 32px 80px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.1)',
+                  boxShadow: '0 32px 80px rgba(7,54,75,0.16), 0 0 0 1px rgba(207,231,239,0.9)',
                 }}
               >
                 <AppImage
@@ -294,15 +285,15 @@ export default function HeroSection() {
                 />
 
                 {/* Overlay card */}
-                <div className="absolute bottom-4 left-4 right-4 glass-card p-4">
+                <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-border bg-white/92 p-4 shadow-xl shadow-primary/10 backdrop-blur-xl">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-full bg-accent/20 border border-accent/30 flex items-center justify-center flex-shrink-0">
+                    <div className="w-10 h-10 rounded-full bg-accent/15 border border-accent/30 flex items-center justify-center flex-shrink-0">
                       <svg
                         width="18"
                         height="18"
                         viewBox="0 0 24 24"
                         fill="none"
-                        stroke="white"
+                        stroke="#07364b"
                         strokeWidth="2.5"
                         strokeLinecap="round"
                       >
@@ -310,8 +301,8 @@ export default function HeroSection() {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-white font-semibold text-sm">99.9% Pure Water</p>
-                      <p className="text-white/65 text-xs">Advanced RO + Alkaline Technology</p>
+                      <p className="text-foreground font-semibold text-sm">99.9% Pure Water</p>
+                      <p className="text-muted-foreground text-xs">Advanced RO + Alkaline Technology</p>
                     </div>
                     <div className="ml-auto">
                       <div className="flex gap-0.5">
@@ -333,8 +324,8 @@ export default function HeroSection() {
               </div>
 
               {/* Side badge */}
-              <div className="absolute top-1/2 -left-6 -translate-y-1/2 glass-card px-3 py-2 hidden lg:block">
-                <p className="text-white/90 font-semibold text-xs">6-Stage</p>
+              <div className="absolute top-1/2 -left-6 -translate-y-1/2 rounded-2xl border border-border bg-white/92 px-3 py-2 shadow-xl hidden lg:block">
+                <p className="text-foreground font-semibold text-xs">6-Stage</p>
                 <p className="text-accent text-[10px]">Purification</p>
               </div>
             </div>
@@ -345,12 +336,12 @@ export default function HeroSection() {
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
         <span
-          className="text-white/35 text-[10px] tracking-[0.3em] uppercase font-medium"
+          className="text-muted-foreground text-[10px] tracking-[0.3em] uppercase font-medium"
           style={{ fontFamily: 'Inter, sans-serif' }}
         >
           Scroll
         </span>
-        <div className="w-px h-12 bg-white/15 relative overflow-hidden rounded-full">
+        <div className="w-px h-12 bg-border relative overflow-hidden rounded-full">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-accent to-transparent animate-scroll-line" />
         </div>
       </div>

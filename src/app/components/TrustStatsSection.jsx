@@ -94,7 +94,7 @@ const stats = [
 ];
 
 export default function TrustStatsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const initGSAP = async () => {
@@ -127,27 +127,26 @@ export default function TrustStatsSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="relative overflow-hidden"
-      style={{ background: 'linear-gradient(135deg, #061E2E 0%, #0A3D55 50%, #0A4D68 100%)' }}
+      className="relative overflow-hidden bg-white"
     >
       {/* Glow line top */}
       <div className="footer-glow-line" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-0 lg:divide-x divide-white/10">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-0 lg:divide-x divide-border">
           {stats?.map((s) => (
             <div
               key={s?.label}
-              className="stat-item group flex flex-col items-center text-center px-4 py-5 rounded-2xl lg:rounded-none transition-all duration-300 hover:bg-white/5"
+              className="stat-item group flex flex-col items-center text-center px-4 py-5 rounded-2xl lg:rounded-none transition-all duration-300 hover:bg-secondary/60"
             >
-              <div className="w-11 h-11 rounded-xl bg-white/8 border border-white/15 flex items-center justify-center text-accent mb-3 group-hover:bg-accent/20 group-hover:border-accent/40 transition-all duration-300">
+              <div className="w-11 h-11 rounded-xl bg-accent/10 border border-accent/20 flex items-center justify-center text-accent mb-3 group-hover:bg-accent/20 group-hover:border-accent/40 transition-all duration-300">
                 {s?.icon}
               </div>
-              <div className="font-display text-2xl font-bold text-white mb-1 counter-value">
+              <div className="font-display text-2xl font-bold text-foreground mb-1 counter-value">
                 {s?.value}
               </div>
               <div
-                className="text-white/50 text-xs font-medium leading-tight"
+                className="text-muted-foreground text-xs font-medium leading-tight"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 {s?.label}

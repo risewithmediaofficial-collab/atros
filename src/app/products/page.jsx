@@ -1,5 +1,4 @@
 import React from 'react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle2, Droplets, SlidersHorizontal } from 'lucide-react';
 import Header from '@/components/Header';
@@ -7,7 +6,7 @@ import Footer from '@/components/Footer';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'Products | ATROS RO, UV, UF, Alkaline & Industrial Water Systems',
   description:
     'Explore ATROS water purifier product categories including home RO+UV systems, alkaline purifiers, commercial flow systems, and industrial RO plants.',
@@ -107,20 +106,19 @@ export default function ProductsPage() {
     <>
       <StructuredData />
       <Header />
-      <main id="main-content">
+      <main id="main-content" className="product-page">
         {/* Hero */}
-        <section className="premium-band relative overflow-hidden pt-36 pb-20">
-          <div className="premium-noise" />
+        <section className="relative overflow-hidden bg-white pt-36 pb-20">
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <span className="section-label mb-6 block">Product Systems</span>
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
               <div className="lg:col-span-7">
-                <h1 className="font-display text-hero font-light italic text-white">
+                <h1 className="font-display text-section-title font-extrabold text-foreground">
                   Purification systems
-                  <span className="block font-bold not-italic text-accent">for every source.</span>
+                  <span className="block text-primary">for every source.</span>
                 </h1>
               </div>
-              <p className="text-base leading-relaxed text-white lg:col-span-5">
+              <p className="text-base leading-relaxed text-muted-foreground lg:col-span-5">
                 ATROS products are selected around water quality, daily usage, service access and
                 long-term running cost — not one-size-fits-all selling.
               </p>
@@ -134,9 +132,12 @@ export default function ProductsPage() {
                 { val: 'Electric & Non-Electric', label: 'System types' },
                 { val: 'Free', label: 'Expert consultation' },
               ].map((s) => (
-                <div key={s.label} className="glass-card px-4 py-4 text-center">
-                  <p className="font-display text-xl font-bold text-white">{s.val}</p>
-                  <p className="mt-1 text-[10px] font-medium uppercase tracking-wide text-white/50">
+                <div
+                  key={s.label}
+                  className="rounded-2xl border border-border bg-secondary/70 px-4 py-4 text-center"
+                >
+                  <p className="font-display text-xl font-bold text-primary">{s.val}</p>
+                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-wide text-muted-foreground">
                     {s.label}
                   </p>
                 </div>

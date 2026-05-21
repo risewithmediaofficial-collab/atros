@@ -44,9 +44,9 @@
     "start": "next dev -p 4028",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format": "prettier --write \"src/**/*.{ts,tsx,css,md,json}\"",
+    "format": "prettier --write \"src/**/*.{js,jsx,css,md,json}\"",
     "serve": "next start",
-    "type-check": "tsc --noEmit"
+    "type-check": "next build"
   },
   "dependencies": {
     "@dhiwise/component-tagger": "^1.0.15",

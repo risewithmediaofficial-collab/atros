@@ -125,10 +125,10 @@ const bentoStats = [
 ];
 
 export default function WhyChooseSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    let ctx: any;
+    let ctx;
     let isCancelled = false;
 
     const initGSAP = async () => {
@@ -175,8 +175,7 @@ export default function WhyChooseSection() {
     <section
       ref={sectionRef}
       id="why-us"
-      className="py-24 overflow-hidden"
-      style={{ background: 'linear-gradient(180deg, #F0F8FC 0%, #E8F4F8 100%)' }}
+      className="py-24 overflow-hidden bg-white"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
@@ -208,12 +207,12 @@ export default function WhyChooseSection() {
                 className="absolute inset-0 w-full h-full object-cover"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A4D68]/80 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/45 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5">
-                <div className="glass-card p-4">
-                  <p className="text-white font-semibold text-sm">Trusted by 10,000+ Families</p>
+                <div className="rounded-2xl border border-border bg-white/92 p-4 shadow-xl shadow-primary/10 backdrop-blur-xl">
+                  <p className="text-foreground font-semibold text-sm">Trusted by 10,000+ Families</p>
                   <p
-                    className="text-white/65 text-xs mt-0.5"
+                    className="text-muted-foreground text-xs mt-0.5"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     Across Tamil Nadu &amp; Beyond
@@ -245,17 +244,17 @@ export default function WhyChooseSection() {
             {/* CTA card */}
             <div
               className="rounded-2xl p-6 text-center"
-              style={{ background: 'linear-gradient(135deg, #0A4D68, #0077A8)' }}
+              style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(0,119,168,0.08))' }}
             >
               <p
-                className="text-white/80 text-sm mb-4 leading-relaxed"
+                className="text-foreground text-sm mb-4 leading-relaxed"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 Ready to experience pure, healthy water for your family?
               </p>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-secondary transition-all duration-300 shadow-lg"
+                className="inline-flex items-center gap-2 bg-primary text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#0A4D68] transition-all duration-300 shadow-lg shadow-primary/15"
               >
                 Get Free Consultation
                 <svg

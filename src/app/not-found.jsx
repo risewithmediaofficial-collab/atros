@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 
 export default function NotFound() {
   const router = useRouter();
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -17,7 +17,7 @@ export default function NotFound() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 
-    const particles: { x: number; y: number; r: number; vx: number; vy: number; o: number }[] = [];
+    const particles = [];
     for (let i = 0; i < 60; i++) {
       particles.push({
         x: Math.random() * canvas.width,
@@ -29,7 +29,7 @@ export default function NotFound() {
       });
     }
 
-    let animId: number;
+    let animId;
     const draw = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       for (const p of particles) {

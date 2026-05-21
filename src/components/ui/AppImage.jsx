@@ -3,25 +3,6 @@
 import React, { useState, useCallback, useMemo, memo } from 'react';
 import Image from 'next/image';
 
-interface AppImageProps {
-  src: string;
-  alt: string;
-  width?: number;
-  height?: number;
-  className?: string;
-  priority?: boolean;
-  quality?: number;
-  placeholder?: 'blur' | 'empty';
-  blurDataURL?: string;
-  fill?: boolean;
-  sizes?: string;
-  onClick?: () => void;
-  fallbackSrc?: string;
-  loading?: 'lazy' | 'eager';
-  unoptimized?: boolean;
-  [key: string]: any;
-}
-
 const AppImage = memo(function AppImage({
   src,
   alt,
@@ -39,7 +20,7 @@ const AppImage = memo(function AppImage({
   loading = 'lazy',
   unoptimized = false,
   ...props
-}: AppImageProps) {
+}) {
   const [imageSrc, setImageSrc] = useState(src);
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
@@ -71,7 +52,7 @@ const AppImage = memo(function AppImage({
   }, [className, isLoading, onClick]);
 
   const imageProps = useMemo(() => {
-    const baseProps: any = {
+    const baseProps = {
       src: imageSrc,
       alt,
       className: imageClassName,

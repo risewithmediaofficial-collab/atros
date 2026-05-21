@@ -107,10 +107,10 @@ const services = [
 ];
 
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
-    let ctx: any;
+    let ctx;
     let isCancelled = false;
 
     const initGSAP = async () => {
@@ -181,7 +181,7 @@ export default function ServicesSection() {
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#061E2E]/95 via-[#0A4D68]/30 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/70 to-white/10" />
             <div className="absolute inset-0 bg-gradient-to-br from-accent/0 to-accent/0 group-hover:from-accent/5 group-hover:to-transparent transition-all duration-700" />
             <div className="absolute bottom-0 left-0 right-0 p-7 lg:p-9 z-10">
               <span
@@ -190,11 +190,11 @@ export default function ServicesSection() {
               >
                 {services[0].subtitle}
               </span>
-              <h3 className="font-display text-3xl lg:text-4xl font-light italic text-white mb-3">
+              <h3 className="font-display text-3xl lg:text-4xl font-light italic text-foreground mb-3">
                 {services[0].title}
               </h3>
               <p
-                className="text-white/75 text-sm leading-relaxed mb-5 max-w-md"
+                className="text-muted-foreground text-sm leading-relaxed mb-5 max-w-md"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 {services[0].description}
@@ -203,7 +203,7 @@ export default function ServicesSection() {
                 {services[0].features?.map((f) => (
                   <span
                     key={f}
-                    className="bg-white/10 border border-white/20 text-white text-xs px-3 py-1.5 rounded-full backdrop-blur-sm"
+                    className="bg-white/90 border border-border text-foreground text-xs px-3 py-1.5 rounded-full backdrop-blur-sm"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {f}
@@ -222,7 +222,7 @@ export default function ServicesSection() {
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/60 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-1"
@@ -230,14 +230,14 @@ export default function ServicesSection() {
               >
                 {services[1].subtitle}
               </span>
-              <h3 className="font-display text-xl font-light italic text-white mb-2">
+              <h3 className="font-display text-xl font-light italic text-foreground mb-2">
                 {services[1].title}
               </h3>
               <div className="flex flex-wrap gap-1">
                 {services[1].features?.map((f) => (
                   <span
                     key={f}
-                    className="bg-white/10 text-white/80 text-xs px-2.5 py-1 rounded-full"
+                    className="bg-white/90 text-foreground text-xs px-2.5 py-1 rounded-full border border-border"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {f}
@@ -256,7 +256,7 @@ export default function ServicesSection() {
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               loading="lazy"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/60 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-1"
@@ -264,14 +264,14 @@ export default function ServicesSection() {
               >
                 {services[2].subtitle}
               </span>
-              <h3 className="font-display text-xl font-light italic text-white mb-2">
+              <h3 className="font-display text-xl font-light italic text-foreground mb-2">
                 {services[2].title}
               </h3>
               <div className="flex flex-wrap gap-1">
                 {services[2].features?.map((f) => (
                   <span
                     key={f}
-                    className="bg-white/10 text-white/80 text-xs px-2.5 py-1 rounded-full"
+                    className="bg-white/90 text-foreground text-xs px-2.5 py-1 rounded-full border border-border"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {f}
@@ -284,30 +284,30 @@ export default function ServicesSection() {
           {/* Installation */}
           <div
             className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer rounded-[1.25rem]"
-            style={{ background: 'linear-gradient(135deg, #0A4D68, #0077A8)' }}
+            style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(0,119,168,0.08))' }}
           >
             <div
               className="icon-glow"
               style={{
-                background: 'rgba(255,255,255,0.12)',
-                borderColor: 'rgba(255,255,255,0.2)',
-                color: 'white',
+                background: 'rgba(34,211,238,0.14)',
+                borderColor: 'rgba(34,211,238,0.28)',
+                color: 'var(--accent)',
               }}
             >
               {services[3].icon}
             </div>
             <div>
               <span
-                className="text-white/50 text-xs font-bold tracking-[0.2em] uppercase block mb-1"
+                className="text-muted-foreground text-xs font-bold tracking-[0.2em] uppercase block mb-1"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 {services[3].subtitle}
               </span>
-              <h3 className="font-display text-xl font-light italic text-white mb-2">
+              <h3 className="font-display text-xl font-light italic text-foreground mb-2">
                 {services[3].title}
               </h3>
               <p
-                className="text-white/65 text-sm leading-relaxed"
+                className="text-muted-foreground text-sm leading-relaxed"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 {services[3].description}

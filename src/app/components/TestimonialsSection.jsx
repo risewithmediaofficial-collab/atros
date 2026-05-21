@@ -49,7 +49,7 @@ const testimonials = [
 const allTestimonials = [...testimonials, ...testimonials];
 
 export default function TestimonialsSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useRef(null);
 
   useEffect(() => {
     const initGSAP = async () => {
@@ -78,17 +78,16 @@ export default function TestimonialsSection() {
     <section
       ref={sectionRef}
       id="testimonials"
-      className="py-24 overflow-hidden relative"
-      style={{ background: 'linear-gradient(180deg, #061E2E 0%, #0A3D55 50%, #0A4D68 100%)' }}
+      className="py-24 overflow-hidden relative bg-white"
     >
       {/* Atmospheric blobs */}
       <div className="water-blob absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-accent pointer-events-none" />
-      <div className="water-blob-2 absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] bg-white pointer-events-none" />
+      <div className="water-blob-2 absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] bg-primary pointer-events-none" />
       {/* Grid overlay */}
       <div
         className="absolute inset-0 pointer-events-none opacity-[0.025]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(rgba(7,24,34,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(7,24,34,0.05) 1px, transparent 1px)`,
           backgroundSize: '60px 60px',
         }}
       />
@@ -100,7 +99,7 @@ export default function TestimonialsSection() {
           >
             05 - Customer Stories
           </span>
-          <h2 className="font-display text-section-title font-light text-white">
+          <h2 className="font-display text-section-title font-light text-foreground">
             What Our Customers
             <br />
             <span className="italic font-light" style={{ color: 'rgba(0,180,216,0.9)' }}>
@@ -108,7 +107,7 @@ export default function TestimonialsSection() {
             </span>
           </h2>
           <p
-            className="text-white/50 text-base mt-4 max-w-lg mx-auto"
+            className="text-muted-foreground text-base mt-4 max-w-lg mx-auto"
             style={{ fontFamily: 'Inter, sans-serif' }}
           >
             Trusted by thousands of families and businesses across Tamil Nadu and beyond.
@@ -120,11 +119,11 @@ export default function TestimonialsSection() {
         {/* Fade edges */}
         <div
           className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(90deg, #061E2E, transparent)' }}
+          style={{ background: 'linear-gradient(90deg, #FFFFFF, transparent)' }}
         />
         <div
           className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-          style={{ background: 'linear-gradient(-90deg, #061E2E, transparent)' }}
+          style={{ background: 'linear-gradient(-90deg, #FFFFFF, transparent)' }}
         />
 
         <div className="marquee-track gap-5 px-5">
@@ -144,7 +143,7 @@ export default function TestimonialsSection() {
 
               {/* Quote */}
               <blockquote
-                className="text-white/80 text-sm leading-relaxed mb-5"
+                className="text-muted-foreground text-sm leading-relaxed mb-5"
                 style={{ fontFamily: 'Inter, sans-serif' }}
               >
                 &ldquo;{t?.quote}&rdquo;
@@ -152,7 +151,7 @@ export default function TestimonialsSection() {
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-white/20 flex-shrink-0 bg-white/10">
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-border flex-shrink-0 bg-secondary">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={t?.image}
@@ -165,7 +164,7 @@ export default function TestimonialsSection() {
                 </div>
                 <div>
                   <p
-                    className="text-white font-semibold text-sm"
+                    className="text-foreground font-semibold text-sm"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {t?.name}
@@ -176,7 +175,7 @@ export default function TestimonialsSection() {
                 </div>
                 <div className="ml-auto">
                   <span
-                    className="text-white/30 text-[10px] font-medium border border-white/15 px-2 py-0.5 rounded-full"
+                    className="text-muted-foreground text-[10px] font-medium border border-border px-2 py-0.5 rounded-full"
                     style={{ fontFamily: 'Inter, sans-serif' }}
                   >
                     {t?.location}
@@ -189,12 +188,12 @@ export default function TestimonialsSection() {
       </div>
       {/* Bottom CTA */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-14 text-center">
-        <p className="text-white/50 text-sm mb-5" style={{ fontFamily: 'Inter, sans-serif' }}>
+        <p className="text-muted-foreground text-sm mb-5" style={{ fontFamily: 'Inter, sans-serif' }}>
           Join thousands of satisfied customers
         </p>
         <a
           href="#contact"
-          className="inline-flex items-center gap-2 bg-white text-primary font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-secondary transition-all duration-300 shadow-xl hover:shadow-2xl hover:-translate-y-0.5"
+          className="inline-flex items-center gap-2 bg-primary text-white font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-[#0A4D68] transition-all duration-300 shadow-xl shadow-primary/15 hover:shadow-2xl hover:-translate-y-0.5"
         >
           Get Your Free Consultation
           <svg

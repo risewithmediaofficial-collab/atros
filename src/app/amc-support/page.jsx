@@ -1,5 +1,4 @@
 import React from 'react';
-import type { Metadata } from 'next';
 import Link from 'next/link';
 import {
   CheckCircle2,
@@ -16,8 +15,9 @@ import Footer from '@/components/Footer';
 import ContactSection from '@/app/components/ContactSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
+import PageEffects from '@/app/components/PageEffects';
 
-export const metadata: Metadata = {
+export const metadata = {
   title: 'AMC & Support | ATROS Water Purifier Maintenance and Repair',
   description:
     'ATROS Water Purifier provides AMC maintenance, filter replacement, repair support, and service care for RO, UV, UF, alkaline and commercial water systems.',
@@ -110,7 +110,8 @@ export default function AmcSupportPage() {
     <>
       <StructuredData />
       <Header />
-      <main id="main-content">
+      <PageEffects />
+      <main id="main-content" className="page-transition-root animated-page">
         {/* Hero */}
         <section className="premium-band relative overflow-hidden pt-36 pb-20">
           <div className="premium-noise" />

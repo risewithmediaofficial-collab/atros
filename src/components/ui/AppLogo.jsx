@@ -4,21 +4,13 @@ import React, { memo, useMemo } from 'react';
 import AppIcon from './AppIcon';
 import AppImage from './AppImage';
 
-interface AppLogoProps {
-  src?: string; // Image source (optional)
-  iconName?: string; // Icon name when no image
-  size?: number; // Size for icon/image
-  className?: string; // Additional classes
-  onClick?: () => void; // Click handler
-}
-
 const AppLogo = memo(function AppLogo({
   src = '/assets/images/app_logo.png',
   iconName = 'SparklesIcon',
   size = 64,
   className = '',
   onClick,
-}: AppLogoProps) {
+}) {
   // Memoize className calculation
   const containerClassName = useMemo(() => {
     const classes = ['flex items-center'];
