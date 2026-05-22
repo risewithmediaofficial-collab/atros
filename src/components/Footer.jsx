@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import AppLogo from '@/components/ui/AppLogo';
 
 const quickLinks = [
@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
           {/* Brand column */}
           <div className="lg:col-span-1">
-            <Link href="/" className="flex items-center gap-2.5 mb-5 group">
+            <Link to="/" className="flex items-center gap-2.5 mb-5 group">
               <AppLogo size={34} />
               <div className="flex flex-col leading-none">
                 <span className="font-display font-bold text-lg text-white tracking-tight">
@@ -39,7 +39,7 @@ export default function Footer() {
                 </span>
                 <span
                   className="text-[9px] font-semibold tracking-[0.2em] uppercase text-accent/70"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   Water Purifier
                 </span>
@@ -47,7 +47,7 @@ export default function Footer() {
             </Link>
             <p
               className="text-white/45 text-sm leading-relaxed mb-6"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Advanced domestic, commercial, and industrial water purification solutions with
               reliable service support.
@@ -107,7 +107,7 @@ export default function Footer() {
           <div>
             <h4
               className="text-white font-semibold text-sm mb-5 tracking-wide"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Quick Links
             </h4>
@@ -117,7 +117,7 @@ export default function Footer() {
                   <Link
                     href={link?.href}
                     className="text-white/45 text-sm hover:text-accent transition-colors duration-200 flex items-center gap-2 group"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     <span className="w-1 h-1 rounded-full bg-accent/40 group-hover:bg-accent transition-colors duration-200" />
                     {link?.label}
@@ -131,7 +131,7 @@ export default function Footer() {
           <div>
             <h4
               className="text-white font-semibold text-sm mb-5 tracking-wide"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Our Services
             </h4>
@@ -141,7 +141,7 @@ export default function Footer() {
                   <Link
                     href={link?.href}
                     className="text-white/45 text-sm hover:text-accent transition-colors duration-200 flex items-center gap-2 group"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     <span className="w-1 h-1 rounded-full bg-accent/40 group-hover:bg-accent transition-colors duration-200" />
                     {link?.label}
@@ -155,7 +155,7 @@ export default function Footer() {
           <div>
             <h4
               className="text-white font-semibold text-sm mb-5 tracking-wide"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Contact Us
             </h4>
@@ -176,7 +176,7 @@ export default function Footer() {
                 </svg>
                 <p
                   className="text-white/45 text-sm leading-relaxed"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   No 4/268, Next to Dk Samy School,
                   <br />
@@ -203,7 +203,7 @@ export default function Footer() {
                 <a
                   href="tel:+919080232624"
                   className="text-accent text-sm font-semibold hover:text-white transition-colors"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   +91 90802 32624
                 </a>
@@ -222,7 +222,7 @@ export default function Footer() {
                   <circle cx="12" cy="12" r="10" />
                   <path d="M12 6v6l4 2" />
                 </svg>
-                <p className="text-white/45 text-sm" style={{ fontFamily: 'Inter, sans-serif' }}>
+                <p className="text-white/45 text-sm" style={{ fontFamily: 'var(--font-sans)' }}>
                   Mon–Sun, 9:30 AM – 9:00 PM
                 </p>
               </div>
@@ -232,9 +232,9 @@ export default function Footer() {
             <Link
               href="/contact"
               className="mt-6 inline-flex items-center gap-2 bg-gradient-to-r from-accent to-[#0094B8] text-white font-semibold text-xs px-5 py-2.5 rounded-full hover:shadow-lg hover:shadow-accent/30 hover:-translate-y-0.5 transition-all duration-300"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
-              Get Free Consultation
+              Premium Consultation
               <svg
                 width="12"
                 height="12"
@@ -255,21 +255,21 @@ export default function Footer() {
 
         {/* Bottom row */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-xs" style={{ fontFamily: 'Inter, sans-serif' }}>
+          <p className="text-white/30 text-xs" style={{ fontFamily: 'var(--font-sans)' }}>
             © 2026 ATROS Water Purifier. All rights reserved.
           </p>
           <div className="flex gap-6">
             <a
               href="#"
               className="text-white/30 text-xs hover:text-white/60 transition-colors"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Privacy Policy
             </a>
             <a
               href="#"
               className="text-white/30 text-xs hover:text-white/60 transition-colors"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Terms of Service
             </a>

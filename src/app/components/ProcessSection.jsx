@@ -173,13 +173,13 @@ export default function ProcessSection() {
 
                   <h3
                     className="font-semibold text-foreground text-base mb-2"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {step?.title}
                   </h3>
                   <p
                     className="text-muted-foreground text-sm leading-relaxed"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {step?.description}
                   </p>
@@ -197,7 +197,7 @@ export default function ProcessSection() {
         {/* CTA */}
         <div className="mt-14 text-center">
           <a href="#contact" className="btn-primary-glow inline-flex items-center gap-2">
-            Start Your Free Consultation
+            Start Premium Consultation
             <svg
               width="16"
               height="16"

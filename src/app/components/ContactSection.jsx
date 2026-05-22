@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 
 export default function ContactSection() {
   const [form, setForm] = useState({
@@ -11,7 +11,6 @@ export default function ContactSection() {
     message: '',
   });
   const [submitted, setSubmitted] = useState(false);
-  const sectionRef = useRef(null);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -23,47 +22,10 @@ export default function ContactSection() {
     setTimeout(() => setSubmitted(false), 4000);
     setForm({ name: '', phone: '', email: '', service: '', message: '' });
   };
-
-  useEffect(() => {
-    const initGSAP = async () => {
-      try {
-        const { gsap } = await import('gsap');
-        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
-        gsap.registerPlugin(ScrollTrigger);
-
-        if (!sectionRef.current) return;
-
-        gsap.from(sectionRef.current.querySelector('.contact-left'), {
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
-          x: -40,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out',
-        });
-
-        gsap.from(sectionRef.current.querySelector('.contact-right'), {
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' },
-          x: 40,
-          opacity: 0,
-          duration: 1,
-          ease: 'power3.out',
-          delay: 0.15,
-        });
-      } catch {
-        // GSAP unavailable — elements visible by default
-      }
-    };
-    initGSAP();
-  }, []);
-
   const inputClass = 'input-premium';
 
   return (
-    <section
-      ref={sectionRef}
-      id="contact"
-      className="py-24 overflow-hidden bg-white"
-    >
+    <section id="contact" className="overflow-hidden bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="section-label mb-5 mx-auto block w-fit">07 - Contact Us</span>
@@ -74,7 +36,7 @@ export default function ContactSection() {
           </h2>
           <p
             className="text-muted-foreground text-base mt-4 max-w-xl mx-auto"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            style={{ fontFamily: 'var(--font-sans)' }}
           >
             Contact us for expert consultation, installation, maintenance, and water purification
             solutions.
@@ -152,7 +114,7 @@ export default function ContactSection() {
                     <div>
                       <p
                         className="font-semibold text-foreground text-sm mb-1"
-                        style={{ fontFamily: 'Inter, sans-serif' }}
+                        style={{ fontFamily: 'var(--font-sans)' }}
                       >
                         {item.label}
                       </p>
@@ -160,14 +122,14 @@ export default function ContactSection() {
                         <a
                           href="tel:+919080232624"
                           className="text-accent text-sm font-semibold hover:text-primary transition-colors"
-                          style={{ fontFamily: 'Inter, sans-serif' }}
+                          style={{ fontFamily: 'var(--font-sans)' }}
                         >
                           {item.content}
                         </a>
                       ) : (
                         <p
                           className="text-muted-foreground text-sm leading-relaxed whitespace-pre-line"
-                          style={{ fontFamily: 'Inter, sans-serif' }}
+                          style={{ fontFamily: 'var(--font-sans)' }}
                         >
                           {item.content}
                         </p>
@@ -218,7 +180,7 @@ export default function ContactSection() {
             <div className="gradient-border-card bg-white p-5 shadow-sm">
               <p
                 className="font-semibold text-foreground text-sm mb-4"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 Industries We Serve
               </p>
@@ -237,7 +199,7 @@ export default function ContactSection() {
                   <span
                     key={ind}
                     className="bg-secondary text-secondary-foreground text-xs font-medium px-3 py-1.5 rounded-full border border-border/60 hover:border-accent/50 hover:bg-accent/5 transition-all duration-200 cursor-default"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {ind}
                   </span>
@@ -249,7 +211,7 @@ export default function ContactSection() {
             <div className="gradient-border-card bg-white p-5 shadow-sm">
               <p
                 className="font-semibold text-foreground text-sm mb-4"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 Business Statutory Details
               </p>
@@ -268,13 +230,13 @@ export default function ContactSection() {
                   <div key={label} className={label === 'Mode of Payment' ? 'sm:col-span-2' : ''}>
                     <dt
                       className="text-muted-foreground text-xs font-semibold mb-1"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       {label}
                     </dt>
                     <dd
                       className="text-foreground text-sm font-semibold leading-relaxed"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       {value}
                     </dd>
@@ -287,12 +249,12 @@ export default function ContactSection() {
           {/* Right: Form */}
           <div className="contact-right lg:col-span-7">
             <div className="gradient-border-card bg-white p-7 sm:p-9 shadow-xl shadow-primary/5 h-full">
-              <h3 className="font-display text-2xl font-light italic text-foreground mb-2">
-                Request a Free Consultation
+              <h3 className="font-display text-2xl font-extrabold text-foreground mb-2">
+                Request a Premium Consultation
               </h3>
               <p
                 className="text-muted-foreground text-sm mb-7"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 Fill in your details and our experts will contact you within 24 hours.
               </p>
@@ -315,7 +277,7 @@ export default function ContactSection() {
                   </div>
                   <p
                     className="text-green-800 text-sm font-medium"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     Thank you! We&apos;ll call you back within 24 hours.
                   </p>
@@ -328,7 +290,7 @@ export default function ContactSection() {
                     <label
                       htmlFor="name"
                       className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       Full Name
                     </label>
@@ -348,7 +310,7 @@ export default function ContactSection() {
                     <label
                       htmlFor="phone"
                       className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       Phone Number
                     </label>
@@ -370,7 +332,7 @@ export default function ContactSection() {
                   <label
                     htmlFor="email"
                     className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     Email Address
                   </label>
@@ -390,7 +352,7 @@ export default function ContactSection() {
                   <label
                     htmlFor="service"
                     className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     Service Needed
                   </label>
@@ -417,7 +379,7 @@ export default function ContactSection() {
                   <label
                     htmlFor="message"
                     className="block text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     Message (Optional)
                   </label>
@@ -436,7 +398,7 @@ export default function ContactSection() {
 
                 <button
                   type="submit"
-                  className="w-full btn-primary-glow flex items-center justify-center gap-2 py-4 text-base"
+                  className="premium-consultation-btn w-full justify-center gap-2 py-4 text-base"
                   suppressHydrationWarning
                 >
                   <svg
@@ -450,12 +412,12 @@ export default function ContactSection() {
                   >
                     <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-.96a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
                   </svg>
-                  Send Request - Get Free Consultation
+                  Send Premium Request
                 </button>
 
                 <p
                   className="text-center text-xs text-muted-foreground"
-                  style={{ fontFamily: 'Inter, sans-serif' }}
+                  style={{ fontFamily: 'var(--font-sans)' }}
                 >
                   We respect your privacy. Your information is never shared.
                 </p>

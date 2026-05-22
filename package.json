@@ -2,67 +2,32 @@
   "name": "atros",
   "version": "0.1.0",
   "private": true,
-  "rocketCritical": {
-    "dependencies": [
-      "next",
-      "react",
-      "react-dom",
-      "@dhiwise/component-tagger",
-      "@tailwindcss/typography",
-      "recharts"
-    ],
-    "devDependencies": [
-      "typescript",
-      "@types/node",
-      "@types/react",
-      "@types/react-dom",
-      "@typescript-eslint/eslint-plugin",
-      "@typescript-eslint/parser",
-      "eslint-config-next",
-      "tailwindcss",
-      "autoprefixer",
-      "postcss",
-      "eslint",
-      "prettier",
-      "@netlify/plugin-nextjs"
-    ],
-    "scripts": [
-      "dev",
-      "build",
-      "start",
-      "lint",
-      "lint:fix",
-      "format",
-      "serve",
-      "type-check"
-    ],
-    "warning": "🚨 CRITICAL: DO NOT REMOVE OR MODIFY ABOVE DEPENDENCIES - Required for Next.js 15 TypeScript app functionality"
-  },
   "scripts": {
-    "dev": "next dev -p 4028",
-    "build": "next build",
-    "start": "next dev -p 4028",
-    "lint": "next lint",
-    "lint:fix": "next lint --fix",
+    "dev": "vite --host 0.0.0.0 --port 4028",
+    "build": "vite build",
+    "start": "node server.cjs",
+    "preview": "vite preview --host 0.0.0.0 --port 4028",
     "format": "prettier --write \"src/**/*.{js,jsx,css,md,json}\"",
-    "serve": "next start",
-    "type-check": "next build"
+    "serve": "node server.cjs",
+    "type-check": "vite build"
   },
   "dependencies": {
     "@dhiwise/component-tagger": "^1.0.15",
     "@heroicons/react": "^2.2.0",
     "@tailwindcss/forms": "^0.5.10",
     "@tailwindcss/typography": "^0.5.16",
+    "@vitejs/plugin-react": "^6.0.2",
+    "express": "^5.2.1",
     "gsap": "^3.12.5",
-    "next": "15.1.11",
+    "lucide-react": "^1.7.0",
     "react": "19.0.3",
     "react-dom": "19.0.3",
+    "react-router-dom": "^7.15.1",
     "recharts": "^2.15.2",
-    "lucide-react": "^1.7.0"
+    "vite": "^8.0.14"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@netlify/plugin-nextjs": "^5.11.1",
     "@types/node": "^20",
     "@types/react": "19.0.3",
     "@types/react-dom": "19.0.3",
@@ -70,7 +35,6 @@
     "@typescript-eslint/parser": "^8.29.0",
     "autoprefixer": "10.4.2",
     "eslint": "^9",
-    "eslint-config-next": "^15.2.4",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-prettier": "^5.2.6",
     "postcss": "8.4.8",

@@ -1,80 +1,85 @@
 'use client';
 
 import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { useLocation } from 'react-router-dom';
 
 export default function PageEffects() {
-  const pathname = usePathname();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     let context;
-    let triggers = [];
+    let isCancelled = false;
 
-    const init = async () => {
-      const [{ gsap }, { ScrollTrigger }] = await Promise.all([
-        import('gsap'),
-        import('gsap/ScrollTrigger'),
-      ]);
+    const frame = window.requestAnimationFrame(() => {
+      document.documentElement.classList.add('page-ready');
+    });
 
-      gsap.registerPlugin(ScrollTrigger);
+    const initGsap = async () => {
+      try {
+        const [{ gsap }, { ScrollTrigger }] = await Promise.all([
+          import('gsap'),
+          import('gsap/ScrollTrigger'),
+        ]);
 
-      context = gsap.context(() => {
-        gsap.fromTo(
-          '.page-transition-root',
-          { opacity: 0, y: 18 },
-          { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }
-        );
+        if (isCancelled) return;
+        gsap.registerPlugin(ScrollTrigger);
 
-        gsap.utils.toArray('.page-transition-root > section').forEach((section) => {
-          triggers.push(
-            ScrollTrigger.create({
-              trigger: section,
-              start: 'top 82%',
-              animation: gsap.fromTo(
-                section.querySelectorAll(
-                  'h1, h2, .section-label, p, article, dl, .gradient-border-card, .glass-card'
-                ),
-                { y: 36, opacity: 0 },
+        const root = document.querySelector('#main-content');
+        if (!root) return;
+
+        context = gsap.context(() => {
+          gsap.utils.toArray(root.querySelectorAll('section')).forEach((section) => {
+            const cards = section.querySelectorAll(
+              '.gradient-border-card, article, .glass-card, li, form > *, .contact-left > *, .contact-right'
+            );
+
+            if (cards.length) {
+              gsap.fromTo(
+                cards,
+                { y: 22 },
                 {
                   y: 0,
-                  opacity: 1,
-                  duration: 0.85,
-                  stagger: 0.055,
+                  duration: 0.68,
                   ease: 'power3.out',
+                  stagger: 0.055,
+                  scrollTrigger: {
+                    trigger: section,
+                    start: 'top 78%',
+                    once: true,
+                  },
                 }
-              ),
-            })
-          );
+              );
+            }
+          });
 
-          section.querySelectorAll('img').forEach((image) => {
-            const wrap =
-              image.closest('article') ||
-              image.closest('.relative') ||
-              image.parentElement ||
-              section;
-
-            triggers.push(
-              ScrollTrigger.create({
-                trigger: wrap,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true,
-                animation: gsap.fromTo(
-                  image,
-                  { yPercent: -8, scale: 1.08 },
-                  { yPercent: 8, scale: 1.02, ease: 'none' }
-                ),
-              })
+          gsap.utils.toArray(root.querySelectorAll('img')).forEach((image) => {
+            gsap.fromTo(
+              image,
+              { scale: 1.045 },
+              {
+                scale: 1,
+                duration: 1.15,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: image,
+                  start: 'top 88%',
+                  once: true,
+                },
+              }
             );
           });
-        });
-      });
+        }, root);
+      } catch {
+        document.documentElement.classList.add('page-ready');
+      }
     };
 
-    init();
+    initGsap();
 
     return () => {
-      triggers.forEach((trigger) => trigger.kill());
+      isCancelled = true;
+      window.cancelAnimationFrame(frame);
+      document.documentElement.classList.remove('page-ready');
       if (context) context.revert();
     };
   }, [pathname]);

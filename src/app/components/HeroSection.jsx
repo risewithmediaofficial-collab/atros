@@ -191,7 +191,7 @@ export default function HeroSection() {
             <p
               ref={subRef}
               className="text-muted-foreground text-base sm:text-lg font-light leading-relaxed max-w-lg mb-9"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Advanced RO, UV, UF & Alkaline Water Purification Solutions for Homes, Businesses &
               Industries across India.
@@ -211,7 +211,7 @@ export default function HeroSection() {
                 >
                   <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.41 2 2 0 0 1 3.6 1.22h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6.06 6.06l1.27-.96a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
                 </svg>
-                Get Free Consultation
+                Premium Consultation
               </a>
               <a
                 href="tel:+919080232624"
@@ -230,7 +230,10 @@ export default function HeroSection() {
                 </svg>
                 Call Now
               </a>
-              <a href="#services" className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white">
+              <a
+                href="#services"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-white px-7 py-3.5 text-sm font-semibold text-primary shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary hover:bg-primary hover:text-white"
+              >
                 Our Services
                 <svg
                   width="14"
@@ -302,7 +305,9 @@ export default function HeroSection() {
                     </div>
                     <div>
                       <p className="text-foreground font-semibold text-sm">99.9% Pure Water</p>
-                      <p className="text-muted-foreground text-xs">Advanced RO + Alkaline Technology</p>
+                      <p className="text-muted-foreground text-xs">
+                        Advanced RO + Alkaline Technology
+                      </p>
                     </div>
                     <div className="ml-auto">
                       <div className="flex gap-0.5">
@@ -337,7 +342,7 @@ export default function HeroSection() {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
         <span
           className="text-muted-foreground text-[10px] tracking-[0.3em] uppercase font-medium"
-          style={{ fontFamily: 'Inter, sans-serif' }}
+          style={{ fontFamily: 'var(--font-sans)' }}
         >
           Scroll
         </span>

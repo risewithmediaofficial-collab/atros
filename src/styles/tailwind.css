@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 :root {
+  --font-plus-jakarta: 'Plus Jakarta Sans';
   --primary: #07364b;
   --primary-foreground: #ffffff;
   --accent: #22d3ee;
@@ -290,7 +291,7 @@
   }
 
   .section-label {
-    font-family: 'Inter', ui-monospace, monospace;
+    font-family: var(--font-sans);
     font-size: 0.68rem;
     font-weight: 600;
     letter-spacing: 0.28em;
@@ -335,6 +336,41 @@
 
   .btn-primary-glow:hover::before {
     opacity: 1;
+  }
+
+  .premium-consultation-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border: 1px solid rgba(34, 211, 238, 0.55);
+    border-radius: 999px;
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.22), transparent 36%),
+      linear-gradient(135deg, #21d4ed 0%, #0797b7 55%, #07364b 100%);
+    color: #ffffff;
+    padding: 0.75rem 1.35rem;
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    font-weight: 800;
+    line-height: 1;
+    box-shadow:
+      0 14px 34px rgba(7, 54, 75, 0.16),
+      0 8px 24px rgba(34, 211, 238, 0.24),
+      inset 0 1px 0 rgba(255, 255, 255, 0.32);
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
+  }
+
+  .premium-consultation-btn:hover {
+    transform: translateY(-2px);
+    filter: saturate(1.06);
+    box-shadow:
+      0 18px 44px rgba(7, 54, 75, 0.22),
+      0 12px 32px rgba(34, 211, 238, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.36);
   }
 
   .btn-ghost-white {
@@ -527,7 +563,7 @@
     color: var(--foreground);
     transition: all 0.25s ease;
     outline: none;
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
   }
 
   .input-premium:focus {
@@ -538,6 +574,32 @@
 
   .input-premium::placeholder {
     color: var(--muted);
+  }
+
+  /* Form labels on dark sections */
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) label {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+  }
+
+  /* Text elements on dark sections */
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) dl dt {
+    color: rgba(255, 255, 255, 0.8) !important;
+    font-weight: 600 !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) dl dd {
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+
+  /* Text centering utilities */
+  .landing-page .text-center {
+    text-align: center !important;
+  }
+
+  .landing-page .mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
   }
 
   /* Animate on scroll */
@@ -640,6 +702,32 @@
   .nav-pill:hover::after,
   .nav-pill.is-active::after {
     transform: scaleX(1);
+  }
+
+  .nav-dropdown-panel {
+    border: 1px solid rgba(207, 231, 239, 0.78);
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.96);
+    padding: 0.45rem;
+    box-shadow:
+      0 24px 60px rgba(7, 54, 75, 0.13),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  .nav-dropdown-item {
+    display: block;
+    border-radius: 0.75rem;
+    padding: 0.8rem 0.95rem;
+    font-family: var(--font-sans);
+    transition:
+      background 0.2s ease,
+      color 0.2s ease,
+      transform 0.2s ease;
+  }
+
+  .nav-dropdown-item:hover {
+    background: var(--secondary);
+    transform: translateX(2px);
   }
 
   .scroll-top-float {
@@ -849,6 +937,7 @@
     padding: 0.875rem 1.75rem;
     font-size: 0.875rem;
     font-weight: 700;
+    font-family: var(--font-sans);
     box-shadow: 0 10px 34px rgba(7, 54, 75, 0.06);
     transition:
       transform 0.25s ease,
@@ -945,8 +1034,7 @@
 
   .home-slide--white {
     background:
-      radial-gradient(circle at 80% 50%, rgba(34, 211, 238, 0.08), transparent 24rem),
-      #ffffff;
+      radial-gradient(circle at 80% 50%, rgba(34, 211, 238, 0.08), transparent 24rem), #ffffff;
     box-shadow: 0 0 0 100vmax #ffffff;
     clip-path: inset(0 -100vmax);
   }
@@ -1105,8 +1193,7 @@
     padding: 6rem 1.25rem;
     text-align: center;
     background:
-      radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.14), transparent 28rem),
-      #ffffff;
+      radial-gradient(circle at 50% 20%, rgba(34, 211, 238, 0.14), transparent 28rem), #ffffff;
   }
 
   .home-final h2 {
@@ -1121,6 +1208,15 @@
 
   .page-transition-root {
     opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 0.38s ease,
+      transform 0.38s ease;
+  }
+
+  .page-ready .page-transition-root {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .animated-page {
@@ -1252,6 +1348,757 @@
   .product-page .btn-primary-glow *,
   .product-page .bg-primary\/90 * {
     color: #ffffff !important;
+  }
+}
+
+@layer utilities {
+  .landing-page {
+    background:
+      radial-gradient(circle at 82% 8%, rgba(34, 211, 238, 0.16), transparent 22rem),
+      #ffffff;
+    color: var(--foreground);
+  }
+
+  .subpage-hero {
+    background:
+      radial-gradient(circle at 82% 8%, rgba(34, 211, 238, 0.16), transparent 22rem),
+      linear-gradient(180deg, #ffffff 0%, #ffffff 100%) !important;
+    color: var(--foreground);
+    border-bottom: 1px solid rgba(207, 231, 239, 0.72);
+  }
+
+  .landing-page.animated-page > section.subpage-hero,
+  .landing-page.animated-page > section.subpage-hero:nth-of-type(1),
+  .landing-page.animated-page > section.subpage-hero:nth-of-type(odd) {
+    background:
+      radial-gradient(circle at 82% 8%, rgba(34, 211, 238, 0.16), transparent 22rem),
+      linear-gradient(180deg, #ffffff 0%, #ffffff 100%) !important;
+    color: var(--foreground) !important;
+    box-shadow: none !important;
+    clip-path: none !important;
+    border-top: 0 !important;
+    border-bottom: 1px solid rgba(207, 231, 239, 0.72) !important;
+  }
+
+  .subpage-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(circle at 18% 42%, rgba(231, 246, 250, 0.9), transparent 23rem),
+      #ffffff !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) {
+    background: #0a6680 !important;
+    color: #ffffff;
+    box-shadow: 0 0 0 100vmax #0a6680;
+    clip-path: inset(0 -100vmax);
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(odd) {
+    background:
+      radial-gradient(circle at 80% 50%, rgba(34, 211, 238, 0.08), transparent 24rem),
+      #ffffff !important;
+    color: var(--foreground);
+    box-shadow: 0 0 0 100vmax #ffffff;
+    clip-path: inset(0 -100vmax);
+    border-top: 1px solid rgba(207, 231, 239, 0.72);
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even)::before {
+    background: #0a6680 !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(odd)::before {
+    background: #ffffff !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h1,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h2,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h2 span,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) > div > h2,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) > div > div > h2,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) > div > div > div > h2 {
+    color: #ffffff !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) > div > p,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) > div > div > p,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) > div > div > div > p {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) li,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) dt,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) dd,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) label,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) small {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .section-label {
+    color: var(--accent);
+    border-color: rgba(34, 211, 238, 0.5);
+  }
+
+  .landing-page .subpage-hero .glass-card,
+  .landing-page .subpage-hero .gradient-border-card,
+  .landing-page .subpage-hero article {
+    background: rgba(255, 255, 255, 0.82);
+    border-color: rgba(207, 231, 239, 0.95);
+    color: var(--foreground);
+    box-shadow: 0 24px 70px rgba(7, 54, 75, 0.1);
+  }
+
+  .landing-page .subpage-hero .glass-card {
+    backdrop-filter: blur(18px) saturate(150%);
+    -webkit-backdrop-filter: blur(18px) saturate(150%);
+  }
+
+  .landing-page .subpage-hero [class~='text-white'],
+  .landing-page .subpage-hero [class~='text-white/62'],
+  .landing-page .subpage-hero [class~='text-white/65'] {
+    color: var(--foreground) !important;
+  }
+
+  .landing-page.animated-page > section.subpage-hero h1,
+  .landing-page.animated-page > section.subpage-hero h2,
+  .landing-page.animated-page > section.subpage-hero h3,
+  .landing-page.animated-page > section.subpage-hero h1 span,
+  .landing-page.animated-page > section.subpage-hero h2 span,
+  .landing-page.animated-page > section.subpage-hero p {
+    color: inherit !important;
+  }
+
+  .landing-page.animated-page > section.subpage-hero h1 span,
+  .landing-page.animated-page > section.subpage-hero h2 span {
+    color: var(--primary) !important;
+  }
+
+  .landing-page.animated-page > section.subpage-hero p {
+    color: var(--muted-foreground) !important;
+  }
+
+  .landing-page .subpage-hero img {
+    border-radius: 1.4rem;
+  }
+
+  .landing-page .gradient-border-card,
+  .landing-page article {
+    transition:
+      transform 0.35s cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .landing-page .gradient-border-card:hover,
+  .landing-page article:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 64px rgba(34, 211, 238, 0.14);
+    border-color: rgba(34, 211, 238, 0.38);
+  }
+
+  .landing-page .btn-primary-glow,
+  .landing-page .btn-primary-glow * {
+    color: #ffffff !important;
+  }
+
+  .landing-page.product-page > section,
+  .landing-page.product-page > section:nth-of-type(odd),
+  .landing-page.product-page > section:nth-of-type(even) {
+    color: inherit;
+  }
+
+  .landing-page.product-page .section-label {
+    color: var(--accent);
+    border-color: rgba(34, 211, 238, 0.45);
+  }
+
+  .landing-page h1,
+  .landing-page h2,
+  .landing-page h3,
+  .landing-page h4,
+  .landing-page .font-display {
+    font-family: var(--font-display) !important;
+    letter-spacing: 0 !important;
+  }
+
+  .landing-page h1,
+  .landing-page .text-hero {
+    font-size: clamp(2.65rem, 5.3vw, 5.05rem) !important;
+    line-height: 1.03 !important;
+    font-weight: 800 !important;
+    font-style: normal !important;
+    color: var(--foreground) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h1,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .text-hero {
+    color: #ffffff !important;
+  }
+
+  .landing-page h2,
+  .landing-page .text-section-title {
+    font-size: clamp(2.15rem, 4.25vw, 4.15rem) !important;
+    line-height: 1.08 !important;
+    font-weight: 800 !important;
+    font-style: normal !important;
+    color: var(--foreground) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h2,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .text-section-title,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h2 span {
+    color: #ffffff !important;
+  }
+
+  .landing-page h3 {
+    font-weight: 800 !important;
+    font-style: normal !important;
+    color: var(--foreground) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h3 {
+    color: #ffffff !important;
+  }
+
+  .landing-page h1 span,
+  .landing-page h2 span,
+  .landing-page h3 span {
+    font-weight: 800 !important;
+    font-style: normal !important;
+  }
+
+  .landing-page .italic,
+  .landing-page .font-light {
+    font-style: normal !important;
+  }
+
+  .landing-page .font-light {
+    font-weight: 800 !important;
+  }
+
+  .landing-page p {
+    color: var(--muted-foreground);
+    font-weight: 500;
+    line-height: 1.75;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) p {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .landing-page .section-label {
+    color: var(--accent) !important;
+    border-color: rgba(34, 211, 238, 0.45) !important;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .section-label {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h1,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h2,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h3,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h1 span,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h2 span,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) h3 span {
+    color: #ffffff !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) p,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) li {
+    color: rgba(255, 255, 255, 0.78) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .gradient-border-card h1,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .gradient-border-card h2,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .gradient-border-card h3,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .gradient-border-card p,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .gradient-border-card li,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) article h1,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) article h2,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) article h3,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) article p,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) article li {
+    color: var(--foreground) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) .gradient-border-card p,
+  .landing-page > section:not(.subpage-hero):nth-of-type(even) article p {
+    color: var(--muted-foreground) !important;
+  }
+
+  .landing-page .btn-primary-glow,
+  .landing-page .premium-consultation-btn {
+    background: linear-gradient(135deg, #22d3ee 0%, #0895b3 58%, #00657b 100%);
+    border-radius: 999px;
+    font-weight: 800;
+    box-shadow:
+      0 20px 54px rgba(34, 211, 238, 0.28),
+      0 8px 22px rgba(7, 54, 75, 0.12);
+  }
+
+  .landing-page .home-outline-btn {
+    color: var(--primary) !important;
+    border-color: rgba(7, 54, 75, 0.18) !important;
+    background: #ffffff !important;
+    font-weight: 800;
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even),
+  .landing-page > section:not(.subpage-hero):nth-of-type(odd),
+  .landing-page .premium-band {
+    background:
+      radial-gradient(circle at 82% 10%, rgba(34, 211, 238, 0.16), transparent 24rem),
+      linear-gradient(180deg, #ffffff 0%, #f5fcfe 100%) !important;
+    color: var(--foreground) !important;
+    border-top: 1px solid rgba(207, 231, 239, 0.72);
+    box-shadow: 0 0 0 100vmax #ffffff !important;
+    clip-path: inset(0 -100vmax);
+  }
+
+  .landing-page > section:not(.subpage-hero):nth-of-type(even)::before,
+  .landing-page > section:not(.subpage-hero):nth-of-type(odd)::before,
+  .landing-page .premium-band::before {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(231, 246, 250, 0.9), transparent 22rem),
+      #ffffff !important;
+  }
+
+  .landing-page > section:not(.subpage-hero) h1,
+  .landing-page > section:not(.subpage-hero) h2,
+  .landing-page > section:not(.subpage-hero) h3,
+  .landing-page > section:not(.subpage-hero) h1 span,
+  .landing-page > section:not(.subpage-hero) h2 span,
+  .landing-page > section:not(.subpage-hero) h3 span,
+  .landing-page .premium-band h1,
+  .landing-page .premium-band h2,
+  .landing-page .premium-band h3,
+  .landing-page .premium-band [class~='text-white'] {
+    color: var(--foreground) !important;
+  }
+
+  .landing-page > section:not(.subpage-hero) p,
+  .landing-page > section:not(.subpage-hero) li,
+  .landing-page .premium-band p,
+  .landing-page .premium-band li,
+  .landing-page [class~='text-white/45'],
+  .landing-page [class~='text-white/55'],
+  .landing-page [class~='text-white/60'],
+  .landing-page [class~='text-white/65'],
+  .landing-page [class~='text-white/90'] {
+    color: var(--muted-foreground) !important;
+  }
+
+  .landing-page .btn-primary-glow,
+  .landing-page .btn-primary-glow *,
+  .landing-page .premium-consultation-btn,
+  .landing-page .premium-consultation-btn *,
+  .landing-page .bg-\[\#25D366\],
+  .landing-page .bg-\[\#25D366\] *,
+  .landing-page .bg-accent,
+  .landing-page .bg-accent *,
+  .landing-page .bg-primary,
+  .landing-page .bg-primary *,
+  .landing-page .bg-\[\#0a66c2\],
+  .landing-page .bg-\[\#0a66c2\] * {
+    color: #ffffff !important;
+  }
+
+  .landing-page .gradient-border-card,
+  .landing-page article,
+  .landing-page .glass-card {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border-color: rgba(207, 231, 239, 0.95) !important;
+    box-shadow:
+      0 24px 70px rgba(7, 54, 75, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  .footer-dark {
+    background:
+      radial-gradient(circle at 84% 8%, rgba(34, 211, 238, 0.16), transparent 24rem),
+      linear-gradient(180deg, #ffffff 0%, #f4fbfd 100%) !important;
+    border-top: 1px solid rgba(207, 231, 239, 0.9) !important;
+  }
+
+  .footer-dark [class~='text-white'],
+  .footer-dark [class~='text-white/60'] {
+    color: var(--foreground) !important;
+  }
+
+  .footer-dark [class~='text-white/45'],
+  .footer-dark [class~='text-white/50'],
+  .footer-dark [class~='text-white/30'] {
+    color: var(--muted-foreground) !important;
+  }
+
+  .footer-dark .border-white\/10 {
+    border-color: rgba(207, 231, 239, 0.92) !important;
+  }
+
+  .landing-page.animated-page > section:not(.subpage-hero),
+  .landing-page.animated-page > section:not(.subpage-hero):nth-of-type(odd),
+  .landing-page.animated-page > section:not(.subpage-hero):nth-of-type(even) {
+    background:
+      radial-gradient(circle at 82% 10%, rgba(34, 211, 238, 0.12), transparent 24rem),
+      linear-gradient(180deg, #ffffff 0%, #f7fcfe 100%) !important;
+    color: var(--foreground) !important;
+    box-shadow: 0 0 0 100vmax #ffffff !important;
+  }
+
+  .landing-page.animated-page > section:not(.subpage-hero) h1,
+  .landing-page.animated-page > section:not(.subpage-hero) h2,
+  .landing-page.animated-page > section:not(.subpage-hero) h3,
+  .landing-page.animated-page > section:not(.subpage-hero) h1 span,
+  .landing-page.animated-page > section:not(.subpage-hero) h2 span,
+  .landing-page.animated-page > section:not(.subpage-hero) h3 span {
+    color: var(--foreground) !important;
+  }
+
+  .landing-page.animated-page > section:not(.subpage-hero) p,
+  .landing-page.animated-page > section:not(.subpage-hero) li,
+  .landing-page.animated-page > section:not(.subpage-hero) dt,
+  .landing-page.animated-page > section:not(.subpage-hero) dd {
+    color: var(--muted-foreground) !important;
+  }
+
+  .landing-page .subpage-hero .glass-card h2,
+  .landing-page .subpage-hero .gradient-border-card h2,
+  .landing-page .subpage-hero article h2,
+  .landing-page .glass-card h2,
+  .landing-page .gradient-border-card h2,
+  .landing-page article h2,
+  .landing-page .glass-card h3,
+  .landing-page .gradient-border-card h3,
+  .landing-page article h3 {
+    font-size: clamp(1.55rem, 2.8vw, 2.85rem) !important;
+    line-height: 1.08 !important;
+    font-weight: 800 !important;
+    color: var(--foreground) !important;
+    overflow-wrap: anywhere;
+  }
+
+  .landing-page .subpage-hero .glass-card {
+    min-height: 13.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .landing-page .subpage-hero .glass-card p,
+  .landing-page .gradient-border-card p,
+  .landing-page article p {
+    color: var(--muted-foreground) !important;
+  }
+
+  .landing-page [class~='text-white']:not(.btn-primary-glow):not(.premium-consultation-btn),
+  .landing-page [class~='text-white/45'],
+  .landing-page [class~='text-white/50'],
+  .landing-page [class~='text-white/55'],
+  .landing-page [class~='text-white/60'],
+  .landing-page [class~='text-white/65'],
+  .landing-page [class~='text-white/90'] {
+    color: var(--foreground) !important;
+  }
+
+  .landing-page p[class~='text-white'],
+  .landing-page p[class~='text-white/45'],
+  .landing-page p[class~='text-white/50'],
+  .landing-page p[class~='text-white/55'],
+  .landing-page p[class~='text-white/60'],
+  .landing-page p[class~='text-white/65'],
+  .landing-page p[class~='text-white/90'] {
+    color: var(--muted-foreground) !important;
+  }
+
+  .landing-page .btn-primary-glow,
+  .landing-page .btn-primary-glow *,
+  .landing-page .premium-consultation-btn,
+  .landing-page .premium-consultation-btn *,
+  .landing-page [class*='bg-[#25D366]'],
+  .landing-page [class*='bg-[#25D366]'] *,
+  .landing-page [class*='bg-accent'],
+  .landing-page [class*='bg-accent'] *,
+  .landing-page [class*='bg-primary'],
+  .landing-page [class*='bg-primary'] *,
+  .landing-page [class*='bg-[#0a66c2]'],
+  .landing-page [class*='bg-[#0a66c2]'] * {
+    color: #ffffff !important;
+  }
+
+  .landing-page .subpage-hero {
+    min-height: calc(100vh - 7rem);
+    display: flex;
+    align-items: center;
+  }
+
+  .landing-page .subpage-hero .text-hero {
+    max-width: 42rem;
+    font-size: clamp(3rem, 5.6vw, 5.35rem) !important;
+    line-height: 1.04 !important;
+  }
+
+  .landing-page .text-section-title,
+  .landing-page > section:not(.subpage-hero) > div h2 {
+    font-size: clamp(2rem, 3.45vw, 3.35rem) !important;
+    line-height: 1.08 !important;
+    max-width: 52rem;
+  }
+
+  .landing-page .subpage-hero .text-hero {
+    font-size: clamp(2.85rem, 5vw, 4.65rem) !important;
+    line-height: 1.06 !important;
+  }
+
+  .landing-page .gradient-border-card,
+  .landing-page article,
+  .landing-page .glass-card,
+  .landing-page dl > div {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.75rem !important;
+    background: #ffffff !important;
+    color: #374151 !important;
+    box-shadow:
+      0 12px 28px rgba(15, 23, 42, 0.08),
+      0 1px 0 rgba(255, 255, 255, 0.9) inset !important;
+    border: 1px solid rgba(186, 230, 243, 0.85) !important;
+  }
+
+  .landing-page .gradient-border-card::before {
+    border-radius: 0.75rem !important;
+    background: linear-gradient(90deg, rgba(59, 130, 246, 0.28), rgba(37, 99, 235, 0.2)) !important;
+  }
+
+  .landing-page .gradient-border-card:hover,
+  .landing-page article:hover,
+  .landing-page .glass-card:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 18px 38px rgba(37, 99, 235, 0.13),
+      0 1px 0 rgba(255, 255, 255, 0.95) inset !important;
+  }
+
+  .landing-page .gradient-border-card h2,
+  .landing-page article h2,
+  .landing-page .glass-card h2,
+  .landing-page .gradient-border-card h3,
+  .landing-page article h3,
+  .landing-page .glass-card h3,
+  .landing-page dl > div dd,
+  .landing-page .process-card h3 {
+    margin-bottom: 0.5rem !important;
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+    color: #0f2937 !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+  }
+
+  .landing-page .gradient-border-card p,
+  .landing-page article p,
+  .landing-page .glass-card p,
+  .landing-page dl > div dt,
+  .landing-page .process-card p {
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+    font-weight: 400 !important;
+    color: #4f7180 !important;
+  }
+
+  .landing-page .process-card .text-5xl {
+    font-size: 2.1rem !important;
+    line-height: 1 !important;
+    color: rgba(7, 54, 75, 0.26) !important;
+  }
+
+  .landing-page .process-card .gradient-border-card {
+    min-height: 22rem;
+    padding: 1.75rem !important;
+  }
+
+  .landing-page .subpage-hero .glass-card {
+    min-height: 10.5rem;
+    padding: 1.75rem !important;
+  }
+
+  .landing-page .subpage-hero .glass-card h2 {
+    font-size: clamp(1.65rem, 2.2vw, 2.25rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  .landing-page .subpage-hero .glass-card p {
+    font-size: 0.95rem !important;
+  }
+
+  .landing-page .bg-secondary,
+  .landing-page .bg-background {
+    background-color: transparent !important;
+  }
+
+  .landing-page h1,
+  .landing-page h2,
+  .landing-page h3,
+  .landing-page p,
+  .landing-page li,
+  .landing-page dt,
+  .landing-page dd {
+    opacity: 1 !important;
+  }
+
+  .landing-page .premium-band h2 {
+    font-size: clamp(2rem, 3.2vw, 3.2rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  main.landing-page,
+  main.landing-page section,
+  main.landing-page section > div,
+  main.landing-page .premium-band,
+  main.landing-page .bg-background,
+  main.landing-page .bg-secondary {
+    color: var(--foreground) !important;
+  }
+
+  main.landing-page :is(h1, h2, h3, h4, h5, h6) {
+    color: #071822 !important;
+    opacity: 1 !important;
+    font-family: var(--font-display) !important;
+    font-style: normal !important;
+    font-weight: 800 !important;
+    letter-spacing: 0 !important;
+  }
+
+  main.landing-page :is(h1, h2, h3, h4, h5, h6) :is(span, strong) {
+    color: #07364b !important;
+    opacity: 1 !important;
+    font-style: normal !important;
+  }
+
+  main.landing-page :is(p, li, dt, dd, label, small) {
+    color: #4f7180 !important;
+    opacity: 1 !important;
+    font-family: var(--font-sans) !important;
+  }
+
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(h1, h2, h3, h4, h5, h6) {
+    color: #ffffff !important;
+  }
+
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(h1, h2, h3, h4, h5, h6) :is(span, strong) {
+    color: #ffffff !important;
+  }
+
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(p, li, dt, dd, label, small) {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) .section-label {
+    color: #ffffff !important;
+  }
+
+  main.landing-page .section-label,
+  main.landing-page .section-label:is(span, p, div) {
+    color: #22d3ee !important;
+    opacity: 1 !important;
+    font-size: 0.68rem !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.28em !important;
+  }
+
+  main.landing-page .gradient-border-card :is(h1, h2, h3, h4, h5, h6),
+  main.landing-page article :is(h1, h2, h3, h4, h5, h6),
+  main.landing-page .glass-card :is(h1, h2, h3, h4, h5, h6),
+  main.landing-page dl > div :is(h1, h2, h3, h4, h5, h6, dd) {
+    color: #0f2937 !important;
+    font-size: 1.25rem !important;
+    line-height: 1.35 !important;
+    font-weight: 700 !important;
+  }
+
+  main.landing-page .gradient-border-card :is(p, li, dt),
+  main.landing-page article :is(p, li, dt),
+  main.landing-page .glass-card :is(p, li, dt),
+  main.landing-page dl > div :is(p, li, dt) {
+    color: #4f7180 !important;
+    font-size: 1rem !important;
+    line-height: 1.65 !important;
+    font-weight: 400 !important;
+  }
+
+  main.landing-page [class~='text-white'],
+  main.landing-page [class~='text-white/30'],
+  main.landing-page [class~='text-white/45'],
+  main.landing-page [class~='text-white/50'],
+  main.landing-page [class~='text-white/55'],
+  main.landing-page [class~='text-white/60'],
+  main.landing-page [class~='text-white/62'],
+  main.landing-page [class~='text-white/65'],
+  main.landing-page [class~='text-white/90'] {
+    color: #071822 !important;
+    opacity: 1 !important;
+  }
+
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/30'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/45'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/50'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/55'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/60'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/62'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/65'],
+  main.landing-page > section:not(.subpage-hero):nth-of-type(even) [class~='text-white/90'] {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  main.landing-page p[class~='text-white'],
+  main.landing-page p[class~='text-white/45'],
+  main.landing-page p[class~='text-white/50'],
+  main.landing-page p[class~='text-white/55'],
+  main.landing-page p[class~='text-white/60'],
+  main.landing-page p[class~='text-white/62'],
+  main.landing-page p[class~='text-white/65'],
+  main.landing-page p[class~='text-white/90'] {
+    color: #4f7180 !important;
+  }
+
+  main.landing-page :is(.btn-primary-glow, .premium-consultation-btn),
+  main.landing-page :is(.btn-primary-glow, .premium-consultation-btn) *,
+  main.landing-page :is(button, a)[class*='bg-[#25D366]'],
+  main.landing-page :is(button, a)[class*='bg-[#25D366]'] *,
+  main.landing-page :is(button, a)[class*='bg-accent'],
+  main.landing-page :is(button, a)[class*='bg-accent'] *,
+  main.landing-page :is(button, a)[class*='bg-primary'],
+  main.landing-page :is(button, a)[class*='bg-primary'] *,
+  main.landing-page :is(button, a)[class*='bg-[#0a66c2]'],
+  main.landing-page :is(button, a)[class*='bg-[#0a66c2]'] *,
+  main.landing-page .icon-glow:hover,
+  main.landing-page .group:hover .icon-glow {
+    color: #ffffff !important;
+  }
+
+  main.landing-page :is(h1, h2).text-section-title,
+  main.landing-page .text-section-title {
+    font-size: clamp(2rem, 3.4vw, 3.25rem) !important;
+    line-height: 1.1 !important;
+  }
+
+  main.landing-page :is(h1).text-hero,
+  main.landing-page .subpage-hero .text-hero {
+    font-size: clamp(2.75rem, 4.8vw, 4.45rem) !important;
+    line-height: 1.06 !important;
   }
 }
 
@@ -1567,4 +2414,535 @@
 /* scale-104 used in services page */
 .group-hover\:scale-104:is(.group:hover *) {
   transform: scale(1.04);
+}
+
+/* Final landing page theme: match the home page white/blue rhythm. */
+main.landing-page {
+  --page-blue: #0a6680;
+  --page-ink: #071822;
+  --page-navy: #07364b;
+  --page-muted: #4f7180;
+  background: #ffffff !important;
+  color: var(--page-ink) !important;
+}
+
+main.landing-page > section {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+main.landing-page > section.subpage-hero,
+main.landing-page > section.subpage-hero:nth-of-type(odd),
+main.landing-page > section.subpage-hero:nth-of-type(even) {
+  min-height: calc(100vh - 7rem);
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(circle at 82% 8%, rgba(34, 211, 238, 0.16), transparent 22rem),
+    linear-gradient(180deg, #ffffff 0%, #ffffff 100%) !important;
+  color: var(--page-ink) !important;
+  border-bottom: 1px solid rgba(207, 231, 239, 0.72) !important;
+  box-shadow: none !important;
+  clip-path: none !important;
+}
+
+main.landing-page > section.subpage-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(circle at 18% 42%, rgba(231, 246, 250, 0.9), transparent 23rem),
+    #ffffff !important;
+}
+
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) {
+  background: var(--page-blue) !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 100vmax var(--page-blue) !important;
+  clip-path: inset(0 -100vmax) !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
+}
+
+main.landing-page > section:not(.subpage-hero):nth-of-type(even)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--page-blue) !important;
+}
+
+main.landing-page > section:not(.subpage-hero):nth-of-type(odd) {
+  background:
+    radial-gradient(circle at 80% 50%, rgba(34, 211, 238, 0.08), transparent 24rem),
+    #ffffff !important;
+  color: var(--page-ink) !important;
+  box-shadow: 0 0 0 100vmax #ffffff !important;
+  clip-path: inset(0 -100vmax) !important;
+  border-top: 1px solid rgba(207, 231, 239, 0.72) !important;
+}
+
+main.landing-page > section:not(.subpage-hero):nth-of-type(odd)::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #ffffff !important;
+}
+
+main.landing-page :is(h1, h2, h3, h4, h5, h6) {
+  font-family: var(--font-display) !important;
+  font-style: normal !important;
+  letter-spacing: 0 !important;
+  color: var(--page-ink) !important;
+  opacity: 1 !important;
+}
+
+main.landing-page h1,
+main.landing-page .text-hero {
+  font-size: clamp(2.75rem, 4.8vw, 4.45rem) !important;
+  line-height: 1.06 !important;
+  font-weight: 800 !important;
+}
+
+main.landing-page h2,
+main.landing-page .text-section-title {
+  font-size: clamp(2rem, 3.4vw, 3.25rem) !important;
+  line-height: 1.1 !important;
+  font-weight: 800 !important;
+}
+
+main.landing-page :is(h1, h2, h3) :is(span, strong) {
+  color: var(--page-navy) !important;
+  font-style: normal !important;
+}
+
+main.landing-page :is(p, li, dt, dd, label, small) {
+  color: var(--page-muted) !important;
+  opacity: 1 !important;
+}
+
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(h1, h2, h3, h4, h5, h6),
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(h1, h2, h3) :is(span, strong) {
+  color: #ffffff !important;
+}
+
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) > div :is(p, li, dt, dd, label, small) {
+  color: rgba(255, 255, 255, 0.78) !important;
+}
+
+main.landing-page .section-label {
+  color: var(--accent) !important;
+  border-color: rgba(34, 211, 238, 0.5) !important;
+  font-size: 0.68rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.28em !important;
+  opacity: 1 !important;
+}
+
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) {
+  border-radius: 0.75rem !important;
+  background: #ffffff !important;
+  color: #374151 !important;
+  border: 1px solid rgba(186, 230, 243, 0.9) !important;
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+}
+
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) :is(h1, h2, h3, h4, h5, h6, dd) {
+  color: #0f2937 !important;
+  font-size: 1.25rem !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  overflow-wrap: normal !important;
+  word-break: normal !important;
+}
+
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) :is(p, li, dt, label, small) {
+  color: var(--page-muted) !important;
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+  font-weight: 400 !important;
+}
+
+main.landing-page :is(.btn-primary-glow, .premium-consultation-btn),
+main.landing-page :is(.btn-primary-glow, .premium-consultation-btn) *,
+main.landing-page :is(button, a)[class*='bg-[#25D366]'],
+main.landing-page :is(button, a)[class*='bg-[#25D366]'] *,
+main.landing-page :is(button, a)[class*='bg-accent'],
+main.landing-page :is(button, a)[class*='bg-accent'] *,
+main.landing-page :is(button, a)[class*='bg-primary'],
+main.landing-page :is(button, a)[class*='bg-primary'] *,
+main.landing-page :is(button, a)[class*='bg-[#0a66c2]'],
+main.landing-page :is(button, a)[class*='bg-[#0a66c2]'] *,
+main.landing-page .icon-glow:hover,
+main.landing-page .group:hover .icon-glow {
+  color: #ffffff !important;
+}
+
+main.landing-page [class~='text-white'],
+main.landing-page [class~='text-white/30'],
+main.landing-page [class~='text-white/45'],
+main.landing-page [class~='text-white/50'],
+main.landing-page [class~='text-white/55'],
+main.landing-page [class~='text-white/60'],
+main.landing-page [class~='text-white/62'],
+main.landing-page [class~='text-white/65'],
+main.landing-page [class~='text-white/90'] {
+  color: inherit !important;
+  opacity: 1 !important;
+}
+
+main.landing-page :is(.btn-primary-glow, .premium-consultation-btn) [class~='text-white'],
+main.landing-page :is(button, a)[class*='bg-'] [class~='text-white'] {
+  color: #ffffff !important;
+}
+
+@media (max-width: 640px) {
+  main.landing-page h1,
+  main.landing-page .text-hero {
+    font-size: clamp(2.35rem, 12vw, 3.25rem) !important;
+  }
+
+  main.landing-page h2,
+  main.landing-page .text-section-title {
+    font-size: clamp(2rem, 10vw, 2.75rem) !important;
+  }
+}
+
+/* Final card readability override. White cards must always have dark visible text. */
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div),
+main.landing-page > section:nth-of-type(odd) :is(.gradient-border-card, article, .glass-card, dl > div),
+main.landing-page > section:nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div),
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div) {
+  background: #ffffff !important;
+  color: #071822 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div) *,
+main.landing-page > section:nth-of-type(odd) :is(.gradient-border-card, article, .glass-card, dl > div) *,
+main.landing-page > section:nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div) *,
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div) * {
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: none !important;
+}
+
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div) :is(h1, h2, h3, h4, h5, h6, dd, strong, b),
+main.landing-page > section:nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div) :is(h1, h2, h3, h4, h5, h6, dd, strong, b),
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div) :is(h1, h2, h3, h4, h5, h6, dd, strong, b) {
+  color: #071822 !important;
+}
+
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div) :is(p, li, dt, label, small, span),
+main.landing-page > section:nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div) :is(p, li, dt, label, small, span),
+main.landing-page > section:not(.subpage-hero):nth-of-type(even) :is(.gradient-border-card, article, .glass-card, dl > div) :is(p, li, dt, label, small, span) {
+  color: #4f7180 !important;
+}
+
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div) :is(.btn-primary-glow, .premium-consultation-btn),
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div) :is(.btn-primary-glow, .premium-consultation-btn) *,
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div) :is(button, a)[class*='bg-'],
+main.landing-page > section :is(.gradient-border-card, article, .glass-card, dl > div) :is(button, a)[class*='bg-'] * {
+  color: #ffffff !important;
+}
+
+/* Final typography sizing: cards must be compact and readable everywhere. */
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) {
+  padding: 1.25rem !important;
+}
+
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) :is(h2, h3, h4, h5, h6) {
+  font-size: 1.125rem !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  color: #071822 !important;
+}
+
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) dt,
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) label,
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) small {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  color: #4f7180 !important;
+}
+
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) dd,
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) p,
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) li {
+  font-size: 0.95rem !important;
+  line-height: 1.55 !important;
+  font-weight: 500 !important;
+  color: #334e5c !important;
+  overflow-wrap: anywhere !important;
+  word-break: normal !important;
+}
+
+main.landing-page :is(.gradient-border-card, article, .glass-card, dl > div) dd {
+  margin-top: 0.35rem !important;
+  color: #071822 !important;
+  font-weight: 700 !important;
+}
+
+main.landing-page #contact .text-center,
+main.landing-page #contact .text-center :is(h1, h2, h3, p, span) {
+  text-align: center !important;
+}
+
+main.landing-page #contact > div > .text-center {
+  max-width: 48rem !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+main.landing-page #contact dl {
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)) !important;
+}
+
+main.landing-page #contact dl > div {
+  min-height: auto !important;
+}
+
+main.landing-page #contact dl > div:is(.sm\:col-span-2) {
+  grid-column: 1 / -1 !important;
+}
+
+main.landing-page #contact .gradient-border-card {
+  overflow: hidden !important;
+}
+
+/* Product page: keep white panels readable on blue bands. */
+main.product-page .product-help-card,
+main.product-page .product-included-card {
+  background: #ffffff !important;
+  border-radius: 0.875rem !important;
+  color: #071822 !important;
+}
+
+main.product-page .product-help-card :is(h1, h2, h3, h4, h5, h6, p, span, svg),
+main.product-page .product-included-card :is(h1, h2, h3, h4, h5, h6, p, span, svg) {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+main.product-page .product-help-card :is(h1, h2, h3, h4, h5, h6),
+main.product-page .product-included-card :is(h1, h2, h3, h4, h5, h6, span) {
+  color: #071822 !important;
+}
+
+main.product-page .product-help-card p {
+  color: #4f7180 !important;
+}
+
+main.product-page .product-included-card {
+  min-height: 4.25rem !important;
+  padding: 1rem !important;
+}
+
+main.product-page .product-included-card span {
+  font-size: 0.95rem !important;
+  line-height: 1.35 !important;
+  font-weight: 700 !important;
+  overflow-wrap: anywhere !important;
+}
+
+/* Navbar and dropdowns should stay readable above every page theme. */
+.nav-pill,
+.nav-pill * {
+  color: #071822 !important;
+}
+
+.nav-pill.is-active,
+.nav-pill:hover {
+  color: #071822 !important;
+}
+
+.nav-dropdown-panel {
+  background: rgba(255, 255, 255, 0.98) !important;
+  color: #071822 !important;
+}
+
+.nav-dropdown-item,
+.nav-dropdown-item span:first-child {
+  color: #071822 !important;
+}
+
+.nav-dropdown-item span:last-child {
+  color: #4f7180 !important;
+}
+
+.nav-dropdown-item:hover,
+.nav-dropdown-item:focus-visible {
+  background: #eefdff !important;
+  color: #071822 !important;
+}
+
+/* Projects page flip cards. */
+main.landing-page .project-flip-card {
+  display: block !important;
+  min-height: 30rem !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 1.5rem !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  cursor: pointer;
+  perspective: 1200px;
+}
+
+main.landing-page .project-flip-inner {
+  position: relative;
+  width: 100%;
+  min-height: 30rem;
+  border-radius: 1.5rem;
+  transform-style: preserve-3d;
+  transition:
+    transform 0.75s cubic-bezier(0.23, 1, 0.32, 1),
+    filter 0.3s ease;
+}
+
+main.landing-page .project-flip-card:hover .project-flip-inner,
+main.landing-page .project-flip-card:focus .project-flip-inner,
+main.landing-page .project-flip-card:focus-within .project-flip-inner,
+main.landing-page .project-flip-card:active .project-flip-inner {
+  transform: rotateY(180deg);
+}
+
+main.landing-page .project-flip-card:hover .project-flip-inner,
+main.landing-page .project-flip-card:focus-visible .project-flip-inner {
+  filter: drop-shadow(0 28px 45px rgba(7, 24, 34, 0.2));
+}
+
+main.landing-page .project-flip-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid rgba(186, 230, 243, 0.95);
+  border-radius: 1.5rem;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease;
+}
+
+main.landing-page .project-flip-front {
+  background: #071822 !important;
+  transform: translateZ(1px);
+}
+
+main.landing-page .project-flip-back {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem !important;
+  text-align: center;
+  background: #ffffff !important;
+  color: #071822 !important;
+  transform: rotateY(180deg) translateZ(1px);
+  box-shadow:
+    0 18px 40px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+main.landing-page .project-flip-front :is(h1, h2, h3, h4, p, span),
+main.landing-page .project-flip-front h2 {
+  color: #ffffff !important;
+  opacity: 1 !important;
+}
+
+main.landing-page .project-flip-front p,
+main.landing-page .project-flip-back > p:first-of-type {
+  color: #22d3ee !important;
+}
+
+main.landing-page .project-flip-back h2 {
+  color: #071822 !important;
+  font-size: 1.5rem !important;
+  line-height: 1.18 !important;
+}
+
+main.landing-page .project-flip-back p:not(:first-of-type) {
+  max-width: 18rem;
+  color: #4f7180 !important;
+}
+
+@media (max-width: 640px) {
+  main.landing-page .project-flip-card,
+  main.landing-page .project-flip-inner {
+    min-height: 27rem !important;
+  }
+}
+
+/* Home hero must stay visible even if GSAP intro timing is interrupted. */
+.home-stage {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.home-stage .home-intro__title,
+.home-stage .home-intro__title *,
+.home-stage .home-intro-line,
+.home-stage .home-intro-line__inner {
+  color: #071822 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: none !important;
+}
+
+.home-stage .home-intro__txt,
+.home-stage .home-intro__actions,
+.home-stage .home-intro__actions *,
+.home-stage .home-intro__gallery,
+.home-stage .home-intro__media,
+.home-stage .home-intro__media img {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.home-stage .home-intro__media img {
+  filter: none !important;
+}
+
+.home-stage .home-slide__content,
+.home-stage .home-slide__index,
+.home-stage .home-slide__title,
+.home-stage .home-slide__title *,
+.home-stage .home-title-line,
+.home-stage .home-title-line__inner,
+.home-stage .home-slide__copy,
+.home-stage .home-slide__stats,
+.home-stage .home-slide__stat,
+.home-stage .home-slide__cta {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.home-stage .home-slide--blue .home-slide__title,
+.home-stage .home-slide--blue .home-slide__title *,
+.home-stage .home-slide--blue .home-slide__index,
+.home-stage .home-slide--blue .home-slide__cta {
+  color: #ffffff !important;
+}
+
+.home-stage .home-slide--white .home-slide__title,
+.home-stage .home-slide--white .home-slide__title *,
+.home-stage .home-slide--white .home-slide__index,
+.home-stage .home-slide--white .home-slide__cta {
+  color: #071822 !important;
+}
+
+.home-stage .home-slide--blue .home-slide__copy {
+  color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.home-stage .home-slide--white .home-slide__copy {
+  color: #4f7180 !important;
 }

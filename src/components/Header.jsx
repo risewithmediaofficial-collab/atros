@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, Phone, X } from 'lucide-react';
 import AppLogo from '@/components/ui/AppLogo';
 
@@ -55,8 +54,6 @@ const navigation = [
   { label: 'Contact', href: '/contact' },
 ];
 
-const sectionIds = [];
-
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -64,8 +61,7 @@ export default function Header() {
   const [activeSection, setActiveSection] = useState('');
   const navRef = useRef(null);
   const scrollFrame = useRef(null);
-  const pathname = usePathname();
-  const router = useRouter();
+  const { pathname } = useLocation();
 
   const getHeaderOffset = useCallback(() => {
     const navHeight = navRef.current?.getBoundingClientRect().height ?? 72;
@@ -115,27 +111,9 @@ export default function Header() {
   );
 
   useEffect(() => {
-    ['/', '/about', '/services', '/products', '/projects', '/contact', '/amc-support'].forEach(
-      (route) => router.prefetch(route)
-    );
-  }, [router]);
-
-  useEffect(() => {
     const updateScrollState = () => {
       scrollFrame.current = null;
-      const offsetLine =
-        window.scrollY + getHeaderOffset() + Math.min(window.innerHeight * 0.22, 180);
-      let current = '';
-
-      for (const id of sectionIds) {
-        const section = document.getElementById(id);
-        if (section && section.offsetTop <= offsetLine) {
-          current = id;
-        }
-      }
-
       setScrolled(window.scrollY > 48);
-      setActiveSection(current);
     };
 
     const handleScroll = () => {
@@ -152,7 +130,7 @@ export default function Header() {
       window.removeEventListener('resize', handleScroll);
       if (scrollFrame.current !== null) window.cancelAnimationFrame(scrollFrame.current);
     };
-  }, [getHeaderOffset, pathname]);
+  }, [pathname]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -214,7 +192,7 @@ export default function Header() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           <Link
-            href="/"
+            to="/"
             onClick={handleBrandClick}
             className="group flex items-center gap-2.5 rounded-full focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent"
             aria-label="ATROS Water Purifier, go to homepage"
@@ -253,7 +231,7 @@ export default function Header() {
                   <button
                     type="button"
                     onClick={() => setOpenGroup(openGroup === group.label ? null : group.label)}
-                    className={`nav-pill ${isGroupActive(group) ? 'is-active' : ''} ${navTextClass}`}
+                    className={`nav-pill font-sans-premium ${isGroupActive(group) ? 'is-active' : ''} ${navTextClass}`}
                     aria-expanded={openGroup === group.label}
                     aria-haspopup="true"
                     suppressHydrationWarning
@@ -266,19 +244,19 @@ export default function Header() {
                     />
                   </button>
                   <div className="pointer-events-none absolute left-1/2 top-full w-80 -translate-x-1/2 pt-4 opacity-0 transition-all duration-200 group-hover/nav:pointer-events-auto group-hover/nav:translate-y-0 group-hover/nav:opacity-100">
-                    <div className="rounded-2xl border border-white/20 bg-white/90 p-2 shadow-2xl shadow-primary/12 backdrop-blur-2xl">
+                    <div className="nav-dropdown-panel">
                       {group.items.map((item) => (
                         <Link
                           key={item.href}
-                          href={item.href}
+                          to={item.href}
                           onClick={(e) => handleLinkClick(e, item.href)}
-                          className={`block rounded-xl px-4 py-3 transition-all duration-200 hover:bg-secondary ${
+                          className={`nav-dropdown-item ${
                             isItemActive(item.href)
                               ? 'bg-secondary text-primary'
                               : 'text-foreground'
                           }`}
                         >
-                          <span className="block text-sm font-bold">{item.label}</span>
+                          <span className="block text-sm font-extrabold">{item.label}</span>
                           {item.description && (
                             <span className="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
                               {item.description}
@@ -292,10 +270,10 @@ export default function Header() {
               ) : (
                 <Link
                   key={group.label}
-                  href={group.href}
+                  to={group.href}
                   onClick={(e) => handleLinkClick(e, group.href)}
                   aria-current={isItemActive(group.href) ? 'page' : undefined}
-                  className={`nav-pill ${isItemActive(group.href) ? 'is-active' : ''} ${navTextClass}`}
+                  className={`nav-pill font-sans-premium ${isItemActive(group.href) ? 'is-active' : ''} ${navTextClass}`}
                 >
                   {group.label}
                 </Link>
@@ -315,11 +293,8 @@ export default function Header() {
               <Phone size={15} aria-hidden="true" />
               Call Now
             </a>
-            <Link
-              href="/contact"
-              className="rounded-full bg-gradient-to-r from-accent to-[#0094B8] px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-accent/20 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/30"
-            >
-              Free Consultation
+            <Link to="/contact" className="premium-consultation-btn">
+              Premium Consultation
             </Link>
           </div>
 
@@ -353,7 +328,7 @@ export default function Header() {
                 <button
                   type="button"
                   onClick={() => setOpenGroup(openGroup === group.label ? null : group.label)}
-                  className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left font-display text-2xl font-light italic text-foreground"
+                  className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left font-sans-premium text-xl font-extrabold text-foreground"
                   aria-expanded={openGroup === group.label}
                   suppressHydrationWarning
                 >
@@ -376,7 +351,7 @@ export default function Header() {
                       {group.items.map((item) => (
                         <Link
                           key={item.href}
-                          href={item.href}
+                          to={item.href}
                           onClick={(e) => handleLinkClick(e, item.href)}
                           className={`block rounded-xl px-4 py-3 ${
                             isItemActive(item.href)
@@ -399,9 +374,9 @@ export default function Header() {
             ) : (
               <Link
                 key={group.label}
-                href={group.href}
+                to={group.href}
                 onClick={(e) => handleLinkClick(e, group.href)}
-                className={`rounded-2xl border border-border px-5 py-4 font-display text-2xl font-light italic transition-all duration-200 ${
+                className={`rounded-2xl border border-border px-5 py-4 font-sans-premium text-xl font-extrabold transition-all duration-200 ${
                   isItemActive(group.href)
                     ? 'bg-accent/15 text-accent'
                     : 'bg-secondary/50 text-foreground hover:bg-white'
@@ -421,16 +396,15 @@ export default function Header() {
               Call Now
             </a>
             <Link
-              href="/contact"
+              to="/contact"
               onClick={closeMenus}
-              className="rounded-full bg-gradient-to-r from-accent to-[#0094B8] px-6 py-3.5 text-center text-sm font-semibold text-white shadow-lg shadow-accent/25"
+              className="premium-consultation-btn justify-center px-6 py-3.5 text-center"
             >
-              Free Consultation
+              Premium Consultation
             </Link>
           </div>
         </div>
       </div>
-
     </>
   );
 }

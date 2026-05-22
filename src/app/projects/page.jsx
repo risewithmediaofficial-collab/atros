@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { Building2, Factory, Home, MapPin } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -47,16 +47,16 @@ export default function ProjectsPage() {
       <StructuredData />
       <Header />
       <PageEffects />
-      <main id="main-content" className="page-transition-root animated-page">
-        <section className="premium-band relative overflow-hidden pt-36 pb-20">
+      <main id="main-content" className="landing-page page-transition-root animated-page">
+        <section className="subpage-hero relative overflow-hidden pt-36 pb-20">
           <div className="premium-noise" />
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <span className="section-label mb-6 block">Projects / Installations</span>
-            <h1 className="max-w-5xl font-display text-hero font-light italic text-white">
+            <h1 className="max-w-5xl font-display text-hero font-extrabold text-foreground">
               Practical installations,
-              <span className="block font-bold not-italic text-accent">cleanly executed.</span>
+              <span className="block text-primary">cleanly executed.</span>
             </h1>
-            <p className="mt-7 max-w-2xl text-base leading-relaxed text-white">
+            <p className="mt-7 max-w-2xl text-base font-medium leading-relaxed text-muted-foreground">
               This page groups the installation categories ATROS handles, from homes and offices to
               larger treatment requirements. It gives project-based visitors a clearer path than
               hiding everything inside the homepage.
@@ -71,46 +71,54 @@ export default function ProjectsPage() {
               return (
                 <article
                   key={project.title}
-                  className="group overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-accent/10 hover:border-accent/30"
+                  className="project-flip-card group"
+                  tabIndex={0}
                 >
-                  <div className="relative min-h-[280px] overflow-hidden bg-gray-100">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#041019]/85 via-[#041019]/20 to-transparent" />
-                    <div className="absolute bottom-5 left-5 right-5">
-                      <p className="text-xs font-bold uppercase tracking-widest text-accent mb-2">
+                  <div className="project-flip-inner">
+                    <div className="project-flip-face project-flip-front">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#041019]/85 via-[#041019]/30 to-transparent" />
+                      <div className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/15 text-accent backdrop-blur-sm">
+                        <Icon size={19} aria-hidden="true" />
+                      </div>
+                    </div>
+
+                    <div className="project-flip-face project-flip-back">
+                      <div className="icon-glow mx-auto mb-5">
+                        <Icon size={22} aria-hidden="true" />
+                      </div>
+                      <p className="mb-3 text-xs font-bold uppercase tracking-widest text-accent">
                         {project.category}
                       </p>
-                      <h2 className="font-display text-2xl font-light italic text-white">
+                      <h2 className="font-display text-2xl font-extrabold leading-tight text-foreground">
                         {project.title}
                       </h2>
-                    </div>
-                    <div className="absolute top-4 right-4 w-10 h-10 rounded-xl bg-white/10 border border-white/20 backdrop-blur-sm flex items-center justify-center text-accent">
-                      <Icon size={18} aria-hidden="true" />
-                    </div>
-                  </div>
-                  <div className="p-7">
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {project.description}
-                    </p>
-                    <div className="mt-5 flex items-center gap-2 text-xs font-semibold text-accent">
-                      <span>Learn more</span>
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
+                      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                        {project.description}
+                      </p>
+                      <Link
+                        to="/contact"
+                        className="btn-primary-glow mt-7 inline-flex items-center gap-2 px-5 py-3 text-sm"
                       >
-                        <path d="M5 12h14m-7-7 7 7-7 7" />
-                      </svg>
+                        Learn more
+                        <svg
+                          width="12"
+                          height="12"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2.5"
+                          strokeLinecap="round"
+                          aria-hidden="true"
+                        >
+                          <path d="M5 12h14m-7-7 7 7-7 7" />
+                        </svg>
+                      </Link>
                     </div>
                   </div>
                 </article>
@@ -147,7 +155,7 @@ export default function ProjectsPage() {
             <h2 className="font-display text-4xl font-light italic text-white">
               Planning a new installation?
             </h2>
-            <Link href="/contact" className="btn-primary-glow">
+            <Link to="/contact" className="btn-primary-glow">
               Discuss Project
             </Link>
           </div>

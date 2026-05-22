@@ -163,7 +163,7 @@ export default function ServicesSection() {
           </div>
           <p
             className="text-muted-foreground text-sm leading-relaxed max-w-sm italic border-l-2 border-accent/40 pl-4"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            style={{ fontFamily: 'var(--font-sans)' }}
           >
             From compact home purifiers to large industrial treatment plants, ATROS delivers
             dependable solutions.
@@ -173,9 +173,7 @@ export default function ServicesSection() {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Domestic large card — explicit height, plain img */}
-          <div className="bento-card md:col-span-2 lg:col-span-2 lg:row-span-2 relative min-h-[440px] group cursor-pointer overflow-hidden rounded-[1.25rem]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="bento-card md:col-span-2 lg:col-span-2 lg:row-span-2 relative min-h-[440px] group cursor-pointer overflow-hidden rounded-[1.25rem]">            <img
               src={services[0].image}
               alt={services[0].imageAlt}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -186,7 +184,7 @@ export default function ServicesSection() {
             <div className="absolute bottom-0 left-0 right-0 p-7 lg:p-9 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-2"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[0].subtitle}
               </span>
@@ -195,7 +193,7 @@ export default function ServicesSection() {
               </h3>
               <p
                 className="text-muted-foreground text-sm leading-relaxed mb-5 max-w-md"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[0].description}
               </p>
@@ -204,7 +202,7 @@ export default function ServicesSection() {
                   <span
                     key={f}
                     className="bg-white/90 border border-border text-foreground text-xs px-3 py-1.5 rounded-full backdrop-blur-sm"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {f}
                   </span>
@@ -214,9 +212,7 @@ export default function ServicesSection() {
           </div>
 
           {/* Commercial */}
-          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">            <img
               src={services[1].image}
               alt={services[1].imageAlt}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -226,7 +222,7 @@ export default function ServicesSection() {
             <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-1"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[1].subtitle}
               </span>
@@ -238,7 +234,7 @@ export default function ServicesSection() {
                   <span
                     key={f}
                     className="bg-white/90 text-foreground text-xs px-2.5 py-1 rounded-full border border-border"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {f}
                   </span>
@@ -248,9 +244,7 @@ export default function ServicesSection() {
           </div>
 
           {/* Industrial */}
-          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">            <img
               src={services[2].image}
               alt={services[2].imageAlt}
               className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
@@ -260,7 +254,7 @@ export default function ServicesSection() {
             <div className="absolute bottom-0 left-0 right-0 p-5 z-10">
               <span
                 className="text-accent text-xs font-bold tracking-[0.2em] uppercase block mb-1"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[2].subtitle}
               </span>
@@ -272,7 +266,7 @@ export default function ServicesSection() {
                   <span
                     key={f}
                     className="bg-white/90 text-foreground text-xs px-2.5 py-1 rounded-full border border-border"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {f}
                   </span>
@@ -284,7 +278,9 @@ export default function ServicesSection() {
           {/* Installation */}
           <div
             className="bento-card p-6 flex flex-col justify-between min-h-[180px] group cursor-pointer rounded-[1.25rem]"
-            style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(0,119,168,0.08))' }}
+            style={{
+              background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(0,119,168,0.08))',
+            }}
           >
             <div
               className="icon-glow"
@@ -299,7 +295,7 @@ export default function ServicesSection() {
             <div>
               <span
                 className="text-muted-foreground text-xs font-bold tracking-[0.2em] uppercase block mb-1"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[3].subtitle}
               </span>
@@ -308,7 +304,7 @@ export default function ServicesSection() {
               </h3>
               <p
                 className="text-muted-foreground text-sm leading-relaxed"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[3].description}
               </p>
@@ -321,7 +317,7 @@ export default function ServicesSection() {
             <div>
               <span
                 className="text-muted-foreground text-xs font-bold tracking-[0.2em] uppercase block mb-1"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[4].subtitle}
               </span>
@@ -330,7 +326,7 @@ export default function ServicesSection() {
               </h3>
               <p
                 className="text-muted-foreground text-sm leading-relaxed"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[4].description}
               </p>
@@ -343,7 +339,7 @@ export default function ServicesSection() {
             <div>
               <span
                 className="text-muted-foreground text-xs font-bold tracking-[0.2em] uppercase block mb-1"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[5].subtitle}
               </span>
@@ -352,7 +348,7 @@ export default function ServicesSection() {
               </h3>
               <p
                 className="text-muted-foreground text-sm leading-relaxed"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {services[5].description}
               </p>

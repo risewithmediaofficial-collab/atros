@@ -6,8 +6,7 @@ const slides = [
   {
     eyebrow: 'Domestic RO Systems',
     title: ['Cleaner water', 'daily living'],
-    copy:
-      'Compact RO, UV, UF, and alkaline purifiers designed for homes that need dependable drinking water without visual clutter.',
+    copy: 'Compact RO, UV, UF, and alkaline purifiers designed for homes that need dependable drinking water without visual clutter.',
     image:
       'https://images.unsplash.com/photo-1666608153597-05b25a35f82c?w=1400&auto=format&fit=crop',
     alt: 'Bright kitchen with a modern water purification setup',
@@ -18,8 +17,7 @@ const slides = [
   {
     eyebrow: 'Commercial Purification',
     title: ['Reliable water', 'for workplaces'],
-    copy:
-      'High-capacity purification for offices, schools, hospitals, restaurants, and teams that need clean water throughout the day.',
+    copy: 'High-capacity purification for offices, schools, hospitals, restaurants, and teams that need clean water throughout the day.',
     image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e620f35f-1767854588560.png',
     alt: 'Commercial water purification station in a modern office',
     stats: ['Continuous output', 'Energy efficient', 'Service support'],
@@ -29,8 +27,7 @@ const slides = [
   {
     eyebrow: 'Industrial RO Plants',
     title: ['Industrial RO', 'at scale'],
-    copy:
-      'Custom water treatment plants for factories and industrial facilities, planned around source water, flow rate, and uptime needs.',
+    copy: 'Custom water treatment plants for factories and industrial facilities, planned around source water, flow rate, and uptime needs.',
     image: 'https://img.rocket.new/generatedImages/rocket_gen_img_15cdaf8b9-1772190825276.png',
     alt: 'Industrial water treatment plant with filtration equipment',
     stats: ['Custom capacity', 'Industrial grade', 'Planned installation'],
@@ -40,9 +37,9 @@ const slides = [
   {
     eyebrow: 'AMC & Support',
     title: ['Service care', 'that lasts'],
-    copy:
-      'Annual maintenance, repairs, filter replacement, and local support from technicians who understand the system after installation.',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1400&auto=format&fit=crop',
+    copy: 'Annual maintenance, repairs, filter replacement, and local support from technicians who understand the system after installation.',
+    image:
+      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1400&auto=format&fit=crop',
     alt: 'Technician maintaining water treatment equipment',
     stats: ['AMC plans', 'Fast repair', 'Filter replacement'],
     cta: 'Book support',
@@ -152,18 +149,27 @@ export default function HomeShowcase() {
               },
               animation: gsap
                 .timeline()
-                .from(slide.querySelectorAll('.home-title-line__inner'), {
-                  y: 36,
-                  opacity: 0,
-                  duration: 0.65,
-                  stagger: 0.08,
-                  ease: 'power3.out',
-                })
+                .fromTo(
+                  slide.querySelectorAll('.home-title-line__inner'),
+                  {
+                    y: 48,
+                    scale: 0.82,
+                    filter: 'blur(8px)',
+                    transformOrigin: 'left center',
+                  },
+                  {
+                    y: 0,
+                    scale: 1,
+                    filter: 'blur(0px)',
+                    duration: 0.85,
+                    stagger: 0.09,
+                    ease: 'back.out(1.65)',
+                  }
+                )
                 .from(
                   slide.querySelectorAll('.home-slide__copy, .home-slide__stat, .home-slide__cta'),
                   {
                     y: 18,
-                    opacity: 0,
                     duration: 0.55,
                     stagger: 0.08,
                     ease: 'power3.out',
@@ -189,11 +195,7 @@ export default function HomeShowcase() {
               start: 'top bottom',
               end: 'bottom top',
               scrub: true,
-              animation: gsap.fromTo(
-                imageFrame,
-                { y: '-7vh' },
-                { y: '7vh', ease: 'none' }
-              ),
+              animation: gsap.fromTo(imageFrame, { y: '-7vh' }, { y: '7vh', ease: 'none' }),
             })
           );
 
@@ -317,7 +319,7 @@ export default function HomeShowcase() {
           </p>
           <div className="home-intro__actions">
             <a href="/contact" className="btn-primary-glow">
-              Get Free Consultation
+              Premium Consultation
             </a>
             <button
               type="button"
@@ -344,7 +346,6 @@ export default function HomeShowcase() {
             />
           </div>
         </div>
-
       </section>
 
       {slides.map((slide, index) => (
@@ -380,7 +381,6 @@ export default function HomeShowcase() {
               <i className="home-slide-link__line" />
             </a>
           </div>
-
         </section>
       ))}
 
@@ -391,7 +391,7 @@ export default function HomeShowcase() {
           water.
         </h2>
         <a href="/contact" className="btn-primary-glow">
-          Request Consultation
+          Request Premium Consultation
         </a>
       </section>
     </section>

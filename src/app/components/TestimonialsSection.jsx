@@ -75,11 +75,7 @@ export default function TestimonialsSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="testimonials"
-      className="py-24 overflow-hidden relative bg-white"
-    >
+    <section ref={sectionRef} id="testimonials" className="py-24 overflow-hidden relative bg-white">
       {/* Atmospheric blobs */}
       <div className="water-blob absolute top-[-20%] right-[-10%] w-[500px] h-[500px] bg-accent pointer-events-none" />
       <div className="water-blob-2 absolute bottom-[-20%] left-[-10%] w-[400px] h-[400px] bg-primary pointer-events-none" />
@@ -108,7 +104,7 @@ export default function TestimonialsSection() {
           </h2>
           <p
             className="text-muted-foreground text-base mt-4 max-w-lg mx-auto"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            style={{ fontFamily: 'var(--font-sans)' }}
           >
             Trusted by thousands of families and businesses across Tamil Nadu and beyond.
           </p>
@@ -144,16 +140,14 @@ export default function TestimonialsSection() {
               {/* Quote */}
               <blockquote
                 className="text-muted-foreground text-sm leading-relaxed mb-5"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 &ldquo;{t?.quote}&rdquo;
               </blockquote>
 
               {/* Author */}
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-border flex-shrink-0 bg-secondary">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-border flex-shrink-0 bg-secondary">                  <img
                     src={t?.image}
                     alt={t?.imageAlt}
                     width={40}
@@ -165,18 +159,18 @@ export default function TestimonialsSection() {
                 <div>
                   <p
                     className="text-foreground font-semibold text-sm"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {t?.name}
                   </p>
-                  <p className="text-accent/80 text-xs" style={{ fontFamily: 'Inter, sans-serif' }}>
+                  <p className="text-accent/80 text-xs" style={{ fontFamily: 'var(--font-sans)' }}>
                     {t?.role}
                   </p>
                 </div>
                 <div className="ml-auto">
                   <span
                     className="text-muted-foreground text-[10px] font-medium border border-border px-2 py-0.5 rounded-full"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {t?.location}
                   </span>
@@ -188,14 +182,17 @@ export default function TestimonialsSection() {
       </div>
       {/* Bottom CTA */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 mt-14 text-center">
-        <p className="text-muted-foreground text-sm mb-5" style={{ fontFamily: 'Inter, sans-serif' }}>
+        <p
+          className="text-muted-foreground text-sm mb-5"
+          style={{ fontFamily: 'var(--font-sans)' }}
+        >
           Join thousands of satisfied customers
         </p>
         <a
           href="#contact"
           className="inline-flex items-center gap-2 bg-primary text-white font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-[#0A4D68] transition-all duration-300 shadow-xl shadow-primary/15 hover:shadow-2xl hover:-translate-y-0.5"
         >
-          Get Your Free Consultation
+          Get Premium Consultation
           <svg
             width="14"
             height="14"

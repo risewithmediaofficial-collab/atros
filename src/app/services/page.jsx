@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import {
   Building2,
   CheckCircle2,
@@ -115,26 +115,26 @@ export default function ServicesPage() {
       <StructuredData />
       <Header />
       <PageEffects />
-      <main id="main-content" className="page-transition-root animated-page">
-        <section className="premium-band relative overflow-hidden pt-36 pb-20">
+      <main id="main-content" className="landing-page page-transition-root animated-page">
+        <section className="subpage-hero relative overflow-hidden pt-36 pb-20">
           <div className="premium-noise" />
           <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
             <div>
               <span className="section-label mb-6 block">ATROS Services</span>
-              <h1 className="font-display text-hero font-light italic text-white">
+              <h1 className="font-display text-hero font-extrabold text-foreground">
                 Water solutions
-                <span className="block font-bold not-italic text-accent">for every need.</span>
+                <span className="block text-primary">for every need.</span>
               </h1>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-white sm:text-lg">
+              <p className="mt-7 max-w-xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
                 From compact home purifiers to commercial RO systems and industrial treatment
                 plants, ATROS helps customers choose, install, and maintain dependable water
                 purification systems.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="/contact" className="btn-primary-glow inline-flex items-center gap-2">
-                  Request Consultation
+                <Link to="/contact" className="btn-primary-glow inline-flex items-center gap-2">
+                  Request Premium Consultation
                 </Link>
-                <a href="#service-list" className="btn-ghost-white inline-flex items-center gap-2">
+                <a href="#service-list" className="home-outline-btn inline-flex items-center gap-2">
                   Explore Services
                 </a>
               </div>
@@ -148,8 +148,8 @@ export default function ServicesPage() {
               ].map(([title, text]) => (
                 <div key={title} className="glass-card p-6">
                   <Droplets className="mb-6 text-accent" size={26} aria-hidden="true" />
-                  <h2 className="font-display text-2xl font-light italic text-white">{title}</h2>
-                  <p className="mt-2 text-sm leading-relaxed text-white/62">{text}</p>
+                  <h2 className="font-display text-2xl font-extrabold text-foreground">{title}</h2>
+                  <p className="mt-2 text-sm font-medium leading-relaxed text-muted-foreground">{text}</p>
                 </div>
               ))}
             </div>
@@ -183,7 +183,6 @@ export default function ServicesPage() {
                     className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-accent/8 hover:border-accent/20 lg:grid-cols-2"
                   >
                     <div className={`overflow-hidden ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
                       <img
                         src={service.image}
                         alt={service.alt}
@@ -220,7 +219,7 @@ export default function ServicesPage() {
                         ))}
                       </ul>
                       <Link
-                        href="/contact"
+                        to="/contact"
                         className="mt-7 inline-flex w-fit items-center gap-2 text-xs font-bold uppercase tracking-wide text-accent hover:text-primary transition-colors"
                       >
                         Enquire Now
@@ -322,7 +321,7 @@ export default function ServicesPage() {
                 Tell us your water source and usage.
               </h2>
             </div>
-            <Link href="/contact" className="btn-primary-glow inline-flex items-center gap-2">
+            <Link to="/contact" className="btn-primary-glow inline-flex items-center gap-2">
               Get Expert Recommendation
             </Link>
           </div>

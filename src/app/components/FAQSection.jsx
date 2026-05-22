@@ -81,7 +81,7 @@ export default function FAQSection() {
             </h2>
             <p
               className="text-muted-foreground text-base leading-relaxed mb-8"
-              style={{ fontFamily: 'Inter, sans-serif' }}
+              style={{ fontFamily: 'var(--font-sans)' }}
             >
               Have more questions? Our water purification experts are available Monday–Sunday, 9:30
               AM to 9:00 PM.
@@ -106,13 +106,13 @@ export default function FAQSection() {
                 <div>
                   <p
                     className="font-semibold text-foreground text-sm"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     Call Our Experts
                   </p>
                   <p
                     className="text-muted-foreground text-xs"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     Mon–Sun, 9:30 AM – 9:00 PM
                   </p>
@@ -157,7 +157,7 @@ export default function FAQSection() {
                       className={`font-semibold text-sm sm:text-base transition-colors duration-200 ${
                         openIdx === i ? 'text-primary' : 'text-foreground group-hover:text-primary'
                       }`}
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       {faq.question}
                     </span>
@@ -191,7 +191,7 @@ export default function FAQSection() {
                   >
                     <p
                       className="text-muted-foreground text-sm leading-relaxed pb-5"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       {faq.answer}
                     </p>

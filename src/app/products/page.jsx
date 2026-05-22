@@ -1,10 +1,11 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Droplets, SlidersHorizontal } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
+import PageEffects from '@/app/components/PageEffects';
 
 export const metadata = {
   title: 'Products | ATROS RO, UV, UF, Alkaline & Industrial Water Systems',
@@ -106,14 +107,15 @@ export default function ProductsPage() {
     <>
       <StructuredData />
       <Header />
-      <main id="main-content" className="product-page">
+      <PageEffects />
+      <main id="main-content" className="landing-page page-transition-root animated-page product-page">
         {/* Hero */}
-        <section className="relative overflow-hidden bg-white pt-36 pb-20">
+        <section className="subpage-hero relative overflow-hidden pt-36 pb-20">
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <span className="section-label mb-6 block">Product Systems</span>
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:items-end">
               <div className="lg:col-span-7">
-                <h1 className="font-display text-section-title font-extrabold text-foreground">
+                <h1 className="font-display text-hero font-extrabold text-foreground">
                   Purification systems
                   <span className="block text-primary">for every source.</span>
                 </h1>
@@ -155,7 +157,7 @@ export default function ProductsPage() {
                 <span className="text-muted-foreground font-normal text-lg">(100+ products)</span>
               </h2>
               <Link
-                href="/contact"
+                to="/contact"
                 className="inline-flex items-center gap-1.5 text-sm font-semibold text-accent hover:text-primary transition-colors"
               >
                 Get expert help choosing <ArrowRight size={14} />
@@ -170,7 +172,6 @@ export default function ProductsPage() {
                 >
                   {/* Image */}
                   <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-50 flex items-center justify-center p-3">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={product.image}
                       alt={product.alt}
@@ -213,7 +214,7 @@ export default function ProductsPage() {
 
                     <div className="mt-auto">
                       <Link
-                        href="/contact"
+                        to="/contact"
                         className="block w-full rounded-lg bg-[#0a66c2] px-4 py-2.5 text-center text-sm font-semibold text-white transition-all duration-200 hover:bg-[#004182] hover:shadow-lg hover:shadow-blue-900/20"
                       >
                         Enquire Now
@@ -225,7 +226,7 @@ export default function ProductsPage() {
             </div>
 
             {/* More products nudge */}
-            <div className="mt-10 rounded-2xl border border-dashed border-border bg-white p-8 text-center">
+            <div className="gradient-border-card product-help-card mt-10 bg-white p-8 text-center">
               <Droplets className="mx-auto mb-3 text-accent" size={28} />
               <h3 className="text-base font-bold text-foreground">
                 Looking for a specific product?
@@ -235,7 +236,7 @@ export default function ProductsPage() {
                 custom requirements.
               </p>
               <Link
-                href="/contact"
+                to="/contact"
                 className="btn-primary-glow mt-5 inline-flex items-center gap-2"
               >
                 Talk to an Expert
@@ -250,7 +251,7 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-12 text-center">
               <span className="section-label mx-auto mb-5 block w-fit">How to Choose</span>
-              <h2 className="font-display text-section-title font-light text-foreground">
+              <h2 className="mx-auto max-w-4xl text-center font-display text-section-title font-light text-foreground">
                 Three factors that shape
                 <br />
                 <span className="italic text-primary">the right selection.</span>
@@ -306,7 +307,7 @@ export default function ProductsPage() {
                 ].map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-3 rounded-2xl border border-border bg-white p-4 transition-all hover:border-accent/40 hover:bg-accent/5"
+                    className="gradient-border-card product-included-card flex items-center gap-3 bg-white p-4 transition-all hover:border-accent/40 hover:bg-accent/5"
                   >
                     <CheckCircle2 className="flex-shrink-0 text-accent" size={17} />
                     <span className="text-sm font-semibold text-foreground">{item}</span>
@@ -323,7 +324,7 @@ export default function ProductsPage() {
             <h2 className="font-display text-4xl font-light italic text-white">
               Need help choosing a product?
             </h2>
-            <Link href="/contact" className="btn-primary-glow inline-flex items-center gap-2">
+            <Link to="/contact" className="btn-primary-glow inline-flex items-center gap-2">
               Get Recommendation
               <ArrowRight size={15} />
             </Link>

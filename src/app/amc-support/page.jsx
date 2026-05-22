@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import {
   CheckCircle2,
   Clock,
@@ -111,26 +111,24 @@ export default function AmcSupportPage() {
       <StructuredData />
       <Header />
       <PageEffects />
-      <main id="main-content" className="page-transition-root animated-page">
+      <main id="main-content" className="landing-page page-transition-root animated-page">
         {/* Hero */}
-        <section className="premium-band relative overflow-hidden pt-36 pb-20">
+        <section className="subpage-hero relative overflow-hidden pt-36 pb-20">
           <div className="premium-noise" />
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:items-center">
               <div>
                 <span className="section-label mb-6 block">AMC &amp; Support</span>
-                <h1 className="max-w-5xl font-display text-hero font-light italic text-white">
+                <h1 className="max-w-5xl font-display text-hero font-extrabold text-foreground">
                   Service care
-                  <span className="block font-bold not-italic text-accent">
-                    after installation.
-                  </span>
+                  <span className="block text-primary">after installation.</span>
                 </h1>
-                <p className="mt-7 max-w-xl text-base leading-relaxed text-white sm:text-lg">
+                <p className="mt-7 max-w-xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
                   A water purifier is only as dependable as its maintenance. ATROS keeps service,
                   repair, filter replacement, and AMC support clear and easy to access.
                 </p>
                 <div className="mt-9 flex flex-wrap gap-3">
-                  <Link href="/contact" className="btn-primary-glow inline-flex items-center gap-2">
+                  <Link to="/contact" className="btn-primary-glow inline-flex items-center gap-2">
                     <Phone size={15} aria-hidden="true" />
                     Request AMC Plan
                   </Link>
@@ -138,7 +136,7 @@ export default function AmcSupportPage() {
                     href="https://wa.me/919080232624"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="btn-ghost-white inline-flex items-center gap-2"
+                    className="home-outline-btn inline-flex items-center gap-2"
                   >
                     WhatsApp Us
                   </a>
@@ -149,12 +147,12 @@ export default function AmcSupportPage() {
                 {[
                   { val: '10K+', label: 'Systems Serviced' },
                   { val: '20+', label: 'Years Experience' },
-                  { val: 'Mon–Sun', label: '9:30 AM – 9 PM' },
+                  { val: 'Mon-Sun', label: '9:30 AM - 9 PM' },
                   { val: '24hr', label: 'Response Time' },
                 ].map((s) => (
                   <div key={s.label} className="glass-card p-5 text-center">
-                    <p className="font-display text-3xl font-bold text-white">{s.val}</p>
-                    <p className="mt-1 text-xs font-medium text-white/55">{s.label}</p>
+                    <p className="font-display text-3xl font-bold text-foreground">{s.val}</p>
+                    <p className="mt-1 text-xs font-medium text-muted-foreground">{s.label}</p>
                   </div>
                 ))}
               </div>
@@ -254,7 +252,7 @@ export default function AmcSupportPage() {
                       ))}
                     </ul>
                     <Link
-                      href="/contact"
+                      to="/contact"
                       className={`mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full px-5 py-3 text-sm font-semibold transition-all duration-200 ${plan.featured ? 'bg-accent text-white hover:bg-[#0094b8] shadow-lg shadow-accent/30' : 'border border-border text-foreground hover:border-accent hover:text-accent'}`}
                     >
                       Get Started
@@ -364,7 +362,7 @@ export default function AmcSupportPage() {
                 Need service or AMC support?
               </h2>
             </div>
-            <Link href="/contact" className="btn-primary-glow inline-flex items-center gap-2">
+            <Link to="/contact" className="btn-primary-glow inline-flex items-center gap-2">
               Request Support
               <ArrowRight size={16} />
             </Link>

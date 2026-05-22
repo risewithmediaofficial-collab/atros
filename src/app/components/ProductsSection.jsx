@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
 const products = [
@@ -136,9 +136,7 @@ export default function ProductsSection() {
               key={product.name}
               className="product-card group flex flex-col overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:shadow-blue-900/10 hover:border-[#0a66c2]/20"
             >
-              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-t-2xl bg-gray-50 flex items-center justify-center p-3">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="relative aspect-[4/3] w-full shrink-0 overflow-hidden rounded-t-2xl bg-gray-50 flex items-center justify-center p-3">                <img
                   src={product.image}
                   alt={product.alt}
                   className="h-full w-full object-contain mix-blend-multiply transition-transform duration-500 group-hover:scale-105"

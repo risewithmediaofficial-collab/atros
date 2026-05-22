@@ -43,8 +43,8 @@ module.exports = {
         '3xl': 'calc(var(--radius) + 24px)',
       },
       fontFamily: {
-        sans: ['var(--font-dm-sans)', 'sans-serif'],
-        display: ['var(--font-fraunces)', 'serif'],
+        sans: ['var(--font-plus-jakarta)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-plus-jakarta)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
         mono: ['ui-monospace', 'monospace'],
       },
       plugins: [require('@tailwindcss/typography')],

@@ -172,11 +172,7 @@ export default function WhyChooseSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="why-us"
-      className="py-24 overflow-hidden bg-white"
-    >
+    <section ref={sectionRef} id="why-us" className="py-24 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -188,7 +184,7 @@ export default function WhyChooseSection() {
           </h2>
           <p
             className="text-muted-foreground text-base mt-4 max-w-xl mx-auto leading-relaxed"
-            style={{ fontFamily: 'Inter, sans-serif' }}
+            style={{ fontFamily: 'var(--font-sans)' }}
           >
             We combine advanced purification technology with customer-focused service to deliver
             safe, healthy, and high-quality drinking water solutions.
@@ -199,9 +195,7 @@ export default function WhyChooseSection() {
           {/* Left column */}
           <div className="why-left lg:col-span-4 flex flex-col gap-5">
             {/* Image card — using plain img with explicit height to guarantee visibility */}
-            <div className="relative rounded-2xl overflow-hidden" style={{ height: '280px' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+            <div className="relative rounded-2xl overflow-hidden" style={{ height: '280px' }}>              <img
                 src="https://img.rocket.new/generatedImages/rocket_gen_img_1af56a07c-1767952600354.png"
                 alt="Happy Indian family drinking clean water at home"
                 className="absolute inset-0 w-full h-full object-cover"
@@ -210,10 +204,12 @@ export default function WhyChooseSection() {
               <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/45 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5">
                 <div className="rounded-2xl border border-border bg-white/92 p-4 shadow-xl shadow-primary/10 backdrop-blur-xl">
-                  <p className="text-foreground font-semibold text-sm">Trusted by 10,000+ Families</p>
+                  <p className="text-foreground font-semibold text-sm">
+                    Trusted by 10,000+ Families
+                  </p>
                   <p
                     className="text-muted-foreground text-xs mt-0.5"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     Across Tamil Nadu &amp; Beyond
                   </p>
@@ -233,7 +229,7 @@ export default function WhyChooseSection() {
                   </div>
                   <div
                     className="text-muted-foreground text-[10px] font-medium leading-tight"
-                    style={{ fontFamily: 'Inter, sans-serif' }}
+                    style={{ fontFamily: 'var(--font-sans)' }}
                   >
                     {s.label}
                   </div>
@@ -244,11 +240,13 @@ export default function WhyChooseSection() {
             {/* CTA card */}
             <div
               className="rounded-2xl p-6 text-center"
-              style={{ background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(0,119,168,0.08))' }}
+              style={{
+                background: 'linear-gradient(135deg, rgba(34,211,238,0.14), rgba(0,119,168,0.08))',
+              }}
             >
               <p
                 className="text-foreground text-sm mb-4 leading-relaxed"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 Ready to experience pure, healthy water for your family?
               </p>
@@ -256,7 +254,7 @@ export default function WhyChooseSection() {
                 href="#contact"
                 className="inline-flex items-center gap-2 bg-primary text-white font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-[#0A4D68] transition-all duration-300 shadow-lg shadow-primary/15"
               >
-                Get Free Consultation
+                Premium Consultation
                 <svg
                   width="14"
                   height="14"
@@ -284,13 +282,13 @@ export default function WhyChooseSection() {
                   <div>
                     <h3
                       className="font-semibold text-foreground text-sm mb-1.5"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       {r.title}
                     </h3>
                     <p
                       className="text-muted-foreground text-sm leading-relaxed"
-                      style={{ fontFamily: 'Inter, sans-serif' }}
+                      style={{ fontFamily: 'var(--font-sans)' }}
                     >
                       {r.description}
                     </p>

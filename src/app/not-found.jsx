@@ -1,11 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function NotFound() {
-  const router = useRouter();
+  const navigate = useNavigate();
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -59,24 +58,15 @@ export default function NotFound() {
   }, []);
 
   return (
-    <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden water-gradient-bg">
+    <div className="home-stage relative flex min-h-screen flex-col items-center justify-center overflow-hidden !opacity-100">
       <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
-
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 pointer-events-none opacity-[0.03]"
-        style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
-        }}
-      />
 
       <div className="relative z-10 text-center px-4 max-w-2xl mx-auto">
         {/* Glowing 404 */}
         <div className="relative mb-8 inline-block">
-          <div className="absolute inset-0 blur-3xl bg-accent/30 rounded-full scale-150" />
+          <div className="absolute inset-0 blur-3xl bg-accent/20 rounded-full scale-150" />
           <h1
-            className="relative font-display font-bold text-white leading-none"
+            className="relative font-display font-bold text-foreground leading-none"
             style={{ fontSize: 'clamp(6rem, 20vw, 14rem)' }}
           >
             <span style={{ color: 'rgba(34,211,238,0.15)' }}>4</span>
@@ -86,21 +76,21 @@ export default function NotFound() {
         </div>
 
         {/* Label */}
-        <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-xs font-semibold px-4 py-2 rounded-full tracking-widest uppercase backdrop-blur-sm mb-6">
+        <div className="inline-flex items-center gap-2 bg-secondary border border-border text-foreground text-xs font-semibold px-4 py-2 rounded-full tracking-widest uppercase backdrop-blur-sm mb-6">
           <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
           Page Not Found
         </div>
 
-        <h2 className="font-display text-3xl sm:text-4xl font-light italic text-white mb-4">
+        <h2 className="font-display text-3xl sm:text-4xl font-extrabold text-foreground mb-4">
           This water source ran dry.
         </h2>
-        <p className="text-white/60 text-base leading-relaxed mb-10 max-w-md mx-auto">
+        <p className="text-muted-foreground text-base font-medium leading-relaxed mb-10 max-w-md mx-auto">
           The page you&#39;re looking for doesn&#39;t exist or has been moved. Let&#39;s get you
           back to clean water.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <Link href="/" className="btn-primary-glow inline-flex items-center gap-2">
+          <Link to="/" className="btn-primary-glow inline-flex items-center gap-2">
             <svg
               width="16"
               height="16"
@@ -117,8 +107,8 @@ export default function NotFound() {
           </Link>
           <button
             type="button"
-            onClick={() => router.back()}
-            className="btn-ghost-white inline-flex items-center gap-2"
+            onClick={() => navigate(-1)}
+            className="home-outline-btn inline-flex items-center gap-2"
             suppressHydrationWarning
           >
             <svg
@@ -134,7 +124,7 @@ export default function NotFound() {
             </svg>
             Go Back
           </button>
-          <Link href="/contact" className="btn-ghost-white inline-flex items-center gap-2">
+          <Link to="/contact" className="home-outline-btn inline-flex items-center gap-2">
             Contact Us
           </Link>
         </div>
@@ -149,8 +139,8 @@ export default function NotFound() {
           ].map((link) => (
             <Link
               key={link.href}
-              href={link.href}
-              className="text-xs font-medium text-white/50 hover:text-accent border border-white/10 hover:border-accent/40 px-3 py-1.5 rounded-full transition-all duration-200"
+              to={link.href}
+              className="text-xs font-bold text-muted-foreground hover:text-accent border border-border hover:border-accent/40 px-3 py-1.5 rounded-full transition-all duration-200"
             >
               {link.label}
             </Link>

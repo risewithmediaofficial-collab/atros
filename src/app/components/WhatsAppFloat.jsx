@@ -29,7 +29,7 @@ export default function WhatsAppFloat() {
       <div
         className="bg-white text-foreground text-xs font-semibold px-4 py-2.5 rounded-2xl shadow-xl border border-border/50 whitespace-nowrap transition-all duration-300"
         style={{
-          fontFamily: 'Inter, sans-serif',
+          fontFamily: 'var(--font-sans)',
           opacity: showTooltip ? 1 : 0,
           transform: showTooltip ? 'translateX(0)' : 'translateX(10px)',
           pointerEvents: showTooltip ? 'auto' : 'none',

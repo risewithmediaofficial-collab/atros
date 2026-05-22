@@ -124,11 +124,7 @@ export default function TrustStatsSection() {
   }, []);
 
   return (
-    <section
-      ref={sectionRef}
-      id="about"
-      className="relative overflow-hidden bg-white"
-    >
+    <section ref={sectionRef} id="about" className="relative overflow-hidden bg-white">
       {/* Glow line top */}
       <div className="footer-glow-line" />
 
@@ -147,7 +143,7 @@ export default function TrustStatsSection() {
               </div>
               <div
                 className="text-muted-foreground text-xs font-medium leading-tight"
-                style={{ fontFamily: 'Inter, sans-serif' }}
+                style={{ fontFamily: 'var(--font-sans)' }}
               >
                 {s?.label}
               </div>

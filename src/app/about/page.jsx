@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'next/link';
+import { Link } from 'react-router-dom';
 import { Award, Droplets, MapPin, ShieldCheck, Wrench } from 'lucide-react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -60,27 +60,27 @@ export default function AboutPage() {
       <StructuredData />
       <Header />
       <PageEffects />
-      <main id="main-content" className="page-transition-root animated-page">
-        <section className="premium-band relative overflow-hidden pt-36 pb-20">
+      <main id="main-content" className="landing-page page-transition-root animated-page">
+        <section className="subpage-hero relative overflow-hidden pt-36 pb-20">
           <div className="premium-noise" />
           <div className="relative z-10 mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-4 sm:px-6 lg:grid-cols-2 lg:px-8">
             <div>
               <span className="section-label mb-6 block">About ATROS</span>
-              <h1 className="font-display text-hero font-light italic text-white">
+              <h1 className="font-display text-hero font-extrabold text-foreground">
                 Pure water,
-                <span className="block font-bold not-italic text-accent">trusted locally.</span>
+                <span className="block text-primary">trusted locally.</span>
               </h1>
-              <p className="mt-7 max-w-xl text-base leading-relaxed text-white sm:text-lg">
+              <p className="mt-7 max-w-xl text-base font-medium leading-relaxed text-muted-foreground sm:text-lg">
                 ATROS Water Purifier provides domestic, commercial, and industrial water
                 purification solutions from Krishnagiri, Tamil Nadu. The work is simple: understand
                 the water, recommend the right system, install it properly, and support it for the
                 long run.
               </p>
               <div className="mt-9 flex flex-wrap gap-3">
-                <Link href="/contact" className="btn-primary-glow inline-flex items-center gap-2">
-                  Get Free Consultation
+                <Link to="/contact" className="btn-primary-glow inline-flex items-center gap-2">
+                  Premium Consultation
                 </Link>
-                <Link href="/services" className="btn-ghost-white inline-flex items-center gap-2">
+                <Link to="/services" className="home-outline-btn inline-flex items-center gap-2">
                   View Services
                 </Link>
               </div>
@@ -89,7 +89,6 @@ export default function AboutPage() {
             <div className="relative">
               <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-3xl" />
               <div className="relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://img.rocket.new/generatedImages/rocket_gen_img_1af56a07c-1767952600354.png"
                   alt="Family at home enjoying clean drinking water"
@@ -197,7 +196,7 @@ export default function AboutPage() {
                 Ready to choose the right purifier?
               </h2>
             </div>
-            <Link href="/contact" className="btn-primary-glow inline-flex items-center gap-2">
+            <Link to="/contact" className="btn-primary-glow inline-flex items-center gap-2">
               Talk to ATROS
             </Link>
           </div>
