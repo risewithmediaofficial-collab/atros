@@ -74,7 +74,7 @@ export default function FAQSection() {
           {/* Left: Header + CTA */}
           <div className="lg:col-span-4">
             <span className="section-label mb-5 block">06 - FAQ</span>
-            <h2 className="font-display text-section-title font-light text-foreground mb-6">
+            <h2 className="mb-6 font-display text-section-title font-light text-foreground">
               Questions
               <br />
               <span className="italic text-primary">Answered</span>

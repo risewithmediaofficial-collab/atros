@@ -5,13 +5,14 @@ import ContactSection from '@/app/components/ContactSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 import PageEffects from '@/app/components/PageEffects';
+import { buildSeoMetadata } from '@/app/seo';
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: 'Contact ATROS Water Purifier | Krishnagiri',
   description:
     'Contact ATROS Water Purifier for RO water purifier consultation, installation, AMC maintenance, repair, commercial RO systems, and industrial water treatment support.',
-  alternates: { canonical: '/contact' },
-};
+  canonical: '/contact',
+});
 
 export default function ContactPage() {
   return (

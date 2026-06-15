@@ -44,9 +44,16 @@
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-sans);
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
+    overflow-x: clip;
+    line-height: 1.5;
+  }
+
+  ::selection {
+    background: rgba(34, 211, 238, 0.2);
+    color: var(--foreground);
   }
 
   main {
@@ -292,9 +299,10 @@
 
   .section-label {
     font-family: var(--font-sans);
-    font-size: 0.68rem;
-    font-weight: 600;
-    letter-spacing: 0.28em;
+    font-size: clamp(0.82rem, 0.78rem + 0.18vw, 0.95rem);
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1.2;
     text-transform: uppercase;
     color: var(--accent);
     border-bottom: 1px solid rgba(0, 180, 216, 0.3);
@@ -974,10 +982,10 @@
   .home-intro__media img,
   .home-slide__image img {
     width: 100%;
-    height: 116%;
-    object-fit: cover;
+    height: 100%;
+    object-fit: contain;
     display: block;
-    margin-top: -8%;
+    margin-top: 0;
     will-change: transform;
   }
 
@@ -1004,9 +1012,9 @@
     align-items: center;
     gap: 0.8rem;
     color: var(--muted-foreground);
-    font-size: 0.68rem;
+    font-size: clamp(0.8rem, 0.76rem + 0.18vw, 0.92rem);
     font-weight: 800;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
   }
 
@@ -1100,18 +1108,20 @@
   .home-slide__image {
     width: 100%;
     height: clamp(22rem, 48vh, 30rem);
+    background: linear-gradient(180deg, #f8fcfe 0%, #eef7fa 100%);
   }
 
   .home-slide__image-wrap {
     width: 100%;
-    height: 120%;
-    margin-top: -10%;
+    height: 100%;
+    margin-top: 0;
     will-change: transform;
   }
 
   .home-slide__image-wrap img {
     height: 100%;
     margin-top: 0;
+    padding: clamp(1rem, 2vw, 1.5rem);
   }
 
   .home-slide__index {
@@ -1119,11 +1129,14 @@
     align-items: center;
     gap: 0.8rem;
     width: fit-content;
-    margin-bottom: 1rem;
+    position: relative;
+    top: -0.35rem;
+    margin-bottom: 0.8rem;
     color: var(--accent);
-    font-size: 0.72rem;
+    font-size: clamp(0.84rem, 0.8rem + 0.18vw, 0.98rem);
     font-weight: 900;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.16em;
+    line-height: 1.2;
     text-transform: uppercase;
   }
 
@@ -1208,10 +1221,10 @@
 
   .page-transition-root {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(8px);
     transition:
-      opacity 0.38s ease,
-      transform 0.38s ease;
+      opacity 0.26s ease,
+      transform 0.26s ease;
   }
 
   .page-ready .page-transition-root {
@@ -1594,9 +1607,9 @@
   .landing-page .section-label {
     color: var(--accent) !important;
     border-color: rgba(34, 211, 238, 0.45) !important;
-    font-size: 0.68rem;
+    font-size: clamp(0.82rem, 0.78rem + 0.18vw, 0.95rem);
     font-weight: 700;
-    letter-spacing: 0.28em;
+    letter-spacing: 0.18em;
   }
 
   .landing-page > section:not(.subpage-hero):nth-of-type(even) .section-label {
@@ -2013,9 +2026,9 @@
   main.landing-page .section-label:is(span, p, div) {
     color: #22d3ee !important;
     opacity: 1 !important;
-    font-size: 0.68rem !important;
+    font-size: clamp(0.82rem, 0.78rem + 0.18vw, 0.95rem) !important;
     font-weight: 800 !important;
-    letter-spacing: 0.28em !important;
+    letter-spacing: 0.18em !important;
   }
 
   main.landing-page .gradient-border-card :is(h1, h2, h3, h4, h5, h6),
@@ -2340,6 +2353,7 @@
     align-items: flex-start;
     flex-direction: column;
     gap: 0.55rem;
+    top: -0.15rem;
   }
 
   .home-slide__index::before {
@@ -2367,6 +2381,12 @@
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .page-transition-root,
+  .page-ready .page-transition-root {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
 
@@ -2535,9 +2555,9 @@ main.landing-page > section:not(.subpage-hero):nth-of-type(even) > div :is(p, li
 main.landing-page .section-label {
   color: var(--accent) !important;
   border-color: rgba(34, 211, 238, 0.5) !important;
-  font-size: 0.68rem !important;
+  font-size: clamp(0.82rem, 0.78rem + 0.18vw, 0.95rem) !important;
   font-weight: 800 !important;
-  letter-spacing: 0.28em !important;
+  letter-spacing: 0.18em !important;
   opacity: 1 !important;
 }
 
@@ -2716,6 +2736,62 @@ main.landing-page #contact .gradient-border-card {
   overflow: hidden !important;
 }
 
+/* AMC support cover cards need a hard readability override on white backgrounds. */
+.landing-page .amc-support-cover-card {
+  background: #ffffff !important;
+  color: #071822 !important;
+  min-height: 7.25rem;
+  padding: 1rem 1.25rem !important;
+  align-items: flex-start;
+  border-color: rgba(201, 225, 233, 0.95) !important;
+  box-shadow: 0 10px 26px rgba(7, 24, 34, 0.06);
+}
+
+.landing-page .amc-support-cover-card span,
+.landing-page .amc-support-cover-card p,
+.landing-page .amc-support-cover-card li {
+  color: #071822 !important;
+}
+
+.landing-page .amc-support-cover-card span {
+  font-size: 0.94rem !important;
+  line-height: 1.45 !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em;
+}
+
+.landing-page .amc-support-cover-card svg {
+  margin-top: 0.2rem;
+}
+
+.landing-page .amc-support-covers-section .section-label {
+  color: #c9eff9 !important;
+  border-color: rgba(201, 239, 249, 0.45) !important;
+}
+
+.landing-page .amc-support-covers-section h2 {
+  color: #ffffff !important;
+}
+
+.landing-page .amc-support-covers-section h2 .text-primary {
+  color: #b7f2ff !important;
+}
+
+.landing-page .amc-support-covers-section > div > div > div:first-child > p,
+.landing-page .amc-support-covers-section > div > div > div:first-child > div {
+  color: #d9eef4 !important;
+}
+
+.landing-page .amc-support-covers-section > div > div > div:first-child > div {
+  font-size: 1rem !important;
+}
+
+@media (min-width: 1024px) {
+  .landing-page .amc-support-cover-card {
+    min-height: 6.5rem;
+  }
+}
+
 /* Product page: keep white panels readable on blue bands. */
 main.product-page .product-help-card,
 main.product-page .product-included-card {
@@ -2782,18 +2858,28 @@ main.product-page .product-included-card span {
   color: #071822 !important;
 }
 
-/* Projects page flip cards. */
+/* Projects page image cards. */
 main.landing-page .project-flip-card {
   display: block !important;
   min-height: 30rem !important;
   padding: 0 !important;
-  border: 0 !important;
+  border: 1px solid rgba(186, 230, 243, 0.75) !important;
   border-radius: 1.5rem !important;
-  background: transparent !important;
-  box-shadow: none !important;
+  background: #071822 !important;
+  box-shadow:
+    0 26px 48px rgba(7, 24, 34, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
   outline: none !important;
   cursor: pointer;
-  perspective: 1200px;
+  overflow: hidden;
+}
+
+main.landing-page .project-flip-card:focus-visible {
+  border-color: rgba(34, 211, 238, 0.9) !important;
+  box-shadow:
+    0 0 0 4px rgba(34, 211, 238, 0.18),
+    0 26px 48px rgba(7, 24, 34, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
 }
 
 main.landing-page .project-flip-inner {
@@ -2801,83 +2887,142 @@ main.landing-page .project-flip-inner {
   width: 100%;
   min-height: 30rem;
   border-radius: 1.5rem;
-  transform-style: preserve-3d;
   transition:
-    transform 0.75s cubic-bezier(0.23, 1, 0.32, 1),
+    transform 0.45s cubic-bezier(0.23, 1, 0.32, 1),
     filter 0.3s ease;
+  overflow: hidden;
 }
 
 main.landing-page .project-flip-card:hover .project-flip-inner,
-main.landing-page .project-flip-card:focus .project-flip-inner,
-main.landing-page .project-flip-card:focus-within .project-flip-inner,
-main.landing-page .project-flip-card:active .project-flip-inner {
-  transform: rotateY(180deg);
-}
-
-main.landing-page .project-flip-card:hover .project-flip-inner,
-main.landing-page .project-flip-card:focus-visible .project-flip-inner {
+main.landing-page .project-flip-card:focus-visible .project-flip-inner,
+main.landing-page .project-flip-card:focus-within .project-flip-inner {
+  transform: translateY(-6px);
   filter: drop-shadow(0 28px 45px rgba(7, 24, 34, 0.2));
 }
 
-main.landing-page .project-flip-face {
+main.landing-page .project-card-image {
   position: absolute;
   inset: 0;
-  overflow: hidden;
-  border: 1px solid rgba(186, 230, 243, 0.95);
-  border-radius: 1.5rem;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: linear-gradient(180deg, #f8fcfe 0%, #eef7fa 100%);
+  padding: 1.75rem;
+  transition:
+    transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+    filter 0.4s ease;
+}
+
+main.landing-page .project-flip-card:hover .project-card-image,
+main.landing-page .project-flip-card:focus-visible .project-card-image {
+  transform: scale(1.04);
+  filter: saturate(1.04) contrast(1.02);
+}
+
+main.landing-page .project-card-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(4, 16, 25, 0.02) 0%, rgba(4, 16, 25, 0.04) 58%, rgba(4, 16, 25, 0.16) 100%),
+    linear-gradient(135deg, rgba(34, 211, 238, 0.04) 0%, transparent 40%);
   transition:
     opacity 0.35s ease,
     visibility 0.35s ease;
 }
 
-main.landing-page .project-flip-front {
-  background: #071822 !important;
-  transform: translateZ(1px);
-}
-
-main.landing-page .project-flip-back {
+main.landing-page .project-card-panel {
+  position: absolute;
+  inset: auto 1rem 1rem 1rem;
+  max-width: calc(100% - 2rem);
+  z-index: 2;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
+  padding: 1.4rem 1.25rem 1.25rem;
+  border-radius: 1.25rem;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(220, 238, 244, 0.9);
+  box-shadow:
+    0 20px 38px rgba(7, 24, 34, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  color: #071822 !important;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(1.25rem);
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+main.landing-page .project-flip-card:hover .project-card-panel,
+main.landing-page .project-flip-card:focus-visible .project-card-panel,
+main.landing-page .project-flip-card:focus-within .project-card-panel {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+main.landing-page .project-flip-card:hover .project-card-overlay,
+main.landing-page .project-flip-card:focus-visible .project-card-overlay,
+main.landing-page .project-flip-card:focus-within .project-card-overlay {
+  opacity: 0;
+}
+
+main.landing-page .project-card-icon {
+  margin-bottom: 1rem;
+  display: flex;
+  height: 3rem;
+  width: 3rem;
   align-items: center;
   justify-content: center;
-  padding: 2rem !important;
-  text-align: center;
-  background: #ffffff !important;
-  color: #071822 !important;
-  transform: rotateY(180deg) translateZ(1px);
-  box-shadow:
-    0 18px 40px rgba(15, 23, 42, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  border-radius: 0.95rem;
+  border: 1px solid rgba(191, 230, 241, 0.95);
+  background: linear-gradient(180deg, #f4fcff 0%, #e7f8fd 100%);
+  color: #18c7e4 !important;
 }
 
-main.landing-page .project-flip-front :is(h1, h2, h3, h4, p, span),
-main.landing-page .project-flip-front h2 {
-  color: #ffffff !important;
-  opacity: 1 !important;
-}
-
-main.landing-page .project-flip-front p,
-main.landing-page .project-flip-back > p:first-of-type {
-  color: #22d3ee !important;
-}
-
-main.landing-page .project-flip-back h2 {
-  color: #071822 !important;
-  font-size: 1.5rem !important;
-  line-height: 1.18 !important;
-}
-
-main.landing-page .project-flip-back p:not(:first-of-type) {
-  max-width: 18rem;
+main.landing-page .project-card-category {
+  margin-bottom: 0.6rem;
   color: #4f7180 !important;
+  font-size: 0.78rem !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.14em !important;
+  line-height: 1.2 !important;
+  text-transform: uppercase;
+}
+
+main.landing-page .project-card-title {
+  max-width: 100%;
+  color: #071822 !important;
+  font-size: clamp(1.7rem, 1.75vw, 2.35rem) !important;
+  line-height: 1.02 !important;
+  font-weight: 800 !important;
+  overflow-wrap: anywhere;
+}
+
+main.landing-page .project-card-description {
+  margin-top: 0.85rem;
+  max-width: 100%;
+  color: #4f7180 !important;
+  font-size: 0.98rem !important;
+  line-height: 1.65 !important;
 }
 
 @media (max-width: 640px) {
   main.landing-page .project-flip-card,
   main.landing-page .project-flip-inner {
     min-height: 27rem !important;
+  }
+
+  main.landing-page .project-card-title {
+    max-width: 100%;
+    font-size: 1.7rem !important;
+  }
+
+  main.landing-page .project-card-description {
+    max-width: 100%;
+    font-size: 0.92rem !important;
   }
 }
 

@@ -6,13 +6,14 @@ import Footer from '@/components/Footer';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 import PageEffects from '@/app/components/PageEffects';
+import { buildSeoMetadata } from '@/app/seo';
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: 'Projects & Installations | ATROS Water Purifier',
   description:
     'See the types of home, commercial, and industrial water purifier installations handled by ATROS Water Purifier in Krishnagiri and nearby regions.',
-  alternates: { canonical: '/projects' },
-};
+  canonical: '/projects',
+});
 
 const projects = [
   {
@@ -20,7 +21,7 @@ const projects = [
     category: 'Domestic',
     description:
       'Compact kitchen installations for families using borewell, municipal, or mixed water sources.',
-    image: 'https://images.unsplash.com/photo-1666608153597-05b25a35f82c',
+    image: '/assets/images/dolphin.webp',
     icon: Home,
   },
   {
@@ -28,7 +29,7 @@ const projects = [
     category: 'Commercial',
     description:
       'High-usage pantry and workplace purification systems with reliable service access.',
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e620f35f-1767854588560.png',
+    image: '/assets/images/Water-Purifiers_2_new.png',
     icon: Building2,
   },
   {
@@ -36,7 +37,7 @@ const projects = [
     category: 'Industrial',
     description:
       'Custom-capacity treatment solutions for factories, hard-water conditions, and process needs.',
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_15cdaf8b9-1772190825276.png',
+    image: '/assets/images/asfesd.webp',
     icon: Factory,
   },
 ];
@@ -73,34 +74,30 @@ export default function ProjectsPage() {
                   key={project.title}
                   className="project-flip-card group"
                   tabIndex={0}
+                  role="button"
+                  onClick={(event) => event.currentTarget.focus()}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      event.currentTarget.focus();
+                    }
+                  }}
                 >
                   <div className="project-flip-inner">
-                    <div className="project-flip-face project-flip-front">
-                      <img
-                        src={project.image}
-                        alt={project.title}
-                        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#041019]/85 via-[#041019]/30 to-transparent" />
-                      <div className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded-xl border border-white/25 bg-white/15 text-accent backdrop-blur-sm">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="project-card-image"
+                      loading="lazy"
+                    />
+                    <div className="project-card-overlay" />
+                    <div className="project-card-panel">
+                      <div className="project-card-icon">
                         <Icon size={19} aria-hidden="true" />
                       </div>
-                    </div>
-
-                    <div className="project-flip-face project-flip-back">
-                      <div className="icon-glow mx-auto mb-5">
-                        <Icon size={22} aria-hidden="true" />
-                      </div>
-                      <p className="mb-3 text-xs font-bold uppercase tracking-widest text-accent">
-                        {project.category}
-                      </p>
-                      <h2 className="font-display text-2xl font-extrabold leading-tight text-foreground">
-                        {project.title}
-                      </h2>
-                      <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                        {project.description}
-                      </p>
+                      <p className="project-card-category">{project.category}</p>
+                      <h2 className="project-card-title font-display">{project.title}</h2>
+                      <p className="project-card-description">{project.description}</p>
                       <Link
                         to="/contact"
                         className="btn-primary-glow mt-7 inline-flex items-center gap-2 px-5 py-3 text-sm"

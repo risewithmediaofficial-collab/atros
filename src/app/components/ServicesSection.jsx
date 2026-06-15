@@ -15,9 +15,8 @@ const services = [
       'Low maintenance cost',
       'Stylish modern designs',
     ],
-    image:
-      'https://images.unsplash.com/photo-1666608153597-05b25a35f82c?w=900&auto=format&fit=crop',
-    imageAlt: 'Modern kitchen with water purifier, clean bright interior',
+    image: '/assets/images/Aqua-Touch.jpg',
+    imageAlt: 'Aqua Touch domestic water purification system for homes',
   },
   {
     id: 'commercial',
@@ -25,8 +24,8 @@ const services = [
     subtitle: 'For Offices & Businesses',
     description: 'High-capacity purification for offices, schools, restaurants, and hospitals.',
     features: ['High water output', 'Energy-efficient', 'Continuous supply'],
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e620f35f-1767854588560.png',
-    imageAlt: 'Modern office with commercial water purification station',
+    image: '/assets/images/Water-Purifiers_2_new.png',
+    imageAlt: 'Commercial water purification system for offices and businesses',
   },
   {
     id: 'industrial',
@@ -35,8 +34,8 @@ const services = [
     description:
       'Customized large-scale water treatment solutions for manufacturing and industrial applications.',
     features: ['Customized capacity', 'Industrial-grade', 'Scalable solutions'],
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_15cdaf8b9-1772190825276.png',
-    imageAlt: 'Industrial water treatment plant with large filtration equipment',
+    image: '/assets/images/asfesd.webp',
+    imageAlt: 'Advanced RO water treatment system for industrial applications',
   },
   {
     id: 'installation',
@@ -153,7 +152,7 @@ export default function ServicesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
-          <div>
+          <div className="max-w-3xl">
             <span className="section-label mb-5 block">02 — Our Services</span>
             <h2 className="font-display text-section-title font-light text-foreground">
               Water Solutions for
@@ -173,10 +172,10 @@ export default function ServicesSection() {
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {/* Domestic large card — explicit height, plain img */}
-          <div className="bento-card md:col-span-2 lg:col-span-2 lg:row-span-2 relative min-h-[440px] group cursor-pointer overflow-hidden rounded-[1.25rem]">            <img
+          <div className="bento-card md:col-span-2 lg:col-span-2 lg:row-span-2 relative min-h-[440px] group cursor-pointer overflow-hidden rounded-[1.25rem] bg-slate-50">            <img
               src={services[0].image}
               alt={services[0].imageAlt}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-contain p-6 transition-transform duration-700 group-hover:scale-[1.02]"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/70 to-white/10" />
@@ -212,10 +211,10 @@ export default function ServicesSection() {
           </div>
 
           {/* Commercial */}
-          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">            <img
+          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem] bg-slate-50">            <img
               src={services[1].image}
               alt={services[1].imageAlt}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-contain p-5 transition-transform duration-700 group-hover:scale-[1.02]"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/60 to-transparent" />
@@ -244,10 +243,10 @@ export default function ServicesSection() {
           </div>
 
           {/* Industrial */}
-          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem]">            <img
+          <div className="bento-card relative min-h-[210px] group overflow-hidden cursor-pointer rounded-[1.25rem] bg-slate-50">            <img
               src={services[2].image}
               alt={services[2].imageAlt}
-              className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+              className="absolute inset-0 h-full w-full object-contain p-5 transition-transform duration-700 group-hover:scale-[1.02]"
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/60 to-transparent" />

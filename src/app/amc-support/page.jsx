@@ -16,13 +16,14 @@ import ContactSection from '@/app/components/ContactSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 import PageEffects from '@/app/components/PageEffects';
+import { buildSeoMetadata } from '@/app/seo';
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: 'AMC & Support | ATROS Water Purifier Maintenance and Repair',
   description:
     'ATROS Water Purifier provides AMC maintenance, filter replacement, repair support, and service care for RO, UV, UF, alkaline and commercial water systems.',
-  alternates: { canonical: '/amc-support' },
-};
+  canonical: '/amc-support',
+});
 
 const supportItems = [
   'Annual maintenance contracts',
@@ -161,10 +162,10 @@ export default function AmcSupportPage() {
         </section>
 
         {/* Why AMC */}
-        <section className="bg-background py-24">
+        <section className="amc-support-covers-section bg-background py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <span className="section-label mx-auto mb-5 block w-fit">Why AMC?</span>
+            <div className="mb-12 max-w-3xl">
+              <span className="section-label mb-5 block w-fit">Why AMC?</span>
               <h2 className="font-display text-section-title font-light text-foreground">
                 Protect your investment,
                 <br />
@@ -194,14 +195,14 @@ export default function AmcSupportPage() {
         {/* AMC Plans */}
         <section className="bg-secondary py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-14 text-center">
-              <span className="section-label mx-auto mb-5 block w-fit">Service Plans</span>
+            <div className="mb-14 max-w-3xl">
+              <span className="section-label mb-5 block w-fit">Service Plans</span>
               <h2 className="font-display text-section-title font-light text-foreground">
                 Maintenance plans
                 <br />
                 <span className="italic text-primary">for every need.</span>
               </h2>
-              <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
+              <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
                 All AMC plans include genuine parts, trained technicians, and transparent pricing.
                 Contact us for exact pricing tailored to your system.
               </p>
@@ -295,11 +296,11 @@ export default function AmcSupportPage() {
                 ))}
               </div>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:col-span-7">
+            <div className="grid gap-3 sm:grid-cols-2 lg:col-span-7 xl:gap-4">
               {supportItems.map((item) => (
                 <div
                   key={item}
-                  className="flex items-start gap-3 rounded-2xl border border-border bg-white p-4 transition-all duration-200 hover:border-accent/40 hover:bg-accent/5 hover:shadow-sm"
+                  className="amc-support-cover-card flex items-start gap-3 rounded-2xl border border-border bg-white px-5 py-4 transition-all duration-200 hover:border-accent/40 hover:bg-accent/5 hover:shadow-sm"
                 >
                   <CheckCircle2 className="mt-0.5 flex-shrink-0 text-accent" size={17} />
                   <span className="text-sm font-semibold text-foreground">{item}</span>

@@ -7,9 +7,8 @@ const slides = [
     eyebrow: 'Domestic RO Systems',
     title: ['Cleaner water', 'daily living'],
     copy: 'Compact RO, UV, UF, and alkaline purifiers designed for homes that need dependable drinking water without visual clutter.',
-    image:
-      'https://images.unsplash.com/photo-1666608153597-05b25a35f82c?w=1400&auto=format&fit=crop',
-    alt: 'Bright kitchen with a modern water purification setup',
+    image: '/assets/images/dolphin.webp',
+    alt: 'Aquafresh Dolphin RO water purifier system for home use',
     stats: ['RO + UV + UF', 'Mineral balanced', 'Low maintenance'],
     cta: 'Explore home purifiers',
     href: '/products',
@@ -18,32 +17,31 @@ const slides = [
     eyebrow: 'Commercial Purification',
     title: ['Reliable water', 'for workplaces'],
     copy: 'High-capacity purification for offices, schools, hospitals, restaurants, and teams that need clean water throughout the day.',
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e620f35f-1767854588560.png',
-    alt: 'Commercial water purification station in a modern office',
+    image: '/assets/images/Water-Purifiers_2_new.png',
+    alt: 'Commercial RO water purification system for offices and businesses',
     stats: ['Continuous output', 'Energy efficient', 'Service support'],
     cta: 'View commercial systems',
     href: '/services#commercial',
   },
   {
-    eyebrow: 'Industrial RO Plants',
-    title: ['Industrial RO', 'at scale'],
-    copy: 'Custom water treatment plants for factories and industrial facilities, planned around source water, flow rate, and uptime needs.',
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_15cdaf8b9-1772190825276.png',
-    alt: 'Industrial water treatment plant with filtration equipment',
-    stats: ['Custom capacity', 'Industrial grade', 'Planned installation'],
-    cta: 'Plan a project',
-    href: '/services#industrial',
+    eyebrow: 'Premium Water Solutions',
+    title: ['Advanced', 'purification'],
+    copy: 'Multi-stage RO, UV, and UF systems with advanced filtration technology for superior water quality and health benefits.',
+    image: '/assets/images/xpria.webp',
+    alt: 'XPRIA advanced water purification system with multi-stage technology',
+    stats: ['RO + UV + MF', 'Advanced filtration', 'Professional grade'],
+    cta: 'Explore premium systems',
+    href: '/products',
   },
   {
-    eyebrow: 'AMC & Support',
-    title: ['Service care', 'that lasts'],
-    copy: 'Annual maintenance, repairs, filter replacement, and local support from technicians who understand the system after installation.',
-    image:
-      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=1400&auto=format&fit=crop',
-    alt: 'Technician maintaining water treatment equipment',
-    stats: ['AMC plans', 'Fast repair', 'Filter replacement'],
-    cta: 'Book support',
-    href: '/amc-support',
+    eyebrow: 'Copper & Mineral Systems',
+    title: ['Healthy water', 'with minerals'],
+    copy: 'RO purifiers with copper and mineral enrichment technology, designed to provide clean water while maintaining essential minerals.',
+    image: '/assets/images/pearl copper.webp',
+    alt: 'Pureit Copper and Mineral RO UV water purifier system',
+    stats: ['Mineral enriched', 'RO + UV', 'Health focused'],
+    cta: 'Discover mineral systems',
+    href: '/products',
   },
 ];
 
@@ -179,10 +177,10 @@ export default function HomeShowcase() {
                 .from(
                   slide.querySelector('.home-slide__index'),
                   {
-                    scaleX: 0,
-                    transformOrigin: 'left center',
-                    duration: 1,
-                    ease: 'power3.out',
+                    x: 36,
+                    autoAlpha: 0,
+                    duration: 0.75,
+                    ease: 'power4.out',
                   },
                   0.25
                 ),
@@ -207,8 +205,8 @@ export default function HomeShowcase() {
               scrub: true,
               animation: gsap
                 .timeline()
-                .fromTo(imageWrap, { y: '-16vh' }, { y: '16vh', ease: 'none' }, 0)
-                .fromTo(image, { scale: 1.16 }, { scale: 1.04, ease: 'none' }, 0)
+                .fromTo(imageWrap, { y: '-8vh' }, { y: '8vh', ease: 'none' }, 0)
+                .fromTo(image, { scale: 1.02 }, { scale: 1, ease: 'none' }, 0)
                 .fromTo(content, { y: '4vh' }, { y: '-4vh', ease: 'none' }, 0),
             })
           );

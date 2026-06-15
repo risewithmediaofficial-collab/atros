@@ -16,7 +16,6 @@ const navigation = [
         href: '/services',
         description: 'Trust factors and service approach',
       },
-      { label: 'Projects', href: '/projects', description: 'Installation categories and work' },
     ],
   },
   {
@@ -26,21 +25,6 @@ const navigation = [
         label: 'Services Overview',
         href: '/services',
         description: 'All water purification services',
-      },
-      {
-        label: 'Domestic Purifiers',
-        href: '/services#domestic',
-        description: 'RO, UV, UF and alkaline systems',
-      },
-      {
-        label: 'Commercial Systems',
-        href: '/services#commercial',
-        description: 'Offices, schools and businesses',
-      },
-      {
-        label: 'Industrial RO Plants',
-        href: '/services#industrial',
-        description: 'Large-scale treatment solutions',
       },
       {
         label: 'AMC & Support',

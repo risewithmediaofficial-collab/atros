@@ -9,10 +9,19 @@ export default function PageEffects() {
   useEffect(() => {
     let context;
     let isCancelled = false;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
     const frame = window.requestAnimationFrame(() => {
       document.documentElement.classList.add('page-ready');
     });
+
+    if (prefersReducedMotion || pathname === '/') {
+      return () => {
+        isCancelled = true;
+        window.cancelAnimationFrame(frame);
+        document.documentElement.classList.remove('page-ready');
+      };
+    }
 
     const initGsap = async () => {
       try {
@@ -30,43 +39,27 @@ export default function PageEffects() {
         context = gsap.context(() => {
           gsap.utils.toArray(root.querySelectorAll('section')).forEach((section) => {
             const cards = section.querySelectorAll(
-              '.gradient-border-card, article, .glass-card, li, form > *, .contact-left > *, .contact-right'
+              '.gradient-border-card, .glass-card, .faq-item, .product-card, .reason-item, .stat-item, .project-flip-card, .process-card, .contact-left > *, .contact-right, form > *, ol > li'
             );
 
             if (cards.length) {
               gsap.fromTo(
                 cards,
-                { y: 22 },
+                { y: 14, autoAlpha: 0 },
                 {
                   y: 0,
-                  duration: 0.68,
+                  autoAlpha: 1,
+                  duration: 0.58,
                   ease: 'power3.out',
-                  stagger: 0.055,
+                  stagger: 0.04,
                   scrollTrigger: {
                     trigger: section,
-                    start: 'top 78%',
+                    start: 'top 82%',
                     once: true,
                   },
                 }
               );
             }
-          });
-
-          gsap.utils.toArray(root.querySelectorAll('img')).forEach((image) => {
-            gsap.fromTo(
-              image,
-              { scale: 1.045 },
-              {
-                scale: 1,
-                duration: 1.15,
-                ease: 'power3.out',
-                scrollTrigger: {
-                  trigger: image,
-                  start: 'top 88%',
-                  once: true,
-                },
-              }
-            );
           });
         }, root);
       } catch {

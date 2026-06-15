@@ -7,15 +7,14 @@ import ContactSection from '@/app/components/ContactSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 import PageEffects from '@/app/components/PageEffects';
+import { buildSeoMetadata } from '@/app/seo';
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: 'About ATROS Water Purifier | Trusted Water Purification in Krishnagiri',
   description:
     'Learn about ATROS Water Purifier, a Krishnagiri-based water purification business serving homes, businesses, and industries with RO, UV, UF, alkaline systems, installation, AMC, and repair support.',
-  alternates: {
-    canonical: '/about',
-  },
-};
+  canonical: '/about',
+});
 
 const milestones = [
   { value: '2009', label: 'Established' },
@@ -90,9 +89,9 @@ export default function AboutPage() {
               <div className="absolute inset-0 rounded-3xl bg-accent/20 blur-3xl" />
               <div className="relative overflow-hidden rounded-3xl border border-white/15 shadow-2xl">
                 <img
-                  src="https://img.rocket.new/generatedImages/rocket_gen_img_1af56a07c-1767952600354.png"
-                  alt="Family at home enjoying clean drinking water"
-                  className="h-full min-h-[420px] w-full object-cover"
+                  src="/assets/images/pearl copper.webp"
+                  alt="ATROS Pureit Copper Mineral water purification system"
+                  className="h-full min-h-[420px] w-full object-contain bg-gray-50 p-4"
                   loading="eager"
                 />
                 <div className="absolute inset-x-5 bottom-5 glass-card p-5">

@@ -131,8 +131,8 @@ export default function ProcessSection() {
   return (
     <section ref={sectionRef} className="py-24 bg-background overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="section-label mb-5 mx-auto block w-fit">04 - How It Works</span>
+        <div className="mb-16 max-w-3xl">
+          <span className="section-label mb-5 block w-fit">04 - How It Works</span>
           <h2 className="font-display text-section-title font-light text-foreground">
             From Consultation to
             <br />

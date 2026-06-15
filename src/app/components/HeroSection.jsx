@@ -160,7 +160,7 @@ export default function HeroSection() {
           <div>
             {/* Label badge */}
             <div className="overflow-hidden mb-7">
-              <div className="inline-flex items-center gap-2 bg-secondary border border-border text-foreground text-xs font-semibold px-4 py-2 rounded-full tracking-widest uppercase backdrop-blur-sm reveal-line">
+              <div className="inline-flex items-center gap-2 bg-secondary border border-border text-foreground text-sm sm:text-[0.95rem] font-semibold px-4 py-2.5 rounded-full tracking-[0.18em] uppercase backdrop-blur-sm reveal-line">
                 <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
                 Advanced Water Purification
               </div>
@@ -284,7 +284,7 @@ export default function HeroSection() {
                   width={480}
                   height={560}
                   priority
-                  className="w-full h-auto object-cover"
+                  className="h-auto w-full object-contain bg-slate-50 p-4"
                 />
 
                 {/* Overlay card */}
@@ -341,7 +341,7 @@ export default function HeroSection() {
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
         <span
-          className="text-muted-foreground text-[10px] tracking-[0.3em] uppercase font-medium"
+          className="text-muted-foreground text-xs sm:text-sm tracking-[0.22em] uppercase font-medium"
           style={{ fontFamily: 'var(--font-sans)' }}
         >
           Scroll

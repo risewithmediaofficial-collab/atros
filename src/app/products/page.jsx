@@ -6,81 +6,123 @@ import Footer from '@/components/Footer';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 import PageEffects from '@/app/components/PageEffects';
+import { buildSeoMetadata } from '@/app/seo';
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: 'Products | ATROS RO, UV, UF, Alkaline & Industrial Water Systems',
   description:
     'Explore ATROS water purifier product categories including home RO+UV systems, alkaline purifiers, commercial flow systems, and industrial RO plants.',
-  alternates: { canonical: '/products' },
-};
+  canonical: '/products',
+});
 
 const products = [
   {
-    name: 'Aqua Health Care Care 50 Lph Commercial Ro Water Purifier',
-    price: '₹ 31.5 K',
+    name: 'Aqua Touch Water Purification System',
+    price: '₹ 18.5 K',
     unit: 'Unit',
     type: 'Electrical & Storage',
-    specLabel: 'Tds',
-    specValue: '4000 Ppm',
-    category: 'commercial',
-    image: '/images/industrial_ro.png',
-    alt: 'Commercial RO Water Purifier with large blue filter cylinders on stainless steel frame',
-  },
-  {
-    name: 'Aquafresh Dolphin 10 Liter RO Water Purifier (White)',
-    price: '₹ 8.5 K',
-    unit: 'Unit',
-    type: 'Electrical & Storage',
-    specLabel: 'Product Capacity',
-    specValue: '10 Ltr',
+    specLabel: 'TDS Handling',
+    specValue: '2000 PPM',
     category: 'domestic',
-    image: '/images/white_blue_ro.png',
-    alt: 'Aquafresh Dolphin white RO water purifier with blue tank',
+    image: '/assets/images/Aqua-Touch.jpg',
+    alt: 'Aqua Touch water purification system with advanced filtration',
+    description: 'Advanced water purification with excellent TDS removal and premium storage capacity',
   },
   {
-    name: 'Aquaguard 15 L RO + UV + UF + TDS Water Purifier',
+    name: 'Aquaguard Advanced RO + UV + UF Water Purifier',
+    price: '₹ 22.5 K',
+    unit: 'Unit',
+    type: 'Electrical & Storage',
+    specLabel: 'Storage Capacity',
+    specValue: '12 Litres',
+    category: 'domestic',
+    image: '/assets/images/asfesd.webp',
+    alt: 'Aquaguard advanced water purifier with multi-stage purification',
+    description: 'Complete water safety with advanced RO, UV, and UF filtration stages',
+  },
+  {
+    name: 'Aquaguard Black RO + UV + UF Water Purifier',
     price: '₹ 19.0 K',
     unit: 'Unit',
     type: 'Electrical & Storage',
-    specLabel: 'Product Capacity',
-    specValue: '15.00 Litres',
+    specLabel: 'Storage Capacity',
+    specValue: '15 Litres',
     category: 'domestic',
-    image: '/images/sleek_black_ro.png',
-    alt: 'Aquaguard sleek black wall-mounted RO UV purifier with digital display',
+    image: '/assets/images/BLACK.png',
+    alt: 'Aquaguard black wall-mounted RO UV UF water purifier',
+    description: 'Multi-stage purification with RO, UV, and UF technology for complete water safety',
   },
-
   {
-    name: 'Pureit Classic 9 Ltr Water Purifiers',
-    price: '₹ 2.36 K – ₹ 2.48 K',
+    name: 'Blue Life Water Purification System',
+    price: '₹ 12.0 K',
+    unit: 'Unit',
+    type: 'Electrical & Storage',
+    specLabel: 'Storage Capacity',
+    specValue: '8 Litres',
+    category: 'domestic',
+    image: '/assets/images/blue life.jpg',
+    alt: 'Blue Life water purification system with premium features',
+    description: 'High-performance water purifier system with superior filtration efficiency',
+  },
+  {
+    name: 'CANIX Premium Water Purifier System',
+    price: '₹ 15.9 K – ₹ 17.2 K',
     unit: '',
-    type: 'Non Electrical & Storage',
-    specLabel: 'Product Capacity',
-    specValue: '9 Ltr',
-    category: 'non-electric',
-    image: '/images/compact_grey_ro.png',
-    alt: 'Pureit Classic white non-electric water purifier with 9 litre storage',
+    type: 'Electrical & Storage',
+    specLabel: 'Purification Type',
+    specValue: 'RO + UV',
+    category: 'domestic',
+    image: '/assets/images/canix.jpg',
+    alt: 'CANIX premium water purifier with advanced filtration technology',
+    description: 'Premium water purification system with proven RO and UV technology combination',
   },
   {
-    name: 'Pureit Copper+Mineral RO+UV+MF 8 Ltr Water Purifier',
+    name: 'Aquafresh Dolphin 10L RO Water Purifier',
+    price: '₹ 8.5 K',
+    unit: 'Unit',
+    type: 'Electrical & Storage',
+    specLabel: 'Storage Capacity',
+    specValue: '10 Litres',
+    category: 'domestic',
+    image: '/assets/images/dolphin.webp',
+    alt: 'Aquafresh Dolphin 10 liter RO water purifier system',
+    description: 'Compact home water purifier with 10L storage and advanced RO technology',
+  },
+  {
+    name: 'Pureit Copper+Mineral RO+UV Water Purifier',
     price: '₹ 28.21 K – ₹ 29.7 K',
     unit: '',
     type: 'Electrical & Storage',
-    specLabel: 'Product Capacity',
-    specValue: '8 Ltr',
+    specLabel: 'Storage Capacity',
+    specValue: '8 Litres',
     category: 'domestic',
-    image: '/images/copper_ro.png',
-    alt: 'Pureit Copper Mineral RO UV wall-mounted purifier with copper finish',
+    image: '/assets/images/pearl copper.webp',
+    alt: 'Pureit Copper Mineral RO UV water purifier with mineral enhancement',
+    description: 'Premium RO+UV purifier with copper and mineral enrichment technology for health',
   },
   {
-    name: 'Pureit Advanced 5 Litres Water Purifier',
-    price: '₹ 1.76 K – ₹ 1.83 K',
+    name: 'Aqua Health Care 50 LPH Commercial RO System',
+    price: '₹ 31.5 K – ₹ 35.0 K',
     unit: '',
-    type: 'Non Electrical & Storage',
-    specLabel: 'Product Capacity',
-    specValue: '5 Ltr',
-    category: 'non-electric',
-    image: '/images/gravity_filter.png',
-    alt: 'Pureit Advanced compact 5 litre non-electric water purifier',
+    type: 'Electrical & Commercial',
+    specLabel: 'Capacity',
+    specValue: '50 LPH',
+    category: 'commercial',
+    image: '/assets/images/Water-Purifiers_2_new.png',
+    alt: 'Aqua Health Care commercial RO water purification system',
+    description: 'Professional commercial water purification system ideal for offices and businesses',
+  },
+  {
+    name: 'XPRIA Advanced Water Purification System',
+    price: '₹ 14.8 K – ₹ 16.5 K',
+    unit: '',
+    type: 'Electrical & Storage',
+    specLabel: 'Purification Method',
+    specValue: 'RO + UV + MF',
+    category: 'domestic',
+    image: '/assets/images/xpria.webp',
+    alt: 'XPRIA advanced water purification system with multi-stage technology',
+    description: 'Professional-grade multi-stage purification with RO, UV, and microfiltration',
   },
 ];
 
@@ -249,9 +291,9 @@ export default function ProductsPage() {
         {/* Selection guide */}
         <section className="bg-secondary py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-12 text-center">
-              <span className="section-label mx-auto mb-5 block w-fit">How to Choose</span>
-              <h2 className="mx-auto max-w-4xl text-center font-display text-section-title font-light text-foreground">
+            <div className="mb-12 max-w-3xl">
+              <span className="section-label mb-5 block w-fit">How to Choose</span>
+              <h2 className="max-w-4xl font-display text-section-title font-light text-foreground">
                 Three factors that shape
                 <br />
                 <span className="italic text-primary">the right selection.</span>

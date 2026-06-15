@@ -27,15 +27,15 @@ export default function ContactSection() {
   return (
     <section id="contact" className="overflow-hidden bg-white py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <span className="section-label mb-5 mx-auto block w-fit">07 - Contact Us</span>
+        <div className="mb-16 max-w-3xl">
+          <span className="section-label mb-5 block w-fit">07 - Contact Us</span>
           <h2 className="font-display text-section-title font-light text-foreground">
             Get Clean & Healthy
             <br />
             <span className="italic text-primary">Water Today</span>
           </h2>
           <p
-            className="text-muted-foreground text-base mt-4 max-w-xl mx-auto"
+            className="mt-4 max-w-xl text-base text-muted-foreground"
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             Contact us for expert consultation, installation, maintenance, and water purification

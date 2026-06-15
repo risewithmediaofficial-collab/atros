@@ -1,12 +1,17 @@
 import React from 'react';
+import { SITE_NAME, toAbsoluteUrl } from '@/app/seo';
 
 export default function StructuredData() {
+  const siteUrl = toAbsoluteUrl('/');
+  const logoUrl = toAbsoluteUrl('/assets/images/app_logo.png');
+
   const orgSchema = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'ATROS Water Purifier',
+    name: SITE_NAME,
     legalName: 'MADHAIYAN MOORTHI',
-    url: 'https://atroswaterpurifier.com',
+    url: siteUrl,
+    logo: logoUrl,
     telephone: '+919080232624',
     taxID: '33BOJPM1034A2ZM',
     foundingDate: '2009',
@@ -25,26 +30,26 @@ export default function StructuredData() {
       closes: '21:00',
     },
     description:
-      'ATROS Water Purifier provides domestic, commercial, and industrial water purification solutions including RO systems, alkaline water purifiers, UV & UF purification systems, installation services, AMC maintenance, and water treatment solutions.',
+      'ATROS Water Purifier provides domestic, commercial, and industrial water purification solutions including RO systems, alkaline water purifiers, UV and UF purification systems, installation services, AMC maintenance, and water treatment solutions.',
   };
 
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    name: 'ATROS Water Purifier | RO, UV, UF & Alkaline Purification Solutions',
+    name: `${SITE_NAME} | RO, UV, UF & Alkaline Purification Solutions`,
     description:
       'Advanced RO, UV, UF, and alkaline water purification systems for homes, businesses, and industries. Professional installation, AMC support, and reliable water treatment solutions.',
-    url: 'https://atroswaterpurifier.com',
-    inLanguage: 'en',
+    url: siteUrl,
+    inLanguage: 'en-IN',
   };
 
-  const softwareSchema = {
+  const localBusinessSchema = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
-    name: 'ATROS Water Purifier',
+    name: SITE_NAME,
     legalName: 'MADHAIYAN MOORTHI',
-    image: 'https://atroswaterpurifier.com/assets/images/app_logo.png',
-    priceRange: '₹₹',
+    image: logoUrl,
+    priceRange: 'Rs. Rs.',
     telephone: '+919080232624',
     address: {
       '@type': 'PostalAddress',
@@ -74,6 +79,14 @@ export default function StructuredData() {
     },
   };
 
+  const websiteSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE_NAME,
+    url: siteUrl,
+    inLanguage: 'en-IN',
+  };
+
   return (
     <>
       <script
@@ -86,7 +99,11 @@ export default function StructuredData() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
       />
     </>
   );

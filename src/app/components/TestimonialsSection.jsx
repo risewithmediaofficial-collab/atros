@@ -88,9 +88,9 @@ export default function TestimonialsSection() {
         }}
       />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="testimonials-header text-center mb-16">
+        <div className="testimonials-header mb-16 max-w-3xl">
           <span
-            className="section-label mb-5 mx-auto block w-fit"
+            className="section-label mb-5 block w-fit"
             style={{ borderColor: 'rgba(0,180,216,0.4)', color: 'rgba(0,180,216,0.9)' }}
           >
             05 - Customer Stories
@@ -103,7 +103,7 @@ export default function TestimonialsSection() {
             </span>
           </h2>
           <p
-            className="text-muted-foreground text-base mt-4 max-w-lg mx-auto"
+            className="mt-4 max-w-lg text-base text-muted-foreground"
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             Trusted by thousands of families and businesses across Tamil Nadu and beyond.

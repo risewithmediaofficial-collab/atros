@@ -175,15 +175,15 @@ export default function WhyChooseSection() {
     <section ref={sectionRef} id="why-us" className="py-24 overflow-hidden bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
-          <span className="section-label mb-5 mx-auto block w-fit">03 — Why Choose ATROS</span>
+        <div className="mb-16 max-w-3xl">
+          <span className="section-label mb-5 block w-fit">03 — Why Choose ATROS</span>
           <h2 className="font-display text-section-title font-light text-foreground">
             Why Families
             <br />
             <span className="italic text-primary">Trust ATROS</span>
           </h2>
           <p
-            className="text-muted-foreground text-base mt-4 max-w-xl mx-auto leading-relaxed"
+            className="mt-4 max-w-xl text-base leading-relaxed text-muted-foreground"
             style={{ fontFamily: 'var(--font-sans)' }}
           >
             We combine advanced purification technology with customer-focused service to deliver
@@ -195,10 +195,10 @@ export default function WhyChooseSection() {
           {/* Left column */}
           <div className="why-left lg:col-span-4 flex flex-col gap-5">
             {/* Image card — using plain img with explicit height to guarantee visibility */}
-            <div className="relative rounded-2xl overflow-hidden" style={{ height: '280px' }}>              <img
+            <div className="relative overflow-hidden rounded-2xl bg-slate-50" style={{ height: '280px' }}>              <img
                 src="https://img.rocket.new/generatedImages/rocket_gen_img_1af56a07c-1767952600354.png"
                 alt="Happy Indian family drinking clean water at home"
-                className="absolute inset-0 w-full h-full object-cover"
+                className="absolute inset-0 h-full w-full object-contain p-4"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-white/95 via-white/45 to-transparent" />

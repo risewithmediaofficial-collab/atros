@@ -17,15 +17,14 @@ import ProcessSection from '@/app/components/ProcessSection';
 import StructuredData from '@/app/components/StructuredData';
 import WhatsAppFloat from '@/app/components/WhatsAppFloat';
 import PageEffects from '@/app/components/PageEffects';
+import { buildSeoMetadata } from '@/app/seo';
 
-export const metadata = {
+export const metadata = buildSeoMetadata({
   title: 'Water Purifier Services | RO, UV, UF, Alkaline, AMC & Repair | ATROS',
   description:
     'Explore ATROS Water Purifier services including domestic RO systems, alkaline purifiers, commercial RO plants, industrial water treatment, professional installation, AMC maintenance, and repair support.',
-  alternates: {
-    canonical: '/services',
-  },
-};
+  canonical: '/services',
+});
 
 const serviceGroups = [
   {
@@ -34,8 +33,8 @@ const serviceGroups = [
     subtitle: 'For homes, apartments, and families',
     description:
       'Smart RO, UV, UF, and alkaline purification systems selected for your water source, daily usage, and taste preference.',
-    image: 'https://images.unsplash.com/photo-1666608153597-05b25a35f82c',
-    alt: 'Modern kitchen with water purifier setup',
+    image: '/assets/images/Aqua-Touch.jpg',
+    alt: 'Aqua Touch domestic water purification system for home use',
     icon: Home,
     points: [
       'RO, UV, UF and alkaline options',
@@ -50,8 +49,8 @@ const serviceGroups = [
     subtitle: 'For offices, schools, hotels, and hospitals',
     description:
       'Reliable high-output drinking water systems for spaces that need steady supply, practical maintenance, and consistent quality.',
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_1e620f35f-1767854588560.png',
-    alt: 'Commercial water station in a bright office pantry',
+    image: '/assets/images/Water-Purifiers_2_new.png',
+    alt: 'Commercial water purification system for offices and businesses',
     icon: Building2,
     points: [
       'High-capacity output',
@@ -66,8 +65,8 @@ const serviceGroups = [
     subtitle: 'For factories and process water needs',
     description:
       'Custom water treatment planning for industrial environments, hard-water conditions, and large-scale usage requirements.',
-    image: 'https://img.rocket.new/generatedImages/rocket_gen_img_15cdaf8b9-1772190825276.png',
-    alt: 'Industrial water treatment equipment',
+    image: '/assets/images/asfesd.webp',
+    alt: 'Advanced RO water treatment system for industrial applications',
     icon: Factory,
     points: [
       'Custom plant capacity',
@@ -159,7 +158,7 @@ export default function ServicesPage() {
         <section id="service-list" className="bg-background py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-              <div>
+              <div className="max-w-3xl">
                 <span className="section-label mb-5 block">Core Systems</span>
                 <h2 className="font-display text-section-title font-light text-foreground">
                   Choose by
@@ -182,11 +181,13 @@ export default function ServicesPage() {
                     id={service.id}
                     className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition-all duration-500 hover:shadow-xl hover:shadow-accent/8 hover:border-accent/20 lg:grid-cols-2"
                   >
-                    <div className={`overflow-hidden ${index % 2 === 1 ? 'lg:order-2' : ''}`}>
+                    <div
+                      className={`flex items-center justify-center overflow-hidden bg-slate-50 p-6 sm:p-8 ${index % 2 === 1 ? 'lg:order-2' : ''}`}
+                    >
                       <img
                         src={service.image}
                         alt={service.alt}
-                        className="h-full min-h-[320px] w-full object-cover transition-transform duration-700 group-hover:scale-104"
+                        className="h-full min-h-[320px] w-full object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                         loading="lazy"
                       />
                     </div>
@@ -245,8 +246,8 @@ export default function ServicesPage() {
 
         <section className="bg-secondary py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="mb-14 text-center">
-              <span className="section-label mx-auto mb-5 block w-fit">Support Services</span>
+            <div className="mb-14 max-w-3xl">
+              <span className="section-label mb-5 block w-fit">Support Services</span>
               <h2 className="font-display text-section-title font-light text-foreground">
                 Install, maintain,
                 <br />
