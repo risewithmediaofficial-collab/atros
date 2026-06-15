@@ -1,5 +1,5 @@
 import React from 'react';
-import { SITE_NAME, toAbsoluteUrl } from '@/app/seo';
+import { SITE_NAME, toAbsoluteUrl } from '@/features/seo/seo';
 
 export default function StructuredData() {
   const siteUrl = toAbsoluteUrl('/');
@@ -49,7 +49,7 @@ export default function StructuredData() {
     name: SITE_NAME,
     legalName: 'MADHAIYAN MOORTHI',
     image: logoUrl,
-    priceRange: 'Rs. Rs.',
+    priceRange: 'Rs. 8,500 - Rs. 35,000',
     telephone: '+919080232624',
     address: {
       '@type': 'PostalAddress',

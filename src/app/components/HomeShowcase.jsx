@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const slides = [
   {
@@ -60,7 +60,6 @@ function SplitTitle({ lines }) {
 export default function HomeShowcase() {
   const stageRef = useRef(null);
   const activeSlideRef = useRef(0);
-  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     let context;
@@ -139,11 +138,9 @@ export default function HomeShowcase() {
               start: '35% 65%',
               onEnter: () => {
                 activeSlideRef.current = index;
-                setActiveSlide(index);
               },
               onEnterBack: () => {
                 activeSlideRef.current = index;
-                setActiveSlide(index);
               },
               animation: gsap
                 .timeline()

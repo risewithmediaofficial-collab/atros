@@ -20,4 +20,36 @@ export default defineConfig({
     port: 4028,
     host: '0.0.0.0',
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          const normalizedId = id.replaceAll('\\', '/');
+          if (!normalizedId.includes('/node_modules/')) return;
+
+          if (
+            normalizedId.includes('/node_modules/react/') ||
+            normalizedId.includes('/node_modules/react-dom/') ||
+            normalizedId.includes('/node_modules/scheduler/')
+          ) {
+            return 'framework';
+          }
+
+          if (normalizedId.includes('/node_modules/react-router-dom/')) return 'router';
+          if (
+            normalizedId.includes('/node_modules/@reduxjs/toolkit/') ||
+            normalizedId.includes('/node_modules/react-redux/')
+          ) {
+            return 'state';
+          }
+          if (
+            normalizedId.includes('/node_modules/lucide-react/') ||
+            normalizedId.includes('/node_modules/@heroicons/react/')
+          ) {
+            return 'icons';
+          }
+        },
+      },
+    },
+  },
 });

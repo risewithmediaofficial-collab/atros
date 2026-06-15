@@ -1,48 +1,23 @@
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ChevronDown, Menu, Phone, X } from 'lucide-react';
+import { useAppDispatch, useAppSelector } from '@/app/store/hooks';
+import {
+  closeNavigationMenus,
+  setActiveSection,
+  setHeaderScrolled,
+  setMobileMenuOpen,
+  setOpenNavigationGroup,
+} from '@/app/store/slices/uiSlice';
 import AppLogo from '@/components/ui/AppLogo';
-
-const navigation = [
-  { label: 'Home', href: '/' },
-  {
-    label: 'Company',
-    items: [
-      { label: 'About ATROS', href: '/about', description: 'Story, values and business details' },
-      {
-        label: 'Why Choose Us',
-        href: '/services',
-        description: 'Trust factors and service approach',
-      },
-    ],
-  },
-  {
-    label: 'Solutions',
-    items: [
-      {
-        label: 'Services Overview',
-        href: '/services',
-        description: 'All water purification services',
-      },
-      {
-        label: 'AMC & Support',
-        href: '/amc-support',
-        description: 'Maintenance, repair and service care',
-      },
-    ],
-  },
-  { label: 'Products', href: '/products' },
-  { label: 'Projects', href: '/projects' },
-  { label: 'Contact', href: '/contact' },
-];
+import { navigation } from '@/shared/config/navigation';
 
 export default function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [openGroup, setOpenGroup] = useState(null);
-  const [activeSection, setActiveSection] = useState('');
+  const dispatch = useAppDispatch();
+  const { activeSection, isHeaderScrolled, isMobileMenuOpen, openNavigationGroup } =
+    useAppSelector((state) => state.ui);
   const navRef = useRef(null);
   const scrollFrame = useRef(null);
   const { pathname } = useLocation();
@@ -57,21 +32,20 @@ export default function Header() {
     []
   );
 
-  const closeMenus = () => {
-    setMenuOpen(false);
-    setOpenGroup(null);
-  };
+  const closeMenus = useCallback(() => {
+    dispatch(closeNavigationMenus());
+  }, [dispatch]);
 
   const scrollToTop = useCallback(() => {
     if (window.scrollY <= 2) return;
 
     window.history.replaceState(null, '', window.location.pathname);
-    setActiveSection('');
+    dispatch(setActiveSection(''));
     window.scrollTo({
       top: 0,
       behavior: prefersReducedMotion() ? 'auto' : 'smooth',
     });
-  }, [prefersReducedMotion]);
+  }, [dispatch, prefersReducedMotion]);
 
   const scrollToSection = useCallback(
     (id) => {
@@ -84,20 +58,20 @@ export default function Header() {
       );
       if (Math.abs(window.scrollY - top) <= 2) return;
 
-      setActiveSection(id);
+      dispatch(setActiveSection(id));
       window.history.replaceState(null, '', `#${id}`);
       window.scrollTo({
         top,
         behavior: prefersReducedMotion() ? 'auto' : 'smooth',
       });
     },
-    [getHeaderOffset, prefersReducedMotion]
+    [dispatch, getHeaderOffset, prefersReducedMotion]
   );
 
   useEffect(() => {
     const updateScrollState = () => {
       scrollFrame.current = null;
-      setScrolled(window.scrollY > 48);
+      dispatch(setHeaderScrolled(window.scrollY > 48));
     };
 
     const handleScroll = () => {
@@ -114,14 +88,14 @@ export default function Header() {
       window.removeEventListener('resize', handleScroll);
       if (scrollFrame.current !== null) window.cancelAnimationFrame(scrollFrame.current);
     };
-  }, [pathname]);
+  }, [dispatch, pathname]);
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : '';
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
-  }, [menuOpen]);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -171,7 +145,7 @@ export default function Header() {
       <nav
         ref={navRef}
         className={`fixed left-0 top-0 z-50 w-full transition-all duration-500 ${
-          scrolled ? 'glass-nav py-3' : 'border-b border-border/70 bg-white py-5'
+          isHeaderScrolled ? 'glass-nav py-3' : 'border-b border-border/70 bg-white py-5'
         }`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -188,14 +162,14 @@ export default function Header() {
             <div className="flex flex-col leading-none">
               <span
                 className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 ${
-                  scrolled ? 'text-primary' : 'text-foreground'
+                  isHeaderScrolled ? 'text-primary' : 'text-foreground'
                 }`}
               >
                 ATROS
               </span>
               <span
                 className={`text-[9px] font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
-                  scrolled ? 'text-accent' : 'text-accent'
+                  isHeaderScrolled ? 'text-accent' : 'text-accent'
                 }`}
               >
                 Water Purifier
@@ -209,14 +183,20 @@ export default function Header() {
                 <div
                   key={group.label}
                   className="group/nav relative"
-                  onMouseEnter={() => setOpenGroup(group.label)}
-                  onMouseLeave={() => setOpenGroup(null)}
+                  onMouseEnter={() => dispatch(setOpenNavigationGroup(group.label))}
+                  onMouseLeave={() => dispatch(setOpenNavigationGroup(null))}
                 >
                   <button
                     type="button"
-                    onClick={() => setOpenGroup(openGroup === group.label ? null : group.label)}
+                    onClick={() =>
+                      dispatch(
+                        setOpenNavigationGroup(
+                          openNavigationGroup === group.label ? null : group.label
+                        )
+                      )
+                    }
                     className={`nav-pill font-sans-premium ${isGroupActive(group) ? 'is-active' : ''} ${navTextClass}`}
-                    aria-expanded={openGroup === group.label}
+                    aria-expanded={openNavigationGroup === group.label}
                     aria-haspopup="true"
                     suppressHydrationWarning
                   >
@@ -269,7 +249,7 @@ export default function Header() {
             <a
               href="tel:+919080232624"
               className={`inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-all duration-300 ${
-                scrolled
+                isHeaderScrolled
                   ? 'border-primary/20 text-primary hover:border-primary hover:bg-primary hover:text-white'
                   : 'border-primary/20 text-primary hover:border-primary hover:bg-primary hover:text-white'
               }`}
@@ -284,22 +264,28 @@ export default function Header() {
 
           <button
             type="button"
-            onClick={() => setMenuOpen(!menuOpen)}
+            onClick={() => dispatch(setMobileMenuOpen(!isMobileMenuOpen))}
             className={`rounded-xl p-2 transition-all duration-200 lg:hidden ${
-              scrolled ? 'text-foreground hover:bg-secondary' : 'text-foreground hover:bg-secondary'
+              isHeaderScrolled
+                ? 'text-foreground hover:bg-secondary'
+                : 'text-foreground hover:bg-secondary'
             }`}
             aria-label="Toggle menu"
-            aria-expanded={menuOpen}
+            aria-expanded={isMobileMenuOpen}
             suppressHydrationWarning
           >
-            {menuOpen ? <X size={25} aria-hidden="true" /> : <Menu size={25} aria-hidden="true" />}
+            {isMobileMenuOpen ? (
+              <X size={25} aria-hidden="true" />
+            ) : (
+              <Menu size={25} aria-hidden="true" />
+            )}
           </button>
         </div>
       </nav>
 
       <div
         className={`fixed inset-0 z-40 overflow-y-auto bg-white/96 px-4 pb-10 pt-28 backdrop-blur-2xl transition-all duration-300 lg:hidden ${
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-0'
+          isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'pointer-events-none opacity-0'
         }`}
       >
         <div className="mx-auto flex max-w-md flex-col gap-4">
@@ -311,23 +297,29 @@ export default function Header() {
               >
                 <button
                   type="button"
-                  onClick={() => setOpenGroup(openGroup === group.label ? null : group.label)}
+                  onClick={() =>
+                    dispatch(
+                      setOpenNavigationGroup(
+                        openNavigationGroup === group.label ? null : group.label
+                      )
+                    )
+                  }
                   className="flex w-full items-center justify-between rounded-xl px-4 py-3 text-left font-sans-premium text-xl font-extrabold text-foreground"
-                  aria-expanded={openGroup === group.label}
+                  aria-expanded={openNavigationGroup === group.label}
                   suppressHydrationWarning
                 >
                   {group.label}
                   <ChevronDown
                     size={20}
                     className={`transition-transform duration-200 ${
-                      openGroup === group.label ? 'rotate-180' : ''
+                      openNavigationGroup === group.label ? 'rotate-180' : ''
                     }`}
                     aria-hidden="true"
                   />
                 </button>
                 <div
                   className={`grid transition-all duration-300 ${
-                    openGroup === group.label ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
+                    openNavigationGroup === group.label ? 'grid-rows-[1fr]' : 'grid-rows-[0fr]'
                   }`}
                 >
                   <div className="overflow-hidden">

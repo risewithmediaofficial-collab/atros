@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { SITE_NAME, buildSeoMetadata, toAbsoluteUrl } from '@/app/seo';
+import { SITE_NAME, buildSeoMetadata, toAbsoluteUrl } from '@/features/seo/seo';
+import { notFoundMetadata } from '@/app/router/routeConfig';
 
 function upsertMeta(selector, attributes) {
   let element = document.head.querySelector(selector);
@@ -28,9 +29,13 @@ function upsertLink(selector, attributes) {
   });
 }
 
-export default function Seo({ routeMeta }) {
-  const location = useLocation();
-  const pathname = location.pathname || '/';
+export default function Seo({ routes }) {
+  const { pathname } = useLocation();
+
+  const routeMeta = useMemo(
+    () => routes.find((route) => route.path === pathname)?.meta || notFoundMetadata,
+    [pathname, routes]
+  );
 
   useEffect(() => {
     const fallbackMeta = buildSeoMetadata({
