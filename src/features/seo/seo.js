@@ -1,6 +1,6 @@
 export const SITE_NAME = 'ATROS Water Purifier';
 export const DEFAULT_SITE_URL = 'https://atroswaterpurifier.com';
-export const DEFAULT_OG_IMAGE = '/assets/images/app_logo.png';
+export const DEFAULT_OG_IMAGE = '/assets/logo.jpeg';
 
 export function getSiteUrl() {
   const envUrl =

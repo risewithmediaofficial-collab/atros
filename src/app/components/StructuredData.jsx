@@ -3,7 +3,7 @@ import { SITE_NAME, toAbsoluteUrl } from '@/features/seo/seo';
 
 export default function StructuredData() {
   const siteUrl = toAbsoluteUrl('/');
-  const logoUrl = toAbsoluteUrl('/assets/images/app_logo.png');
+  const logoUrl = toAbsoluteUrl('/assets/logo.jpeg');
 
   const orgSchema = {
     '@context': 'https://schema.org',
