@@ -152,23 +152,23 @@ export default function Header() {
           <Link
             to="/"
             onClick={handleBrandClick}
-            className="group flex items-center gap-2.5 rounded-full focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent"
+            className="group flex items-center gap-3 rounded-full focus-visible:outline focus-visible:outline-3 focus-visible:outline-offset-4 focus-visible:outline-accent"
             aria-label="ATROS Water Purifier, go to homepage"
           >
             <AppLogo
-              size={36}
+              size={48}
               className="transition-transform duration-300 group-hover:scale-105"
             />
             <div className="flex flex-col leading-none">
               <span
-                className={`font-display text-lg font-bold tracking-tight transition-colors duration-300 ${
+                className={`font-display text-xl font-bold tracking-tight transition-colors duration-300 ${
                   isHeaderScrolled ? 'text-primary' : 'text-foreground'
                 }`}
               >
                 ATROS
               </span>
               <span
-                className={`text-[9px] font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
+                className={`text-[10px] font-semibold uppercase tracking-[0.2em] transition-colors duration-300 ${
                   isHeaderScrolled ? 'text-accent' : 'text-accent'
                 }`}
               >
